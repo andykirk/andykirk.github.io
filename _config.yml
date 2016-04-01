@@ -1,0 +1,13 @@
+# Site settings
+title: "Andy Kirk"
+email: andy.kirk@gridlight-design.co.uk
+description: "Portfolio and Blog."
+baseurl: ""
+url: "http://andykirk.github.io/"
+
+# Build settings
+markdown: kramdown
+
+
+kramdown:
+  auto_ids:       true
