@@ -1,0 +1,1801 @@
+/* --| SETTINGS |-------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+/* --| BASE |------------------------------------------------------------------------------------ */
+/*! Start CSS. See SCSS file for documentation. */
+/*
+    Design for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+*/
+/*
+    Resources:
+    * http://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly/
+    * https://24ways.org/2006/compose-to-a-vertical-rhythm
+*/
+/*
+    NOTE TO SELF.
+    Where borders are concened, probably best to leave margins alone and use padding to maintain
+    baseline-grid. After all, if there's a border, there will have to be padding too.
+
+*/
+/*
+    REM -> PX multiplier
+    1.5/PX*16
+    1px = $fallback--base-rem-space-unit / 24
+    2px = $fallback--base-rem-space-unit / 12
+    3px = $fallback--base-rem-space-unit / 8
+    4px = $fallback--base-rem-space-unit / 6
+    5px = $fallback--base-rem-space-unit / 4.8
+    6px = $fallback--base-rem-space-unit / 4
+    7px = $fallback--base-rem-space-unit / 3.42857142857
+    8px = $fallback--base-rem-space-unit / 3
+    9px = $fallback--base-rem-space-unit / 2.66666666667
+    10px = $fallback--base-rem-space-unit / 2.4
+    11px = $fallback--base-rem-space-unit / 2.18181818182
+    12px = $fallback--base-rem-space-unit / 2
+
+*/
+/* Output class for reference (tmp): */
+.ref {
+  fallback--base-rem-space-unit: 1.5rem;
+  fallback--base-rem-1px: 0.0625rem;
+}
+
+/* 'Globals': */
+/* Elements: */
+/*
+    Note: when a legend is present the width of the top border of the fieldset seems to be ignored,
+    so the padding reduction that's meant to offset the border width is actually too small for the
+    top padding. CSS can't (yet) detect if there is a legend inside the fieldset so there needs to
+    be some corrective style on the legend itself. That would be bottom margin.
+
+*/
+/*------------------------------------------------------------------------------------------------*
+    Root Styles
+
+\*------------------------------------------------------------------------------------------------*/
+html {
+  color: #333;
+  background-color: #fff;
+  border-color: #663399;
+  overflow-y: scroll;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+}
+
+* {
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+::before,
+::after {
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  -webkit-font-smoothing: inherit;
+  border-style: solid;
+  border-width: 0;
+  border-color: inherit;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+body {
+  font-size: 0.875em;
+  line-height: 1.5rem;
+  padding: 1.5rem;
+  -height: 100%;
+  min-height: 100%;
+}
+
+/*------------------------------------------------------------------------------------------------*
+    All Elements
+
+\*------------------------------------------------------------------------------------------------*/
+/*
+a:link a:visited a:hover a:active a:focus
+*/
+a[href] {
+  color: #663399;
+  background-color: transparent;
+  text-decoration: none;
+  border-bottom: 1px solid #b38cd9;
+  padding-bottom: 0.125rem;
+  touch-action: manipulation;
+}
+
+a[href]:hover, a[href]:active, a[href]:focus {
+  color: #402060;
+  border-bottom: 1px solid #8c53c6;
+  outline: 0;
+}
+
+a[href][rel="external"]::after {
+  border-color: transparent  currentColor;
+  border-width: 0 0.4em 0.4em 0;
+  content: "";
+  display: inline-block;
+  height: 0;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  vertical-align: super;
+  width: 0;
+}
+
+abbr {
+  cursor: help;
+  /**
+     * N1. Remove the bottom border in Firefox 39-.
+     * N2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+     */
+}
+
+abbr[title] {
+  border-bottom: none;
+  /* N1 */
+  text-decoration: underline;
+  /* N2 */
+  text-decoration: underline dotted;
+  /* N2 */
+}
+
+address {
+  margin-bottom: 1.5rem;
+}
+
+article {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+aside {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+audio {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/*
+    AK: Not sure why the following two rules can't be combined, but they're separate in Normalize
+    so leaving them as-is for now.
+*/
+/**
+ * N: Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+b {
+  font-weight: inherit;
+}
+
+/**
+ * N: Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b {
+  font-weight: bolder;
+}
+
+blockquote {
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+  font-style: italic;
+  /*
+        @TODO - set up vars and styles for the most common quote styles.
+        I.e. left-border, and enclosing qutoes.
+    */
+}
+
+button {
+  display: inline-block;
+  overflow: visible;
+  background-color: #663399;
+  color: #fff;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  min-height: 1.875rem;
+  text-transform: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  margin: 0.1875rem 0;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  vertical-align: baseline;
+  touch-action: manipulation;
+  /**
+     * Remove the inner border and padding in Firefox.
+     */
+  /**
+     * Restore the focus styles unset by the previous rule.
+     */
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+button:hover, button:active, button:focus {
+  background-color: #8040bf;
+}
+
+canvas {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+caption {
+  font-weight: bold;
+  padding: 0.75rem;
+  background-color: #663399;
+  color: #fff;
+}
+
+code {
+  font-family: monospace, monospace;
+  font-size: 1em;
+  line-height: 0;
+}
+
+dd {
+  margin-left: 2.25rem;
+}
+
+details {
+  display: block;
+}
+
+dfn {
+  font-style: italic;
+}
+
+dl {
+  margin-bottom: 1.5rem;
+}
+
+dt {
+  font-weight: bold;
+}
+
+fieldset {
+  margin-bottom: 1.5rem;
+  border-width: 1px;
+  padding-top: 1.4375rem;
+  padding-left: 1.4375rem;
+  padding-right: 1.4375rem;
+}
+
+fieldset::after {
+  display: block;
+  content: "";
+  height: 0;
+  margin-top: -1px;
+  margin-bottom: 1.4375rem;
+}
+
+fieldset fieldset {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+fieldset fieldset::after {
+  display: none;
+}
+
+figcaption {
+  display: block;
+}
+
+figure {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+footer {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  margin-bottom: 1.5rem;
+}
+
+header {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+hgroup {
+  display: block;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3em;
+  line-height: 3rem;
+  font-variant: normal;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2.1428571429em;
+  line-height: 2.25rem;
+  font-variant: normal;
+}
+
+h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.7142857143em;
+  line-height: 2.25rem;
+  font-variant: normal;
+}
+
+h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2857142857em;
+  line-height: 1.5rem;
+  font-variant: normal;
+}
+
+h5 {
+  margin-bottom: 1.5rem;
+  font-size: 1.0714285714em;
+  line-height: 1.5rem;
+  font-variant: normal;
+}
+
+h6 {
+  margin-bottom: 1.5rem;
+  font-size: 1em;
+  line-height: 1.5rem;
+  font-variant: small-caps;
+}
+
+hr {
+  height: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #663399;
+  margin-top: -0.0625rem;
+  margin-bottom: 1.5rem;
+  overflow: visible;
+  /* N: Show the overflow in Edge and IE. */
+}
+
+iframe {
+  vertical-align: middle;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  max-width: 100%;
+  font-style: italic;
+}
+
+.gm-style img, img[width], img[height] {
+  max-width: none;
+}
+
+/** N:
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+input {
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  min-height: 1.875rem;
+  background-color: #fff;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  margin: 0.1875rem 0;
+  vertical-align: top;
+  touch-action: manipulation;
+  /**
+     * Remove the inner border and padding in Firefox.
+     */
+  /**
+     * Restore the focus styles unset by the previous rule.
+     */
+}
+
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * N1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *     controls in Android 4.
+ * N2. Correct the inability to style clickable types in iOS.
+ */
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  display: inline-block;
+  overflow: visible;
+  background-color: #663399;
+  color: #fff;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  min-height: 1.875rem;
+  text-transform: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  margin: 0.1875rem 0;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  vertical-align: baseline;
+  touch-action: manipulation;
+  /**
+     * Remove the inner border and padding in Firefox.
+     */
+  /**
+     * Restore the focus styles unset by the previous rule.
+     */
+}
+
+html [type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+html [type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+html [type="button"]:hover, html [type="button"]:active, html [type="button"]:focus,
+[type="reset"]:hover,
+[type="reset"]:active,
+[type="reset"]:focus,
+[type="submit"]:hover,
+[type="submit"]:active,
+[type="submit"]:focus {
+  background-color: #8040bf;
+}
+
+[type="file"] {
+  cursor: pointer;
+  padding: 0;
+}
+
+@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+  [type="file"] {
+    padding-left: 0.375rem;
+  }
+}
+
+/*input::-moz-placeholder {
+    line-height: inherit;
+}*/
+[type=file]::-ms-value {
+  background: #fff;
+  border: 0;
+}
+
+/*
+input[type=file] > input[type=button],
+input[type=file] > input[type=button]::-moz-focus-inner,
+input[type=file]::-moz-focus-inner {
+    background: #f00;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+*/
+[type=file]::-ms-browse {
+  overflow: visible;
+  background-color: #663399;
+  color: #fff;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  min-height: 1.875rem;
+  text-transform: none;
+  cursor: pointer;
+  margin: 0 0 0 -2px;
+  border-width: 1px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-color: #663399;
+  /* padding-top: 0.125rem; */
+  /* padding-bottom: 0.125rem; */
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  border-style: solid;
+}
+
+[type=file]::-webkit-file-upload-button {
+  overflow: visible;
+  background-color: #663399;
+  color: #fff;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  height: 1.75rem;
+  text-transform: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  margin: 0px 0 0 -2px;
+  border-width: 1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-color: #663399;
+  /* padding-top: 0.125rem; */
+  /* padding-bottom: 0.125rem; */
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  border-style: solid;
+}
+
+[type=checkbox],
+[type=radio] {
+  vertical-align: baseline;
+  min-height: auto;
+  /*
+        IE9 adds the border and background:
+    */
+  border: 0;
+  background: transparent;
+}
+
+/**
+ * N: Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * Correct the odd appearance of search inputs in Chrome and Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+}
+
+/**
+ * N: Remove the inner padding and cancel buttons in Chrome on OS X and
+ * Safari on OS X.
+ */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+kbd {
+  font-family: monospace, monospace;
+  font-size: 1em;
+  line-height: 0;
+}
+
+label {
+  font-weight: bold;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+/**
+ * N1. Correct the text wrapping in Edge and IE.
+ * N2. Correct the color inheritance from `fieldset` elements in IE.
+ * N3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  color: inherit;
+  /* N2 */
+  display: table;
+  /* N1 */
+  max-width: 100%;
+  /* N1 */
+  white-space: normal;
+  /* N1 */
+  padding: 0 0.375rem;
+  font-weight: bold;
+  border-width: 0;
+  margin-top: 0;
+  margin-bottom: 1px;
+}
+
+li {
+  margin-left: 2.25rem;
+}
+
+li ul,
+li ol {
+  margin-bottom: 0;
+}
+
+main {
+  display: block;
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+nav {
+  display: block;
+}
+
+object {
+  vertical-align: middle;
+}
+
+ol {
+  margin-bottom: 1.5rem;
+}
+
+optgroup {
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: bold;
+}
+
+option {
+  cursor: pointer;
+  min-height: 1.5rem;
+  padding-top: 3px;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+  overflow-y: auto;
+  overflow-x: scroll;
+  margin-bottom: 1.5rem;
+  background-color: #e6d9f2;
+}
+
+pre code {
+  display: inline-block;
+  line-height: 22px;
+  padding: 1rem 0.75rem;
+}
+
+progress {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+  line-height: 0;
+}
+
+section {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+select {
+  cursor: pointer;
+  height: 1.875rem;
+  line-height: 1.5rem;
+  text-transform: none;
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  background-color: #fff;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-left: 0.375rem;
+  margin: 0.1875rem 0;
+  vertical-align: top;
+  touch-action: manipulation;
+  /*&::-ms-expand {
+		//display: none;        // Edge 12+, Internet Explorer 11-
+        background-color: $ui-color--base;
+        color: #fff;
+        border: 0;
+        margin-left: $input-h-padding;
+        padding-left: $input-h-padding;
+        padding-right: $input-h-padding;
+	}
+
+    &::-ms-expand:hover {
+		background-color: $button-background-color--state-1;
+	}*/
+}
+
+select::-ms-expand {
+  background-color: transparent;
+  color: #000;
+  border: 0;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+
+select::-ms-value {
+  color: currentColor;
+}
+
+select::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+@supports (-moz-appearance: meterbar) {
+  select {
+    padding-right: 0.375rem;
+  }
+}
+
+select[multiple] {
+  height: auto;
+  margin: 0.1875rem 0 0.4375rem 0;
+}
+
+small {
+  font-size: 80%;
+  line-height: 0;
+}
+
+/*
+    AK: Not sure why the following two rules can't be combined, but they're separate in Normalize
+    so leaving them as-is for now.
+*/
+/**
+ * N: Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+strong {
+  font-weight: inherit;
+}
+
+/**
+ * N: Add the correct font weight in Chrome, Edge, and Safari.
+ */
+strong {
+  font-weight: bolder;
+}
+
+sub {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  bottom: -0.25em;
+}
+
+summary {
+  display: block;
+  cursor: pointer;
+}
+
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
+}
+
+svg {
+  vertical-align: middle;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #663399;
+  background-color: #fff;
+  margin-bottom: 1.4375rem;
+  width: 100%;
+}
+
+td {
+  border: 1px solid #663399;
+  padding-top: 0.75rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.6875rem;
+  padding-left: 0.75rem;
+}
+
+template {
+  display: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  min-height: 5.125rem;
+  background-color: #fff;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  margin-top: 0.125rem;
+  vertical-align: top;
+  touch-action: manipulation;
+}
+
+th {
+  border: 1px solid #663399;
+  padding-top: 0.75rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.6875rem;
+  padding-left: 0.75rem;
+}
+
+ul {
+  margin-bottom: 1.5rem;
+}
+
+video {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  background-color: #333;
+}
+
+[tabindex] {
+  touch-action: manipulation;
+}
+
+::-moz-selection {
+  background-color: #b3d4fc;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+::selection {
+  background-color: #b3d4fc;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/*------------------------------------------------------------------------------------------------*
+    Accessibility / ARIA
+
+\*------------------------------------------------------------------------------------------------*/
+[aria-busy="true"] {
+  cursor: progress;
+}
+
+[aria-controls] {
+  cursor: pointer;
+}
+
+[disabled],
+[aria-disabled] {
+  cursor: default;
+}
+
+[hidden] {
+  display: none;
+}
+
+[hidden][aria-hidden="false"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+[hidden][aria-hidden="false"]:focus, [hidden][aria-hidden="false"]:active {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+/*------------------------------------------------------------------------------------------------*
+    Utilities
+
+\*------------------------------------------------------------------------------------------------*/
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.no-css-only {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*    Fall-Back Over Panel Pattern v0.5
+\*------------------------------------------------------------------------------------------------*/
+/*
+    THE WAY THIS WORKS
+    
+    In browsers that support transform, the over-panel is moved 100% up, thus hiding off the top of 
+    the page. When :target-ted, the transform is set back to 0 and the transition provides the 
+    sliding effect.
+    However, Opera Mini and IE9 don't support transform (but do support Media Queries) so it breaks.
+    In order to provide a functional fallback, I've set the initial clip state to 0 so that it's
+    hidden. The :target-ted state sets the clip to be enormous (thus visible).
+    This, though, breaks the slide-up effect as the clip is set back to 0 before the transition 
+    takes places, hiding it immediately.
+    To get round this I've also transitioned the clip (on the 'closed' state only) and set a delay 
+    so that the clip isn't change until after the slide transition has been completed.
+    Since neither of these browser support transitions either, the clip delay is ignored.
+    
+    The same principle applies to the fade effect.
+
+*/
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+@media only screen and (max-width: 44.9375em) {
+  /*
+        1. Make sure the over-panel is on top. (should be a variable).
+        2. Make the over-panel invisible in a way that's transition-able.
+    */
+  .over-panel {
+    background-color: #663399;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    z-index: 9999;
+    /* [1] */
+    clip: rect(0, 0, 0, 0);
+    /* [2] */
+  }
+  /*
+        1. Extremely large clip. Can't use 'auto' or transition delay won't run.
+           Can't use clip-path because of support (as in - this is for older browsers anyway)
+    */
+  .over-panel:target {
+    clip: rect(0, 999999px, 999999px, 0);
+    /* [1] */
+  }
+  /* Slide effect: */
+  .over-panel--slide {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+    -webkit-transition: -webkit-transform ease 0.8s, clip 0s 0.8s ease;
+    -moz-transition: -moz-transform ease 0.8s, clip 0s 0.8s ease;
+    -o-transition: -o-transform ease 0.8s, clip 0s 0.8s ease;
+    transition: transform ease 0.8s, clip 0s 0.8s ease;
+  }
+  .over-panel--slide:target {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: -webkit-transform ease 0.8s;
+    -moz-transition: -moz-transform ease 0.8s;
+    -o-transition: -o-transform ease 0.8s;
+    transition: transform ease 0.8s;
+  }
+  /* Fade effect: */
+  .over-panel--fade {
+    opacity: 0;
+    -webkit-transition: opacity ease 0.8s, clip 0s 0.8s ease;
+    -moz-transition: opacity ease 0.8s, clip 0s 0.8s ease;
+    -o-transition: opacity ease 0.8s, clip 0s 0.8s ease;
+    transition: opacity ease 0.8s, clip 0s 0.8s ease;
+  }
+  .over-panel--fade:target {
+    opacity: 1;
+    -webkit-transition: opacity ease 0.8s;
+    -moz-transition: opacity ease 0.8s;
+    -o-transition: opacity ease 0.8s;
+    transition: opacity ease 0.8s;
+  }
+  /* Style the over-panel controls: */
+  /* 
+      NOTE: this still isn't finalised and may need to be more flexible as it's quite
+      subjective how these buttons should be presented in terms of position.
+      Will probably not be in isolation, but as part of a navbar or similar so this does
+      need some more thinking.
+    */
+  .over-panel__open.over-panel__open,
+  .over-panel__close.over-panel__close {
+    color: #fff;
+    background-color: #663399;
+    width: 2.5714285714em;
+    display: block;
+    margin: 0;
+    padding: 0 0.6428571429em;
+    height: 2.5714285714em;
+    line-height: 2.5714285714em;
+    border: 0;
+    text-align: center;
+  }
+  .over-panel .over-panel__open:hover,
+  .over-panel .over-panel__open:active,
+  .over-panel .over-panel__open:focus,
+  .over-panel .over-panel__close:hover,
+  .over-panel .over-panel__close:active,
+  .over-panel .over-panel__close:focus {
+    border: 0;
+  }
+  /*
+        Fix for Opera Mini vertical centering:
+    */
+  _:-o-prefocus, body:last-child .over-panel__open,
+  _:-o-prefocus, body:last-child .over-panel__close {
+    line-height: 2.8 !important;
+  }
+  /*
+        1. Move the close button to the back and position behind open control.
+        2. This is only necessary if the container is block wider than the control.
+           May not be the best place for this, but it doesn't hurt.
+    */
+  .over-panel__close {
+    position: absolute;
+    /* [1] */
+    top: 0;
+    /* [1] */
+    right: 0;
+    /* [2] */
+  }
+  .over-panel__open:before,
+  .over-panel__close:before {
+    /* These styles are enough for modern FF to V-center the icon: */
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.9642857143em;
+    line-height: 0;
+  }
+  .over-panel__open:before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTE5LjE0MyA4SC44NTdDLjA2NyA4IDAgOC44OTQgMCAxMGMwIDEuMTA0LjA2OCAyIC44NTcgMmgxOC4yODZjLjc5IDAgLjg1Ny0uODk2Ljg1Ny0yIDAtMS4xMDctLjA2OC0yLS44NTctMnptMCA4SC44NTdDLjA2NyAxNiAwIDE2Ljg5NCAwIDE4YzAgMS4xMDUuMDY4IDIgLjg1NyAyaDE4LjI4NmMuNzkgMCAuODU3LS44OTUuODU3LTIgMC0xLjEwNi0uMDY4LTItLjg1Ny0yek0uODU3IDRoMTguMjg2Yy43OSAwIC44NTctLjg5NS44NTctMiAwLTEuMTA2LS4wNjgtMi0uODU3LTJILjg1N0MuMDY3IDAgMCAuODk0IDAgMmMwIDEuMTA1LjA2OCAyIC44NTcgMnoiLz48L3N2Zz4=");
+  }
+  .over-panel__close:before {
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTIwIDIuMDJMMTcuOTggMCAxMCA3Ljk4IDIuMDIgMCAwIDIuMDIgNy45OCAxMCAwIDE3Ljk4IDIuMDIgMjAgMTAgMTIuMDIgMTcuOTggMjAgMjAgMTcuOTggMTIuMDIgMTAgMjAgMi4wMnoiLz48L3N2Zz4=");
+  }
+  .over-panel__open:hover,
+  .over-panel__open:active,
+  .over-panel__open:focus,
+  .over-panel__close:hover,
+  .over-panel__close:active,
+  .over-panel__close:active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4d2673;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*    Fall-Back Nav Bar Pattern v0.5
+    
+    Design for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+    
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* -- .nav-bar -------------------------------------------------------------------------------*/
+.nav-bar {
+  background-color: #663399;
+}
+
+.nav-bar::before,
+.nav-bar::after,
+.nav-bar .nav-bar__inner::before,
+.nav-bar .nav-bar__inner::after {
+  content: " ";
+  display: table;
+}
+
+.nav-bar:after,
+.nav-bar .nav-bar__inner::after {
+  clear: both;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__title-section ----------------------------------------------------------------*/
+/*
+        1. For IE 9 and FF 21-.
+    */
+.nav-bar .nav-bar__title-section {
+  white-space: nowrap;
+  /* [1] */
+}
+
+.nav-bar .nav-bar__title-text {
+  background: #663399;
+  display: inline-block;
+  width: 100%;
+  height: 1.7142857143em;
+  line-height: 1.7142857143em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 1.5em;
+}
+
+.nav-bar .nav-bar__title-text .nav-bar__link {
+  height: 1.7142857143em;
+  line-height: 1.7142857143em;
+}
+
+/* -- .nav-bar__inner ------------------------------------------------------------------------*/
+/*
+        1. Duplicating parent background-color here. There HAS to be a colour here for the pattern
+           to work, the parent background-color is there to allow things to be NOT BROKEN on
+           browsers that don't support HTML semantic elements.
+    */
+.nav-bar .nav-bar__inner {
+  background-color: #663399;
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__button -----------------------------------------------------------------------*/
+/* Unused? */
+/*.nav-bar__button {
+        -webkit-appearance: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        background: #ddd;
+        border: none;
+        @include fallback-rem(height, $fallback--nav-bar--height);
+    }
+
+    .nav-bar__button:hover,
+    .nav-bar__button:active,
+    .nav-bar__button:focus {
+        background-color: #ccc;  /* @var *
+    }
+    */
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__items -------------------------------------------------------------------------*/
+.nav-bar .nav-bar__items {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+}
+
+.nav-bar .nav-bar__item {
+  margin: 0;
+}
+
+/*.nav-bar .nav-bar__item:not(:first-child) {
+            border-style: $fallback--nav-bar__link--border-style; 
+            border-color: $fallback--nav-bar__link--border-color;
+            border-left-width: $fallback--nav-bar__link--border-width;
+        }
+        
+        .nav-bar .nav-bar__item:last-child {
+            border-right-width: $fallback--nav-bar__link--border-width;
+        }*/
+/* -------------------------------------------------------------------------------------------*/
+/* -- .subnav --------------------------------------------------------------------------------*/
+.nav-bar .subnav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0.3214285714em 0 1.2857142857em;
+  background-color: #331a4d;
+}
+
+.nav-bar .subnav::before,
+.nav-bar .subnav::after {
+  content: " ";
+  display: table;
+}
+
+.nav-bar .subnav::after {
+  clear: both;
+}
+
+.nav-bar .subnav__item {
+  margin: 0;
+  float: left;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__link, .subnav__link ----------------------------------------------------------*/
+.nav-bar .nav-bar__link,
+.nav-bar .subnav__link,
+.nav-bar .subnav__heading {
+  display: block;
+  margin: 0;
+  padding: 0.4285713214em 0.6428571429em;
+  border: 0;
+}
+
+.nav-bar .nav-bar__link:hover,
+.nav-bar .nav-bar__link:active,
+.nav-bar .nav-bar__link:focus,
+.nav-bar .subnav__link:hover,
+.nav-bar .subnav__link:active,
+.nav-bar .subnav__link:focus {
+  border: 0;
+}
+
+.nav-bar__title-text .nav-bar__link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/*
+        Fix for Opera Mini vertical centering:
+        (affects Opera 12.10-16 as well)
+    */
+_:-o-prefocus, body:last-child .nav-bar .nav-bar__link,
+_:-o-prefocus, body:last-child .nav-bar .subnav__link,
+_:-o-prefocus, body:last-child .nav-bar .subnav__heading {
+  line-height: 2.8 !important;
+}
+
+.nav-bar .nav-bar__link {
+  color: #fff;
+  background-color: #663399;
+}
+
+.nav-bar .nav-bar__link svg {
+  display: none;
+}
+
+.nav-bar .subnav__heading {
+  color: #fff;
+}
+
+.nav-bar .subnav__link {
+  display: inline-block;
+  color: #fff;
+  background-color: #331a4d;
+}
+
+/*
+        Don't allow the usual interaction effects on ALL nav-bar links:
+        (this is to allow submenu heading links to appear as a non-link)
+    */
+.nav-bar .nav-bar__link:hover,
+.nav-bar .nav-bar__link:focus,
+.nav-bar .nav-bar__link:active,
+.nav-bar .subnav__link:hover,
+.nav-bar .subnav__link:focus,
+.nav-bar .subnav__link:active {
+  text-decoration: none;
+  outline: 0;
+}
+
+/*
+        Provide interaction effects for nav-bar links that ARE links:
+        (this excludes submenu heading links - note that submenu links should never also be
+        submenu heading links)
+    */
+.nav-bar .nav-bar__link:hover,
+.nav-bar .nav-bar__link:focus,
+.nav-bar .nav-bar__link:active {
+  color: #fff;
+  background-color: #4d2673;
+}
+
+.nav-bar .subnav__link:hover,
+.nav-bar .subnav__link:focus,
+.nav-bar .subnav__link:active {
+  color: #fff;
+  background-color: #4d2673;
+}
+
+.nav-bar [href$="#"].nav-bar__link {
+  background-color: transparent;
+  cursor: default;
+}
+
+.nav-bar .subnav__heading {
+  display: none;
+}
+
+.nav-bar .subnav__open::before {
+  content: attr(data-content);
+  display: inline-block;
+}
+
+.nav-bar .subnav__cancel,
+.nav-bar .subnav__open--icon-only {
+  display: none;
+}
+
+/* -----------------------------------------------------------------------------------------------*/
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+@media only screen and (min-width: 45em) {
+  /*
+        */
+  .nav-bar {
+    position: relative;
+    z-index: 1000;
+    /* @var */
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  /*
+            1. For IE 9 and FF 21-.
+        */
+  .nav-bar .nav-bar__title-section {
+    vertical-align: top;
+    /* [1] */
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+  .nav-bar .nav-bar__inner {
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+  /*
+            Apply table-cell hack to all FF because -moz-box in FF12- doesn't honour `position:relative`
+            and applying the table-cell hack to everything causes other problems. 
+        */
+  _:-moz-tree-row(hover), .nav-bar .nav-bar__title-section {
+    display: table-cell;
+    width: 1px;
+  }
+  _:-moz-tree-row(hover), .nav-bar .nav-bar__title-section + .nav-bar__inner {
+    display: table-cell;
+    width: 100%;
+  }
+  /*
+            Apply the table-cell hack to IE9.
+        */
+  _::selection, .nav-bar .nav-bar__title-section {
+    display: table-cell\0;
+    width: 1px\0;
+  }
+  _::selection, .nav-bar .nav-bar__title-section + .nav-bar__inner {
+    display: table-cell\0;
+    width: 100%\0;
+  }
+  /*
+            Remove table hack properties for browsers that support flexbox AND @supports.
+            Note, we're only interested in FF here, as other browsers already have flexbox properties
+            applied if they support it, so in this case the following is only relevent for FF22+ 
+            (below that FF will still use the table hack as applied above).
+        */
+  @supports (display: flex) {
+    .nav-bar .nav-bar__title-section,
+    .nav-bar .nav-bar__title-section + .nav-bar__inner {
+      display: block;
+      width: auto;
+    }
+  }
+  /* Add dividers */
+  .nav-bar .nav-bar__item {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-right-width: 1px;
+  }
+  .nav-bar .nav-bar__title-section + .nav-bar__inner .nav-bar__item:first-child {
+    border-left-width: 1px;
+  }
+  /**/
+  .nav-bar .nav-bar__item {
+    float: left;
+  }
+  .nav-bar .nav-bar__link svg {
+    display: inline;
+  }
+  .nav-bar .has-subnav > .nav-bar__link {
+    float: left;
+  }
+  /*
+            Allow interaction effects for ALL nav-bar links now we're wide enough to show the nav-bar
+            enhanced version.
+        */
+  .nav-bar .nav-bar__link:hover,
+  .nav-bar .nav-bar__link:focus,
+  .nav-bar .nav-bar__link:active {
+    background-color: #4d2673;
+    cursor: pointer;
+  }
+  .nav-bar .subnav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-bar .subnav__link {
+    white-space: nowrap;
+    -webkit-transition: margin-top 0.5s ease;
+    -moz-transition: margin-top 0.5s ease;
+    -o-transition: margin-top 0.5s ease;
+    transition: margin-top 0.5s ease;
+  }
+  .nav-bar .subnav__open--icon-only {
+    display: block;
+  }
+  .nav-bar .subnav__open:focus + .subnav .subnav__link,
+  .nav-bar .subnav__link:focus {
+    margin-top: 2.5714285714em;
+  }
+  /*
+            Fixes cancel button behaviour if not using overflow:hidden on .nav-bar__inner
+            (Maybe be temp - I can't quite remember what the overflow:hidden was for.
+            May have been a float-clearing thing but may not need this now?)
+        */
+  .nav-bar .subnav__cancel:focus,
+  .nav-bar .subnav__cancel:active {
+    margin-top: 0;
+  }
+  .nav-bar .subnav__item {
+    float: none;
+    display: table-cell;
+  }
+  /*
+            1. Make background transparent so transition looks smoother.
+        */
+  .nav-bar .subnav__cancel {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    background: transparent;
+    /* [1] */
+    -webkit-transition: top 0.5s ease;
+    -moz-transition: top 0.5s ease;
+    -o-transition: top 0.5s ease;
+    transition: top 0.5s ease;
+  }
+  .nav-bar .subnav__cancel:focus {
+    margin-top: 0;
+  }
+  .nav-bar .subnav__open:focus ~ .subnav__cancel {
+    top: 2.5714285714em;
+  }
+  /* @micropattern:pseudo-dataicon-middle */
+  .nav-bar .subnav__open::after,
+  .nav-bar .subnav__cancel::after {
+    /* These styles are enough for modern FF to V-center the icon: */
+    display: inline-block;
+    vertical-align: middle;
+    /* IE10-11 flexbox chokes without width: */
+    /* IE11 flexbox stretches icon without height: */
+    /* But now blink pushes the icon to the bottom without line-height: 0. */
+    line-height: 0;
+  }
+  .nav-bar .subnav__open::after {
+    width: 0.6428571428em;
+  }
+  .nav-bar .subnav__cancel::after {
+    width: 1em;
+  }
+  .nav-bar .subnav__open::after {
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTAgNWwxMCAxMEwyMCA1SDB6Ii8+PC9zdmc+");
+  }
+  .nav-bar .subnav__cancel::after {
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PHBhdGggZmlsbD0iIzQ0NCIgZD0iTTIwIDIuMDJMMTcuOTggMCAxMCA3Ljk4IDIuMDIgMCAwIDIuMDIgNy45OCAxMCAwIDE3Ljk4IDIuMDIgMjAgMTAgMTIuMDIgMTcuOTggMjAgMjAgMTcuOTggMTIuMDIgMTAgMjAgMi4wMnoiLz48L3N2Zz4=");
+  }
+  .nav-bar .subnav__open--fake::after {
+    margin-left: 0.6428571429em;
+  }
+  /*.subnav__open svg,
+        .subnav__cancel svg {
+            vertical-align: text-bottom;
+        }*/
+}
+
+/* IE9 hacks: */
+/*
+    */
+@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
+  /*
+            The icons force a massive height increase for some reason.
+            Setting the height to this only works fine because on 'wide' the nav-bar can't be
+            allowed to be double-lined or it breaks, and on 'narrow' the icons are hidden.
+        */
+  .nav-bar .subnav__open,
+  .nav-bar .subnav__cancel {
+    height: 2.5714285714em;
+  }
+  .nav-bar .subnav__open::after {
+    /* Increase icon width due to odd cropping, then rescale down: */
+    width: 1rem;
+    -ms-transform: scale(0.5);
+  }
+  .nav-bar .subnav__cancel::after {
+    /* Increase icon width due to odd cropping, then rescale down: */
+    width: 1.1rem;
+    -ms-transform: scale(0.8);
+  }
+}
+
+/* -----------------------------------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------------------------------- */
+/* -- Fit layout -------------------------------------------------------------------------------- */
+@media only screen and (min-width: 45em) {
+  .nav-bar--fit .nav-bar__items {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+  .nav-bar--fit .nav-bar__item {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    text-align: center;
+    border: 0;
+  }
+  .nav-bar--fit .has-subnav {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+/* -----------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*    Fall-Back Top Bar Combination v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/* SVG adjustments: */
+/* Off Canvas adjustments: */
+/* Nav Bar adjustments: */
+/*
+        NOTE: the above have all been re-factored out into their respective parent patterns or moved
+        to the site-specific file for now.
+        Need to find a tidier/smarter way of configuring this combination-pattern to make sure all
+        problems are solved in THIS or parent pattern files without being too specific to the
+        example.
+    */
+/*
+        1. For IE 9.
+        2. For -moz-box.
+    */
+.off-canvas .nav-bar {
+  display: table;
+  /* [1] */
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  /* [2] */
+}
+
+@media only screen and (max-width: 44.9375em) {
+  /*
+            Position the title section in the middle of the top-bar:
+        */
+  .off-canvas .nav-bar__title-section {
+    /*vertical-align: top; /* [1] */
+    -webkit-flex: 1 0 auto;
+    -moz-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    text-align: center;
+  }
+  /*
+            Position the off-canvas controls to the far left/right:
+            
+            1. For IE9. Applied to all IE but is acceptable.
+            2. For IE9. Applied to all browsers but has no ill-effects. Basically ignored for non-IE.
+            3. Reset the position for non-IE.
+        */
+  .off-canvas__controls--left {
+    position: absolute;
+    /* [1] */
+    left: 0;
+    /* [2] */
+    top: 0;
+    /* [2] */
+    position: initial;
+    /* [3] */
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-order: -1;
+    -moz-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+  /*
+            1. For IE9. Applied to all IE but is acceptable.
+            2. For IE9. Applied to all browsers but has no ill-effects. Basically ignored for non-IE.
+            3. Reset the position for non-IE.
+        */
+  .off-canvas__controls--right {
+    position: absolute;
+    /* [1] */
+    right: 0;
+    /* [2] */
+    top: 0;
+    /* [2] */
+    position: initial;
+    /* [3] */
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*------------------------------------------------------------------------------------------------*    Fall-Back Sticky Footer Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/*
+    NOTE: `.sticky-footer-outer-wrap` is only used for wrapper elements above `.sticky-footer-wrap`
+    up to `body` - it's always not required. You DO NOT need to use this class if:
+
+       * you don't have any wrappers between `.sticky-footer-wrap` and `body`
+
+       OR
+
+       * your wrappers already have `height: 100%;` on them from elsewhere
+*/
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sticky-footer-outer-wrap {
+  height: 100%;
+}
+
+.sticky-footer-wrap {
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.sticky-footer {
+  display: table-row;
+  height: 1px;
+}
+
+/*------------------------------------------------------------------------------------------------*/
+/*$fallback-svg--fixed-height:      36px;
+$fallback-svg--padding:           3px;
+$fallback-svg--border-width:      1px;
+$fallback-svg--border-color:      #666;
+$fallback-svg--link-bg-color:     #fff;
+$fallback-svg--link-bg-color-alt: #ffdd79;
+@import "../bower_components/Fall-Back-SVG/_svg";*/
+/*------------------------------------------------------------------------------------------------*    Fall-Back Cookie Notice Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/* -- Basic styles ------------------------------------------------------------------------------ */
+.cookie_notice {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 2000;
+  padding: 0.8571428571em;
+  background-color: #000;
+  color: #fff;
+  opacity: 1;
+  -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
+  transition: opacity 1s ease 0s, z-index 1s ease 1s;
+}
+
+.cookie_notice--close {
+  opacity: 0;
+  z-index: 0;
+}
+
+.cookie_notice .cookie_notice__message {
+  display: table-cell;
+  width: 100%;
+}
+
+.cookie_notice .cookie_notice__message a[href] {
+  color: #ccb3e6;
+}
+
+.cookie_notice .cookie_notice__message a[href]:hover,
+.cookie_notice .cookie_notice__message a[href]:active,
+.cookie_notice .cookie_notice__message a[href]:focus {
+  color: #9966cc;
+}
+
+.cookie_notice .cookie_notice__action {
+  display: table-cell;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+.over-panel__open {
+  margin-left: auto;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* --| OVERRIDES |------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+/* --| SHAME |----------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+/*# sourceMappingURL=style.css.map */

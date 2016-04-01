@@ -1,0 +1,25 @@
+{
+    "name": "AndyKirk",
+    "description": "This file lists all the front-end packages required for the project.",
+    "homepage": "https://github.com/andykirk/andykirk.github.io",
+    "dependencies": {
+        "Fall-Back-Start-CSS":       "https://github.com/Fall-Back/Start-CSS.git",
+        "Fall-Back-Over-Panel":      "https://github.com/Fall-Back/Over-Panel.git",
+        "Fall-Back-Top-Bar":         "https://github.com/Fall-Back/Top-Bar.git",
+        "Fall-Back-Sticky-Footer":   "https://github.com/Fall-Back/Sticky-Footer.git",
+        "Fall-Back-Cookie-Notice":   "https://github.com/Fall-Back/Cookie-Notice.git"
+    },
+    "fallback_extras": {
+        "Fall-Back-Top-Bar":         "https://github.com/Fall-Back/Top-Bar.git",
+        "Fall-Back-SVG":             "https://github.com/Fall-Back/SVG.git",
+        "Fall-Back-Cookie-Notice":   "https://github.com/Fall-Back/Cookie-Notice.git"
+    },
+    "inuit_extras": {
+        "inuit-defaults":            "latest",
+        "inuit-responsive-settings": "latest",
+        "inuit-responsive-tools":    "latest",
+        "inuit-widths":              "latest",
+        "inuit-tools-widths":        "latest",
+        "inuit-widths-responsive":   "latest"
+    }
+}
