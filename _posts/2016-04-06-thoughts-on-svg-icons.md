@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Thoughts on SVG icons
 ---
 [Hugo Giraudel's recent post](http://www.sitepoint.com/a-working-svg-workflow-for-accessible-icons/) on [SitePoint](http://www.sitepoint.com) got me thinking about SVG icons again.
