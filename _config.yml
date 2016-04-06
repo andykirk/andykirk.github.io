@@ -6,6 +6,14 @@ baseurl: ""
 url: "http://andykirk.github.io/"
 
 # Defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "full"
+      role: ""
 
 # Build settings
 markdown: kramdown
