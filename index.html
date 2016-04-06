@@ -6,6 +6,9 @@ layout: full
 <section>
   {% for post in site.posts %}{% if post.role != '' %}
     <article>
+      <div>
+        <img src="{{ post.thumb }}" alt="" />
+      </div>
       <dl>
         <dt>Project:</dt>
         <dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
