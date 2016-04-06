@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Endometriosis CaRe Centre Logo
 role: Co-designer
 ---
