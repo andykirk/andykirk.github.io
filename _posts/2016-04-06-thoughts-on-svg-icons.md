@@ -38,5 +38,5 @@ Since I use my [Start CSS](https://github.com/Fall-Back/Start-CSS) all the time,
 	}
 }
 ~~~
-(Originally taken from [SantizeCss](https://10up.github.io/sanitize.css/)
+(Originally taken from [SantizeCss](https://10up.github.io/sanitize.css/))
 
