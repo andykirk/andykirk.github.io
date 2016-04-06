@@ -5,6 +5,8 @@ description: "Portfolio and Blog."
 baseurl: ""
 url: "http://andykirk.github.io/"
 
+# Defaults
+
 # Build settings
 markdown: kramdown
 permalink: /:year/:month/:title/
