@@ -2,8 +2,8 @@
 layout: post
 title: Thoughts on SVG icons
 ---
-[Hugo Giraudel's recent post](http://www.sitepoint.com/a-working-svg-workflow-for-accessible-icons/) on [SitePoint](http://www.sitepoint.com) ot me thinking about SVG icons again.
-On the whole I like to approach he lay's out, especially considering how well it's supported in the context of using the [M3 Mustartd Cut](https://github.com/Fall-Back/CSS-Mustard-Cut).
+[Hugo Giraudel's recent post](http://www.sitepoint.com/a-working-svg-workflow-for-accessible-icons/) on [SitePoint](http://www.sitepoint.com) got me thinking about SVG icons again.
+On the whole I like to approach he lay's out, especially considering how well it's supported in the context of using the [M3 Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut).
 I particularly like how we leaves any fallback text up to the context in which it's used - the only difference is that I'd do the fallback text like this:
 
 ~~~
@@ -13,7 +13,7 @@ I particularly like how we leaves any fallback text up to the context in which i
 
 In the second example the fallback text is visible to assitive technologies and in cases with old browsers where (due to the M3 Cut) the CSS won't load, but if the SVG fails as well.
 
-Since I use my [Start CSS](https://github.com/Fall-Back/Start-CSS) all the time, I always get this CSS:
+Since I use my [Start CSS](https://github.com/Fall-Back/Start-CSS) all the time, I always get this "SR-only" CSS:
 
 ~~~
 [hidden][aria-hidden="false"] {
@@ -39,3 +39,4 @@ Since I use my [Start CSS](https://github.com/Fall-Back/Start-CSS) all the time,
 }
 ~~~
 (Originally taken from [SantizeCss](https://10up.github.io/sanitize.css/)
+
