@@ -1,5 +1,6 @@
 ---
 title: CSS Mustard Cut Article on Sitepoint
+thumb: /img/posts/thumb-mustard-cut.jpg
 role: Author
 ---
 
