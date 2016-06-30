@@ -1,37 +1,21 @@
 /* ---------------------------------------------------------------------------------------------- *\
 NOTES
 \* ---------------------------------------------------------------------------------------------- */
-var scss_copy_path = 'gridlight-design' + __dirname.split('gridlight-design')[1];
-//console.log(process.env);
+
 module.exports = function(grunt) {
 
     var grunt_config = {
     
         pkg: grunt.file.readJSON('package.json'),
         
-        // https://github.com/zonak/grunt-ftp-deploy
-        /*'ftp-deploy': {
-            build: {
-                auth: {
-                    host: 'gridlight-design.co.uk',
-                    port: 21,
-                    authKey: 'key1'
-                },
-                src: '{{SRC}}', //'./'
-                dest: '{{DEST}}', //'/_sub/recipes/public/themes/recipes-alpha/build',
-                exclusions: ['.git', '.ftppass', 'bower_components', 'node_modules'] // CSS only: ['*.css.map', '**<remove>/!(*.css)']
-            }
-        },*/
-        
         // https://github.com/gruntjs/grunt-contrib-concat
         concat: {
             js: {
                 src: [
-                    './bower_components/Fall-Back-Base/js/no-history.js',
-                    './bower_components/Fall-Back-Base/js/opera-mini.js',
-                    './bower_components/Fall-Back-SVG/js/svg.js',
                     './_scripts/cookie-notice-settings.js',
-                    './bower_components/Fall-Back-Cookie-Notice/js/cookie-notice.js'
+                    './bower_components/Fall-Back-Cookie-Notice/js/cookie-notice.js',
+                    './bower_components/Fall-Back-Base/js/no-history.js',
+                    './bower_components/Fall-Back-SVG/js/svg.js'
                 ],
                 dest: './_scripts/script.js'
             }/*,
