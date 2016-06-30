@@ -1,5 +1,6 @@
 ---
 title: Thoughts on SVG icons
+tags: [thoughts, svg]
 ---
 [Hugo Giraudel's recent post](http://www.sitepoint.com/a-working-svg-workflow-for-accessible-icons/) on [SitePoint](http://www.sitepoint.com) got me thinking about SVG icons again.
 On the whole I like to approach he lay's out, especially considering how well it's supported in the context of using the [M3 Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut).

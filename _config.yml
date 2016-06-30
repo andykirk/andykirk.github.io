@@ -24,3 +24,7 @@ permalink: /:year/:month/:title/
 
 kramdown:
   auto_ids:       true
+
+
+
+exclude: ["node_modules", "bower_components", "Gemfile", "Gemfile.lock", "Gruntfile.js", "bower.json", "package.json", "README.md"]

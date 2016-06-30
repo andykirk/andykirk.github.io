@@ -4,18 +4,24 @@ layout: full
 <h1>Andy Kirk</h1>
 
 <section>
-  {% for post in site.posts %}{% if post.role != '' %}
-    <article>
-      <div>
-        <img src="{{ post.thumb }}" alt="" />
-      </div>
-      <dl>
-        <dt>Project:</dt>
-        <dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
-        <dt>Role:</dt>
-        <dd><a href="{{ post.url }}">{{ post.role }}</a></dd>
-      </dl>
-      
-    </article>
-  {% endif %}{% endfor %}
+    <h2>Projects</h2>
+    <div class="list-grid  list-grid--basis-20  list-grid--gutter-small">
+        {% for post in site.posts %}{% if post.role != '' %}
+        <div class="list-grid__item">
+            <article class="card">
+                <div class="card__image">
+                    <img src="{{ post.thumb }}" alt="" />
+                </div>
+                <div class="card__body">
+                    <dl>
+                        <dt>Project:</dt>
+                        <dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
+                        <dt>Role:</dt>
+                        <dd>{{ post.role }}</dd>
+                    </dl>
+                </div>
+            </article>
+        </div>
+        {% endif %}{% endfor %}
+    </div>
 </section>
