@@ -1,6 +1,6 @@
 ---
 title: Template HTML vs Content HTML
-tags: [thoughts, markup]
+tags: [Thoughts, Markup]
 ---
 As I was reading throught [this post on CSS Tricks](https://css-tricks.com/class-up-templates-not-content/) it struck me that I've had lots of thoughts on this topic for a while now, but never consolidated them.
 
