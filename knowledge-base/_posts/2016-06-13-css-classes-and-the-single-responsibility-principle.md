@@ -1,6 +1,6 @@
 ---
 title: CSS Classes and the Single Responsibility Principle
-tags: [thoughts, css]
+tags: [Thoughts, CSS]
 ---
 TL;DR
 -----
