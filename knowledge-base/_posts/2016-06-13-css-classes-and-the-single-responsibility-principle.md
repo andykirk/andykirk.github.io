@@ -22,6 +22,7 @@ However, like with any rule it's sometimes ok to break them, as long as you k no
 It's my opinion that one exception to the SRP is when you need to apply decoration to a layout box. Often, layout classes are use on elements to provide structure, and content can sit inside that structure independently. But sometimes you may want to apply so decoration to the whole exact space provided by the layout box separately from any content blocks within. It's usually possible add an extra wrapper, but in cases where you want things to be 100% height of their container, the extra wrapper will be the height of the content instead and so any decoration will not appear correctly. Using flexbox does, admittedly solve many of these problems but sometimes that not an option, or it causes other problems:
 
 E.g.:
+(Note I need a better example here - I just know I've run afoul of this kind of situation)
 
 ~~~
 <div class="3-up-boxes-equal-height">
@@ -38,3 +39,4 @@ Lets say for the sake of argument you can't wrap the container itself, your only
 However, this would break the pattern, as the child divs are no longer flex-children of the container the equal-height rules would be lost. The only way to solve this would be to add flex and display:flex properties to the new wrapper, which effectively duplicates all the rules of the original container. This does not make for better CSS. In this case, I'd say it was perfectly acceptable for the decoration class to appear on the same div as the layout classes.
 Perhaps the 'rule' of this could be something like "so long as the classes are from different, unrelated groups".
 So if your decoration classes never declare any properties that conflict with your layout classes, it's ok to mix them.
+...

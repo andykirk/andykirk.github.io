@@ -19,8 +19,8 @@ defaults:
 
 # Build settings
 markdown: kramdown
-permalink: /:year/:month/:title/
-
+#permalink: /:year/:month/:title/
+permalink: /:categories/:title/
 
 kramdown:
   auto_ids:       true
