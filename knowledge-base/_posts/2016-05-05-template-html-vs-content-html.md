@@ -32,7 +32,13 @@ Maybe also think about how these things could be represented if using Markdown?
 I guess, maybe you shouldn't be using Markdown if you need such complex content?
 Maybe use Markdown Extra (etc.) to add 'classes' (could be considered more like attributes - the final HTML doesn't necessarily have to add them as classes).
 
+One possible way of looking at this is that anything that requires a class should be abstracted into it's own component, that way classes can be applied as part of the template for that component.
+A placeholder would be inserted instead. That's basically re-stating what I've said at the start of this section but I like clarify things for myself.
+
+The downside with this approach is the UX of authoring - it could be a pain to add a 'component' just for some small text, for example.
+
 Related:
 --------
 
 [User Generated Content in a Classy World](http://snook.ca/archives/html_and_css/ugc-in-a-classy-world)
+[Leverage WordPress Functions to Reduce HTML in your Posts](https://css-tricks.com/leverage-wordpress-functions-reduce-html-posts/)
