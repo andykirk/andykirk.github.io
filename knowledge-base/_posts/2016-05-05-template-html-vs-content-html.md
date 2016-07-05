@@ -40,5 +40,5 @@ The downside with this approach is the UX of authoring - it could be a pain to a
 Related:
 --------
 
-[User Generated Content in a Classy World](http://snook.ca/archives/html_and_css/ugc-in-a-classy-world)
-[Leverage WordPress Functions to Reduce HTML in your Posts](https://css-tricks.com/leverage-wordpress-functions-reduce-html-posts/)
+* [User Generated Content in a Classy World](http://snook.ca/archives/html_and_css/ugc-in-a-classy-world)
+* [Leverage WordPress Functions to Reduce HTML in your Posts](https://css-tricks.com/leverage-wordpress-functions-reduce-html-posts/)
