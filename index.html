@@ -7,7 +7,7 @@ layout: full
     <h2>Projects</h2>
     <div class="list-grid  list-grid--basis-20  list-grid--gutter-small">
         {% for post in site.posts %}{% if post.role != '' %}
-        <div class="list-grid__item">
+        <div class="list-grid__item  card-wrap">
             <article class="card">
                 <div class="card__image">
                     <img src="{{ post.thumb }}" alt="" />
