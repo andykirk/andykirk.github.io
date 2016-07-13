@@ -23,5 +23,5 @@ An article with the headline "Record Exam Results for Fourth Consecutive Year", 
 Useful links
 ------------
 
-* http://webaim.org/techniques/alttext/
-* https://css-tricks.com/accessible-svgs
+* <http://webaim.org/techniques/alttext/>
+* <https://css-tricks.com/accessible-svgs>
