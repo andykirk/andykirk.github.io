@@ -13,7 +13,10 @@ body_id: blog
             <time class="post__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%-d %B, %Y' }}</time>
         </p>
     </header>
-    {{ post.excerpt | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }} <i><a href="{{ post.url }}">Read more…</a></i>
+    {{ post.excerpt | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }} 
+    <p>
+        <i><a href="{{ post.url }}">Read more…</a></i>
+    </p>
     <footer>
         <p>
             {% if post.tags != empty %}
