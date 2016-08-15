@@ -7,7 +7,7 @@ As I was reading through [Chris Coyer's post on CSS Tricks](https://css-tricks.c
 I've long been fan of [Harry Roberts](http://csswizardry.com/) and CSS naming methodologies like [BEM](http://getbem.com/introduction/) so when I read [Semantic CSS With Intelligent Selectors](https://www.smashingmagazine.com/2013/08/semantic-css-with-intelligent-selectors) I was annoyed.
 It annoyed me with it's blanket approach, but if it's thinking restricted to the context of __content__ HTML, then it makes much more sense.
 
-Avoiding classes in __content__ is definitely a good thing. It's a good thing because, as Chris points out, classes can be frigile and if the CMS or theme of a site were to change, those classes may not necessarily be available, or worse - mean something else entirely. 
+Avoiding classes in __content__ is definitely a good thing. It's a good thing because, as Chris points out, classes can be fragile and if the CMS or theme of a site were to change, those classes may not necessarily be available, or worse - mean something else entirely. 
 
 Another reason to avoid classes is that they won't translate across any syndication - if that content is consumed by a feed-reader, for example, then it'll be styled by __that__ applications stylesheets.
 
@@ -17,7 +17,7 @@ Yet another reason would be the integrity of that content without any styles at 
 Some things can't be distinguished:
 -----------------------------------
 
-* Inserts (Figures, Images, Tables etc) - their position (floated? centred? full-width?), appearance (border decoration?) and behaviour (linked? part of a gallery?).
+* Inserts (Figures, Images, Tables etc.) - their position (floated? centred? full-width?), appearance (border decoration?) and behaviour (linked? part of a gallery?).
 * Text variations (Lead paragraph, smallprint (`small`?), pull-quotes(?), large text(?))
 * Boxed content (themed box, notice box, expanding box(`details`?))
 * Other things may include displaying items as a tile-grid, or an accordions/tabs etc.
