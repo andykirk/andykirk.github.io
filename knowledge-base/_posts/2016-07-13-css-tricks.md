@@ -49,8 +49,7 @@ nav a[href] {
 
 nav a[href]:hover,
 nav a[href]:active,
-nav a[href]:focus,
-{
+nav a[href]:focus {
   ...
 }
 ~~~
