@@ -134,6 +134,7 @@ _:-o-prefocus, :root .icon {
 }
 
 /* 'Globals': */
+/* Global focus style: */
 /* Elements: */
 /*
     Note: when a legend is present the width of the top border of the fieldset seems to be ignored,
@@ -227,9 +228,6 @@ html {
   -webkit-font-smoothing: inherit;
   /* Sc */
   /*border-style: inherit; /* AK */
-  /*border-width: 0; /* AK */
-  border-color: #663399;
-  /* AK1 */
 }
 
 /*
@@ -248,9 +246,11 @@ body {
   font-size: 0.875em;
   line-height: 1.5rem;
   padding: 0;
+  margin: 0;
   -height: 100%;
   min-height: 100%;
   min-width: 250px;
+  max-width: none;
   /* This ensures that absolutely positioned child elements expand to the full height of the body. */
   position: relative;
 }
@@ -432,6 +432,10 @@ button:hover, button:active, button:focus {
   background-color: #8040bf;
 }
 
+button:focus {
+  outline: 1px dotted #000;
+}
+
 /*
     N1. Add the correct display in IE 9-.
 */
@@ -482,6 +486,8 @@ dt {
 fieldset {
   margin-bottom: 1.5rem;
   border-width: 1px;
+  border-style: solid;
+  border-color: #663399;
   padding-top: 1.4375rem;
   padding-left: 1.4375rem;
   padding-right: 1.4375rem;
@@ -668,6 +674,10 @@ input:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
+input:not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="progess"]):focus {
+  box-shadow: 0 0 3px 0 #663399 inset;
+}
+
 /**
  * N1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
  *     controls in Android 4.
@@ -747,8 +757,15 @@ html [type="button"]:hover, html [type="button"]:active, html [type="button"]:fo
   background-color: #8040bf;
 }
 
+html [type="button"]:focus,
+[type="reset"]:focus,
+[type="submit"]:focus {
+  outline: 1px dotted #000;
+}
+
 [type="file"] {
-  /* line-height: inherit !important; */
+  /* V-center the text in FF: */
+  line-height: 1.75rem;
   cursor: pointer;
   padding: 0;
 }
@@ -767,16 +784,16 @@ html [type="button"]:hover, html [type="button"]:active, html [type="button"]:fo
   border: 0;
 }
 
-/*
-input[type=file] > input[type=button],
-input[type=file] > input[type=button]::-moz-focus-inner,
-input[type=file]::-moz-focus-inner {
-    background: #f00;
-    border: 0;
-    padding: 0;
-    margin: 0;
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
-*/
+
+input[type=file]:-moz-focusring {
+  outline: 1px dotted #f00;
+}
+
 [type=file]::-ms-browse {
   overflow: visible;
   background-color: #663399;
@@ -1001,7 +1018,7 @@ pre {
   /* A1 */
   margin-bottom: 1.5rem;
   /* A */
-  background-color: white;
+  background-color: #f2ecf9;
   /* A */
 }
 
@@ -1112,6 +1129,10 @@ select::-ms-value {
 select::-moz-focus-inner {
   border: 0;
   padding: 0;
+}
+
+select:focus {
+  box-shadow: 0 0 3px 0 #663399 inset;
 }
 
 @supports (-moz-appearance: meterbar) {
@@ -1229,6 +1250,10 @@ textarea {
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
+}
+
+textarea:focus {
+  box-shadow: 0 0 3px 0 #663399 inset;
 }
 
 th {
@@ -1951,7 +1976,9 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   .nav-bar .nav-bar__item {
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.2);
-    border-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
     border-right-width: 1px;
   }
   /*
