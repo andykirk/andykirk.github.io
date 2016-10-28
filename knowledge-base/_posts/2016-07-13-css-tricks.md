@@ -24,14 +24,14 @@ And the [spec for the `a` element](https://www.w3.org/TR/html5/text-level-semant
 And gives this example:
 
 > ~~~
-<nav>
- <ul>
-  <li> <a href="/">Home</a> </li>
-  <li> <a href="/news">News</a> </li>
-  <li> <a>Examples</a> </li>
-  <li> <a href="/legal">Legal</a> </li>
- </ul>
-</nav>
+&lt;nav&gt;
+ &lt;ul&gt;
+  &lt;li&gt; &lt;a href="/"&gt;Home&lt;/a&gt; &lt;/li&gt;
+  &lt;li&gt; &lt;a href="/news"&gt;News&lt;/a&gt; &lt;/li&gt;
+  &lt;li&gt; &lt;a&gt;Examples&lt;/a&gt; &lt;/li&gt;
+  &lt;li&gt; &lt;a href="/legal"&gt;Legal&lt;/a&gt; &lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
 ~~~
 
 These navigation links can then be targetted in CSS like this:
