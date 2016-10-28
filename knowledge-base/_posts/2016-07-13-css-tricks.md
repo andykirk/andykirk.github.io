@@ -53,6 +53,6 @@ nav a[href]:focus,
 {
   ...
 }
-~~
+~~~
 
 Note, I'm not sure if it's best to use `a[href]` or `a:link`. I need to investigate this and see if it matters.
