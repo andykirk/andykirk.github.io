@@ -23,7 +23,7 @@ And the [spec for the `a` element](https://www.w3.org/TR/html5/text-level-semant
 
 And gives this example:
 
-> ```html
+```html
 <nav>
  <ul>
   <li> <a href="/">Home</a> </li>
