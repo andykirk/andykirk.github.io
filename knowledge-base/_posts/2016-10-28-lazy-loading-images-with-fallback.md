@@ -1,5 +1,5 @@
 ---
-title: Lazy Loading Imaages with Fallback
+title: Lazy Loading Images with Fallback
 tag: [Images,Lazy-loading,FallBack]
 ---
 An interesting look at lazy loading images without breaking things if JS is unavailable:
