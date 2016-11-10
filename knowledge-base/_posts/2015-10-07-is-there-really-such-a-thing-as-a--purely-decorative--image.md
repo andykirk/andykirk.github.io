@@ -28,3 +28,4 @@ Useful links
 
 * <http://webaim.org/techniques/alttext/>
 * <https://css-tricks.com/accessible-svgs>
+* <https://www.w3.org/WAI/tutorials/images/complex/>
