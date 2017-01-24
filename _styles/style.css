@@ -3017,6 +3017,19 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
+h1 a[href],
+h1 a[href]:hover,
+h1 a[href]:active,
+h1 a[href]:focus, h2 a[href],
+h2 a[href]:hover,
+h2 a[href]:active,
+h2 a[href]:focus, h3 a[href],
+h3 a[href]:hover,
+h3 a[href]:active,
+h3 a[href]:focus {
+  border-bottom: 0;
+}
+
 main {
   padding: 1.5rem;
 }

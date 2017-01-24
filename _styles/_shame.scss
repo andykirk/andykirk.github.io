@@ -1,6 +1,13 @@
 h1, h2, h3 {
     font-family: 'Vollkorn', serif;
     font-weight: normal;
+
+    a[href],
+    a[href]:hover,
+    a[href]:active,
+    a[href]:focus, {
+        border-bottom: 0;
+    }
 }
 
 main {
