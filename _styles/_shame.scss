@@ -85,3 +85,32 @@ main {
 #nav:target .nav-bar__item {
     margin-bottom: 0.5rem;
 }
+
+
+
+
+
+
+
+.poster {
+    position: relative;
+}
+
+.poster::before{
+	content: "";
+	display: block;
+	padding-top: 50%;
+}
+
+.poster .poster__cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.poster img {
+    object-fit: cover;
+}
+

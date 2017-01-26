@@ -1,8 +1,8 @@
 ---
 title: Print Stylesheets
 tag: [CSS,Print]
+poster: posts/print-stylesheets.png
 ---
-
 I plan to tidy up and enhance the 'global' print stylesheet for FallBack as soon as I can.
 
 Useful stuff has come from Normalise.css and the HTML5 Boilerplate, but I'm collecting some other useful resources here:
