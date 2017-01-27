@@ -2893,6 +2893,12 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   border-bottom: 2px solid #f3c19d;
 }
 
+.card__offset-padding {
+  margin-top: -1.5rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+}
+
 .list-grid {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3009,6 +3015,62 @@ _:-ms-input-placeholder, :root .list-grid--center {
   color: #13d5de;
 }
 
+/* Help from http://www.mademyday.de/css-height-equals-width-with-pure-css.html */
+.proportional-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.proportional-container::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  /* initial ratio of 1:1*/
+}
+
+.proportional-container__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Make the iamge fill the widrh and be vertically centered: */
+/* (in portrait images this will leave gaps at the sides) */
+.proportional-container__image-cover {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* If `object-fit` is supported, use that and override vertical centering: */
+@supports (object-fit: cover) {
+  .proportional-container__image-cover {
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    transform: none;
+  }
+}
+
+.proportional-container--2-1:before {
+  padding-top: 50%;
+}
+
+.proportional-container--3-1::before {
+  padding-top: 33%;
+}
+
+.proportional-container--4-3::before {
+  padding-top: 75%;
+}
+
+.proportional-container--16-9::before {
+  padding-top: 56.25%;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| SHAME |----------------------------------------------------------------------------------- */
@@ -3120,6 +3182,11 @@ main {
 
 .poster img {
   object-fit: cover;
+}
+
+.card,
+.card__image {
+  margin-bottom: 1.5rem;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
