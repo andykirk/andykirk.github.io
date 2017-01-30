@@ -43,3 +43,6 @@ Since I use my [Start CSS](https://github.com/Fall-Back/Start-CSS) all the time,
 
 **NOTE TO SELF:** I see that the Sanitze SR-only CSS has been greatly reduced - I need to investage what impact this has on the browsers supported by the M3 Cut.
 
+**UPDATE** It may be necessary to add `aria-hidden` to the `svg` tag as per http://www.456bereastreet.com/archive/201609/hiding_inline_svg_icons_from_screen_readers/
+However, I'd rathee avoid that so the markup is aa lean as possible. It's probably safe just to ensure the main `svg` doesn't include any `title` attubutes?
+
