@@ -1,10 +1,10 @@
 # Site settings
 title: "Andy Kirk"
-email: andy.kirk@gridlight-design.co.uk
+email: "andy@andykirk.net"
 description: "Portfolio and Blog."
 repository: "andykirk/andykirk.github.io"
 baseurl: ""
-url: "http://andykirk.github.io/"
+url: "http://andykirk.net"
 
 # Defaults
 defaults:
