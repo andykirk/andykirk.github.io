@@ -1,6 +1,6 @@
 ---
 title: Endometriosis CaRe Centre Logo
-poster: /img/posts/thumb-endo-logo.jpg
+poster: posts/endo-logo.jpg
 role: Co-designer
 ---
 ![Logo design: Endometriosis CaRe Centre - Oxford](/img/posts/endo-logo.svg)

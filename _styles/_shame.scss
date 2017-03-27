@@ -18,8 +18,20 @@ main {
 
 
 .nav-bar {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
 }
+
+.nav-bar::after {
+    content: "";
+    displaY: block;
+    height: 3px;
+    width: 100%;
+    background-color: $primary-color--light;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
 
 .nav-bar__title-text {
     text-transform: uppercase;
@@ -52,15 +64,16 @@ main {
     position: absolute;
     left: 0.6428571429em;
     right: 0.6428571429em;
-    margin-top: 1px;
+    margin-top: 3px;
+    z-index: 1;
     
-    background: linear-gradient(to right, #0b7b80 0%,#0b7b80 70%,#e78743 70%,#e78743 100%);
+    background: $line-gradient;
 }
 
 .nav-bar__inner .nav-bar__link:active::after,
 .nav-bar__inner .nav-bar__link:focus::after,
 .nav-bar__inner .nav-bar__link:hover::after {
-    margin-top: 9px;
+    margin-top: 11px;
     left: 0.6428571429em;
     right: 0.6428571429em;
 }
@@ -75,7 +88,7 @@ main {
     right: 0;
     bottom: 0;
     
-    background: linear-gradient(to right, #0b7b80 0%,#0b7b80 70%,#e78743 70%,#e78743 100%);
+    background: $line-gradient;
 }
 
 #nav:target .nav-bar__inner {
@@ -85,6 +98,15 @@ main {
 #nav:target .nav-bar__item {
     margin-bottom: 0.5rem;
 }
+
+@media only screen and (max-width: $fallback--nav-bar--breakpoint--enhanced) {
+    .nav-bar {
+        padding-bottom: 0.5rem;
+        position: relative;
+    }
+
+}
+
 
 
 

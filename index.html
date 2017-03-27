@@ -10,12 +10,20 @@ layout: full
 {% for post in site.posts %}
 <article class="card">
     <header>
-        {% if post.poster != "" %}
+        <!--{% if post.poster != "" %}
         <div class="card__image  card__offset-padding  proportional-container  proportional-container--2-1">
             <div class="proportional-container__content ">
                 <img src="img/{{ post.poster }}" alt="" class="proportional-container__image-cover">
             </div>
-        </div>
+        </div>        
+        {% endif %}-->
+
+        {% if post.cloudinary_id != "" %}
+        <div class="card__image  card__offset-padding  proportional-container  proportional-container--2-1">
+            <div class="proportional-container__content ">
+                <img src=" http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}" alt="" class="proportional-container__image-cover">
+            </div>
+        </div>        
         {% endif %}
     
         <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>

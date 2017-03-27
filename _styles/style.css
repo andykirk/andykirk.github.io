@@ -268,14 +268,14 @@ a:link a:visited a:hover a:active a:focus
  * S2. Remove the gaps in underlines in iOS 8+ and Safari 8+.
  */
 a[href] {
-  color: #0B7B80;
+  color: #2e4d58;
   background-color: transparent;
   /* S1 */
   text-decoration: none;
   /* S */
   -webkit-text-decoration-skip: objects;
   /* S2 */
-  border-bottom: 1px solid #0fa8af;
+  border-bottom: 1px solid #406a79;
   padding-bottom: 0.125rem;
   /* N: Improve readability of focused elements when they are also in an active/hover state. */
   /* AK added focus and extra styels. */
@@ -286,8 +286,8 @@ a[href] {
 }
 
 a[href]:hover, a[href]:active, a[href]:focus {
-  color: #05373a;
-  border-bottom: 2px solid #11bfc6;
+  color: #142126;
+  border-bottom: 2px solid #48798a;
   outline-width: 0;
 }
 
@@ -375,7 +375,7 @@ button {
   /* AK. IE9 needs this. */
   overflow: visible;
   /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
-  background-color: #0B7B80;
+  background-color: #2e4d58;
   /* S */
   color: #fff;
   /* S */
@@ -398,7 +398,7 @@ button {
   /* padding: ($fallback--base-rem-space-unit / 8) $button-h-padding; */
   margin: 0.1875rem 0;
   /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
@@ -429,7 +429,7 @@ button:-moz-focusring {
 }
 
 button:hover, button:active, button:focus {
-  background-color: #0fa8af;
+  background-color: #406a79;
 }
 
 button:focus {
@@ -448,7 +448,7 @@ canvas {
 caption {
   font-weight: bold;
   padding: 0.75rem;
-  background-color: #0B7B80;
+  background-color: #2e4d58;
   color: #fff;
 }
 
@@ -487,7 +487,7 @@ fieldset {
   margin-bottom: 1.5rem;
   border-width: 1px;
   border-style: solid;
-  border-color: #0B7B80;
+  border-color: #2e4d58;
   padding-top: 1.4375rem;
   padding-left: 1.4375rem;
   padding-right: 1.4375rem;
@@ -587,7 +587,7 @@ hr {
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid #0B7B80;
+  border-bottom: 1px solid #2e4d58;
   margin-top: -0.0625rem;
   margin-bottom: 1.5rem;
   overflow: visible;
@@ -644,7 +644,7 @@ input {
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
@@ -675,7 +675,7 @@ input:-moz-focusring {
 }
 
 input:not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="progess"]):focus {
-  box-shadow: 0 0 3px 0 #0B7B80 inset;
+  box-shadow: 0 0 3px 0 #2e4d58 inset;
 }
 
 /**
@@ -690,7 +690,7 @@ html [type="button"],
   /* AK. IE9 needs this. */
   overflow: visible;
   /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
-  background-color: #0B7B80;
+  background-color: #2e4d58;
   /* S */
   color: #fff;
   /* S */
@@ -713,7 +713,7 @@ html [type="button"],
   /* padding: ($fallback--base-rem-space-unit / 8) $button-h-padding; */
   margin: 0.1875rem 0;
   /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
@@ -754,7 +754,7 @@ html [type="button"]:hover, html [type="button"]:active, html [type="button"]:fo
 [type="submit"]:hover,
 [type="submit"]:active,
 [type="submit"]:focus {
-  background-color: #0fa8af;
+  background-color: #406a79;
 }
 
 html [type="button"]:focus,
@@ -796,7 +796,7 @@ input[type=file]:-moz-focusring {
 
 [type=file]::-ms-browse {
   overflow: visible;
-  background-color: #0B7B80;
+  background-color: #2e4d58;
   color: #fff;
   font-family: inherit;
   font-style: inherit;
@@ -806,7 +806,7 @@ input[type=file]:-moz-focusring {
   cursor: pointer;
   margin: 0 0 0 -2px;
   border-width: 1px;
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -819,7 +819,7 @@ input[type=file]:-moz-focusring {
 
 [type=file]::-webkit-file-upload-button {
   overflow: visible;
-  background-color: #0B7B80;
+  background-color: #2e4d58;
   color: #fff;
   font-family: inherit;
   font-style: inherit;
@@ -830,7 +830,7 @@ input[type=file]:-moz-focusring {
   cursor: pointer;
   margin: 0px 0 0 -2px;
   border-width: 1px;
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -1018,7 +1018,7 @@ pre {
   /* A1 */
   margin-bottom: 1.5rem;
   /* A */
-  background-color: #acf5f8;
+  background-color: #c0d6de;
   /* A */
 }
 
@@ -1079,7 +1079,7 @@ select {
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   /* padding-top: ($fallback--base-rem-space-unit / 8) - calc-rem-from-px($input-border-width); */
   /* padding-bottom: ($fallback--base-rem-space-unit / 8) - calc-rem-from-px($input-border-width); */
@@ -1132,7 +1132,7 @@ select::-moz-focus-inner {
 }
 
 select:focus {
-  box-shadow: 0 0 3px 0 #0B7B80 inset;
+  box-shadow: 0 0 3px 0 #2e4d58 inset;
 }
 
 @supports (-moz-appearance: meterbar) {
@@ -1221,7 +1221,7 @@ table {
   /* N */
   border-spacing: 0;
   /* N */
-  border: 1px solid #0B7B80;
+  border: 1px solid #2e4d58;
   background-color: #fff;
   /* margin-top: -$table-border-width; */
   margin-bottom: 1.4375rem;
@@ -1230,7 +1230,7 @@ table {
 }
 
 td {
-  border: 1px solid #0B7B80;
+  border: 1px solid #2e4d58;
   padding-top: 0.75rem;
   padding-right: 0.75rem;
   /* @include calc(padding-bottom, '0.75rem - 1px'); */
@@ -1257,7 +1257,7 @@ textarea {
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
-  border-color: #074e51;
+  border-color: #1c3037;
   border-style: solid;
   padding-left: 0.375rem;
   padding-right: 0.375rem;
@@ -1271,11 +1271,11 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 3px 0 #0B7B80 inset;
+  box-shadow: 0 0 3px 0 #2e4d58 inset;
 }
 
 th {
-  border: 1px solid #0B7B80;
+  border: 1px solid #2e4d58;
   padding-top: 0.75rem;
   padding-right: 0.75rem;
   /* @include calc(padding-bottom, '0.75rem - 1px'); */
@@ -1312,13 +1312,13 @@ video {
 }
 
 ::-moz-selection {
-  background-color: #36e6ee;
+  background-color: #6da0b2;
   color: #ffffff;
   text-shadow: none;
 }
 
 ::selection {
-  background-color: #36e6ee;
+  background-color: #6da0b2;
   color: #ffffff;
   text-shadow: none;
 }
@@ -1446,7 +1446,7 @@ video {
         2. Make the over-panel invisible in a way that's transition-able.
     */
   .over-panel__wrap {
-    background-color: #0B7B80;
+    background-color: #2e4d58;
     color: #fff;
     position: absolute;
     left: 0;
@@ -1506,13 +1506,13 @@ video {
   }
   .over-panel__wrap a {
     background-color: transparent;
-    color: #acf5f8;
+    color: #c0d6de;
   }
   .over-panel__wrap a:hover,
   .over-panel__wrap a:active,
   .over-panel__wrap a:focus {
-    background-color: #0B7B80;
-    color: #4ee9f0;
+    background-color: #2e4d58;
+    color: #7dabbb;
   }
   /* Style the over-panel controls: */
   /*
@@ -1524,7 +1524,7 @@ video {
   .over-panel__open.over-panel__open,
   .over-panel__close.over-panel__close {
     color: #fff;
-    background-color: #0B7B80;
+    background-color: #2e4d58;
     width: 2.5714285714em;
     margin: 0;
     padding: 0 0.6428571429em;
@@ -1543,7 +1543,7 @@ video {
     border: 0;
     text-decoration: none;
     color: #fff;
-    background-color: #074e51;
+    background-color: #1c3037;
   }
   .over-panel__open.over-panel__open {
     display: block;
@@ -1795,7 +1795,7 @@ video {
   list-style-type: none;
   padding: 0;
   margin: 0 0.3214285714em 0 1.2857142857em;
-  background-color: #032122;
+  background-color: #0b1215;
   min-height: 2.5714285714em;
 }
 
@@ -1865,7 +1865,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 .nav-bar .subnav__link {
   display: inline-block;
   color: #222;
-  background-color: #032122;
+  background-color: #0b1215;
 }
 
 /*
@@ -1898,7 +1898,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 .nav-bar .subnav__link:focus,
 .nav-bar .subnav__link:active {
   color: #222;
-  background-color: #074e51;
+  background-color: #1c3037;
 }
 
 /*.nav-bar [href$="#"].nav-bar__link {
@@ -2291,7 +2291,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         1. Prevent extra bottom space when form is inside a container.
     */
 .search-form {
-  background: #0B7B80;
+  background: #2e4d58;
   display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2407,7 +2407,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   border: 0;
   /*moz-box-sizing: content-box;
         box-sizing: content-box;*/
-  background: #94f2f6;
+  background: #b0ccd5;
   color: #333;
   height: 2.1428571429em;
   line-height: 0;
@@ -2422,7 +2422,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 
 .search-form .search-form__submit:hover,
 .search-form .search-form__submit:focus {
-  background-color: #13d5de;
+  background-color: #51889b;
 }
 
 /*.search-form--right .search-form__submit, /* @deprecated - use after *
@@ -2560,7 +2560,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
             }*/
   .search-form .search-form__cancel {
     color: #333;
-    background-color: #94f2f6;
+    background-color: #b0ccd5;
     padding: 0 0.6428571429em;
     /*padding-right: $fallback--search-form--spacing * 2;
             padding-left: $fallback--search-form--spacing * 2;
@@ -2579,7 +2579,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   .search-form .search-form__cancel:hover,
   .search-form .search-form__cancel:focus,
   .search-form .search-form__cancel:active {
-    background-color: #13d5de;
+    background-color: #51889b;
     border: 0;
   }
   .search-form .search-form__field {
@@ -2824,13 +2824,13 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 }
 
 .cookie_notice .cookie_notice__message a[href] {
-  color: #65ecf2;
+  color: #8eb6c4;
 }
 
 .cookie_notice .cookie_notice__message a[href]:hover,
 .cookie_notice .cookie_notice__message a[href]:active,
 .cookie_notice .cookie_notice__message a[href]:focus {
-  color: #13d5de;
+  color: #51889b;
 }
 
 .cookie_notice .cookie_notice__action {
@@ -2865,10 +2865,10 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 }
 
 .card {
-  background: #f8decb;
+  background: #fff;
   padding: 1.5rem;
   /*height: 100%;*/
-  outline: 1px solid #f3c19d;
+  outline: 1px solid #2e4d58;
   /*max-width: 20em;*/
   margin: 0 auto;
 }
@@ -2882,15 +2882,15 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 }
 
 .card__body a {
-  color: #E78743;
-  border-bottom: 1px solid #f3c19d;
+  color: #dc6b2f;
+  border-bottom: 1px solid #eba986;
 }
 
 .card__body a:hover,
 .card__body a:active,
 .card__body a:focus {
-  color: #db6b1c;
-  border-bottom: 2px solid #f3c19d;
+  color: #b9541f;
+  border-bottom: 2px solid #eba986;
 }
 
 .card__offset-padding {
@@ -2997,7 +2997,7 @@ _:-ms-input-placeholder, :root .list-grid--center {
     text-align: center;
 }*/
 .page-footer {
-  background-color: #0B7B80;
+  background-color: #2e4d58;
   padding: 0.8571428571em;
   font-size: 0.875em;
   text-align: center;
@@ -3006,13 +3006,13 @@ _:-ms-input-placeholder, :root .list-grid--center {
 }
 
 .page-footer a[href] {
-  color: #65ecf2;
+  color: #8eb6c4;
 }
 
 .page-footer a[href]:hover,
 .page-footer a[href]:active,
 .page-footer a[href]:focus {
-  color: #13d5de;
+  color: #51889b;
 }
 
 /* Help from http://www.mademyday.de/css-height-equals-width-with-pure-css.html */
@@ -3098,7 +3098,18 @@ main {
 
 /**/
 .nav-bar {
-  padding-top: 1rem;
+  padding-top: 0.5rem;
+}
+
+.nav-bar::after {
+  content: "";
+  displaY: block;
+  height: 3px;
+  width: 100%;
+  background-color: #82949b;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .nav-bar__title-text {
@@ -3131,14 +3142,15 @@ main {
   position: absolute;
   left: 0.6428571429em;
   right: 0.6428571429em;
-  margin-top: 1px;
-  background: linear-gradient(to right, #0b7b80 0%, #0b7b80 70%, #e78743 70%, #e78743 100%);
+  margin-top: 3px;
+  z-index: 1;
+  background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
 }
 
 .nav-bar__inner .nav-bar__link:active::after,
 .nav-bar__inner .nav-bar__link:focus::after,
 .nav-bar__inner .nav-bar__link:hover::after {
-  margin-top: 9px;
+  margin-top: 11px;
   left: 0.6428571429em;
   right: 0.6428571429em;
 }
@@ -3151,7 +3163,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, #0b7b80 0%, #0b7b80 70%, #e78743 70%, #e78743 100%);
+  background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
 }
 
 #nav:target .nav-bar__inner {
@@ -3160,6 +3172,13 @@ main {
 
 #nav:target .nav-bar__item {
   margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 30em) {
+  .nav-bar {
+    padding-bottom: 0.5rem;
+    position: relative;
+  }
 }
 
 .poster {
