@@ -13,26 +13,26 @@ $primary-color--darker: #1c2e35;
 
 
 $secondary-color: #dc6b2f; // PANTONE 7579 [C: 0, M: 67, Y: 100, K: 0]
-$secondary-color--light: #e07a44;
-$secondary-color--lighter: #e7986e;
+$secondary-color--light: #eaa682;
+$secondary-color--lighter: #f5d3c1;
 $secondary-color--dark: #b05626;
 $secondary-color--darker: #84401c;
 
 $supporting-color-1: #ffb25b; // PANTONE 150 [C: 0, M: 41, Y: 78, K: 0]
-$supporting-color-1--light: #ffba6c;
-$supporting-color-1--lighter: #ffc98d;
+$supporting-color-1--light: #ffd19d;
+$supporting-color-1--lighter: #ffe8ce;
 $supporting-color-1--dark: #cc8e49;
 $supporting-color-1--darker: #996b37;
 
 $supporting-color-2: #9db092; // PANTONE 7494 [C: 35, M: 5, Y: 42, K: 14]
-$supporting-color-2--light: #a7b89d;
-$supporting-color-2--lighter: #bbc8b3;
+$supporting-color-2--light: #c4d0be;
+$supporting-color-2--lighter: #e2e7df;
 $supporting-color-2--dark: #7e8d75;
 $supporting-color-2--darker: #5e6a58;
 
 $supporting-color-3: #008675; // PANTONE 327 [C: 100, M: 2, Y: 60, K: 14]
-$supporting-color-3--light: #1a9283;
-$supporting-color-3--lighter: #4dab9f;
+$supporting-color-3--light: #66b6ac;
+$supporting-color-3--lighter: #b3dbd6;
 $supporting-color-3--dark: #006b5e;
 $supporting-color-3--darker: #005046;
 
@@ -76,9 +76,10 @@ $anchor-border-bottom: 1px solid lighten($primary-color, 10%) !default;
 
 @import "../bower_components/Fall-Back-Over-Panel/_over-panel";
 
-$fallback--nav-bar--bg-color: #fff;
+//$fallback--nav-bar--bg-color: #fff;
+$fallback--nav-bar--bg-color: $supporting-color-2--lighter;
 $fallback--nav-bar__link--color: #222;
-$fallback--nav-bar__link--bg-color--alt: #fff;
+$fallback--nav-bar__link--bg-color--alt: $fallback--nav-bar--bg-color;
 //$fallback--nav-bar--bg-color: $primary-color;
 //$fallback--nav-bar__link--color: #fff;
 //$fallback--nav-bar__link--bg-color--alt: $primary-color;

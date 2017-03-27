@@ -1631,7 +1631,7 @@ video {
 /* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
 .nav-bar {
-  background-color: #fff;
+  background-color: #e2e7df;
 }
 
 /* Not sure why I need float clearing here. Keep for reference. */
@@ -1679,7 +1679,7 @@ video {
 .nav-bar .nav-bar__title-text {
   vertical-align: top;
   /* [1] */
-  background: #fff;
+  background: #e2e7df;
   display: inline-block;
   height: 1.7142857143em;
   line-height: 1.7142857143em;
@@ -1740,7 +1740,7 @@ video {
            browsers that don't support HTML semantic elements.
     */
 .nav-bar .nav-bar__inner {
-  background-color: #fff;
+  background-color: #e2e7df;
   overflow: hidden;
 }
 
@@ -1851,7 +1851,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 
 .nav-bar .nav-bar__link {
   color: #222;
-  background-color: #fff;
+  background-color: #e2e7df;
 }
 
 .nav-bar .nav-bar__link .icon {
@@ -1891,7 +1891,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 .nav-bar .nav-bar__link:focus,
 .nav-bar .nav-bar__link:active {
   color: #222;
-  background-color: #fff;
+  background-color: #e2e7df;
 }
 
 .nav-bar .subnav__link:hover,
@@ -2022,7 +2022,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   .nav-bar .nav-bar__link:hover,
   .nav-bar .nav-bar__link:focus,
   .nav-bar .nav-bar__link:active {
-    background-color: #fff;
+    background-color: #e2e7df;
     cursor: pointer;
   }
   .nav-bar .subnav {
@@ -2844,17 +2844,18 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 /* ---------------------------------------------------------------------------------------------- */
 /* --| STRUCTURE |------------------------------------------------------------------------------- */
 .nav-bar.nav-bar {
-  padding-top: 1rem;
+  padding-top: 0.5rem;
 }
 
 .nav-bar.nav-bar::before {
   content: "";
-  width: 100%;
-  position: absolute;
-  bottom: 2px;
-  height: 3px;
   display: block;
-  background: #eee;
+  height: 3px;
+  width: 100%;
+  background-color: #82949b;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .nav-bar .nav-bar__title-text {
@@ -2887,14 +2888,15 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   position: absolute;
   left: 0.6428571429em;
   right: 0.6428571429em;
-  margin-top: 1px;
-  background: linear-gradient(to right, #0b7b80 0%, #0b7b80 70%, #e78743 70%, #e78743 100%);
+  margin-top: 3px;
+  z-index: 1;
+  background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
 }
 
 .nav-bar__inner .nav-bar__link:active::after,
 .nav-bar__inner .nav-bar__link:focus::after,
 .nav-bar__inner .nav-bar__link:hover::after {
-  margin-top: 9px;
+  margin-top: 11px;
   left: 0.6428571429em;
   right: 0.6428571429em;
 }
@@ -2907,7 +2909,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, #0b7b80 0%, #0b7b80 70%, #e78743 70%, #e78743 100%);
+  background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
 }
 
 #nav:target .nav-bar__inner {
@@ -2916,6 +2918,13 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 
 #nav:target .nav-bar__item {
   margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 30em) {
+  .nav-bar {
+    padding-bottom: 0.5rem;
+    position: relative;
+  }
 }
 
 /* --| PATTERNS |-------------------------------------------------------------------------------- */
@@ -3174,90 +3183,6 @@ main {
 }
 
 /**/
-.nav-bar {
-  padding-top: 0.5rem;
-}
-
-.nav-bar::after {
-  content: "";
-  displaY: block;
-  height: 3px;
-  width: 100%;
-  background-color: #82949b;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.nav-bar__title-text {
-  text-transform: uppercase;
-}
-
-.nav-bar__title-text .nav-bar__link svg {
-  vertical-align: top;
-}
-
-.nav-bar__title-text .nav-bar__link span {
-  display: inline-block;
-  margin-top: 0.1em;
-}
-
-.nav-bar .nav-bar__inner {
-  padding-bottom: 0.5rem;
-}
-
-.nav-bar .nav-bar__link {
-  position: relative;
-}
-
-.nav-bar .nav-bar__link:active::after,
-.nav-bar .nav-bar__link:focus::after,
-.nav-bar .nav-bar__link:hover::after {
-  content: "";
-  display: block;
-  height: 3px;
-  position: absolute;
-  left: 0.6428571429em;
-  right: 0.6428571429em;
-  margin-top: 3px;
-  z-index: 1;
-  background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
-}
-
-.nav-bar__inner .nav-bar__link:active::after,
-.nav-bar__inner .nav-bar__link:focus::after,
-.nav-bar__inner .nav-bar__link:hover::after {
-  margin-top: 11px;
-  left: 0.6428571429em;
-  right: 0.6428571429em;
-}
-
-#nav:target .nav-bar__inner::after {
-  content: "";
-  display: block;
-  height: 3px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
-}
-
-#nav:target .nav-bar__inner {
-  box-shadow: 0 0 8px 0 #000;
-}
-
-#nav:target .nav-bar__item {
-  margin-bottom: 0.5rem;
-}
-
-@media only screen and (max-width: 30em) {
-  .nav-bar {
-    padding-bottom: 0.5rem;
-    position: relative;
-  }
-}
-
 .poster {
   position: relative;
 }
