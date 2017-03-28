@@ -10,9 +10,16 @@ body_id: projects
     {% for post in site.posts %}{% if post.role != '' %}
     <div class="list-grid__item  card-wrap">
         <article class="card">
-            <div class="card__image">
-                <img src="{{ post.poster }}" alt="" />
-            </div>
+            {% if post.cloudinary_id != "" %}
+            <div class="card__image  card__offset-padding  proportional-container  proportional-container--2-1">
+                <div class="proportional-container__content ">
+                    <a href="{{ post.url }}" class="card__image-link">
+                        <img src=" http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}" alt="" class="proportional-container__image-cover">
+                    </a>
+                </div>
+            </div>      
+            <div class="card__pull"></div>
+            {% endif %}
             <div class="card__body">
                 <dl>
                     <dt>Project:</dt>

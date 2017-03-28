@@ -1850,7 +1850,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 }
 
 .nav-bar .nav-bar__link {
-  color: #222;
+  color: #1c2e35;
   background-color: #e2e7df;
 }
 
@@ -1859,12 +1859,12 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 }
 
 .nav-bar .subnav__heading {
-  color: #222;
+  color: #1c2e35;
 }
 
 .nav-bar .subnav__link {
   display: inline-block;
-  color: #222;
+  color: #1c2e35;
   background-color: #0b1215;
 }
 
@@ -1890,14 +1890,14 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 .nav-bar .nav-bar__link:hover,
 .nav-bar .nav-bar__link:focus,
 .nav-bar .nav-bar__link:active {
-  color: #222;
+  color: #1c2e35;
   background-color: #e2e7df;
 }
 
 .nav-bar .subnav__link:hover,
 .nav-bar .subnav__link:focus,
 .nav-bar .subnav__link:active {
-  color: #222;
+  color: #1c2e35;
   background-color: #1c3037;
 }
 
@@ -2950,39 +2950,99 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   width: 100%;
 }
 
-.card {
+.card.card {
   background: #fff;
   padding: 1.5rem;
   /*height: 100%;*/
   outline: 1px solid #2e4d58;
   /*max-width: 20em;*/
-  margin: 0 auto;
+  margin-top: 0 auto;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  /*
+            If the 'pull' is > module body content height, it'll protrude below the container,
+            so hide it:
+        */
+  overflow: hidden;
 }
 
-.card__image {
+.card .card__image {
+  position: relative;
   text-align: center;
 }
 
-.card__body * {
-  margin: 0;
+.card .card__image::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* Extra .5% to prevent bleed due to rounding: */
+  height: 100.5%;
+  /* Gradient to make the text more legible: */
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, white 100%);
+  /* Toggle gradient overlay at the same breakpoint as the 'pull': */
+  width: calc((30em - 100%) * -1000);
+  max-width: 100%;
 }
 
-.card__body a {
+.card .card__image img {
+  width: 100%;
+}
+
+.card .card__image-link,
+.card .card__image-link:hover {
+  border-bottom: 0;
+}
+
+.card .card__pull {
+  /* Reset to full width to ensure same breakpoint: */
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  /* Pull the text up over the image by this much: */
+  margin-bottom: -5rem;
+  /* Don't allow this container to be larger than the same amount: */
+  max-height: 5rem;
+  /* and hide any overflow, just to be on the safe side: */
+  overflow: hidden;
+}
+
+.card .card__pull::before {
+  content: "";
+  display: block;
+  /* Create the 'switch': */
+  padding-bottom: calc((30em - 100%) * 1000);
+}
+
+.card .card__pull ~ * {
+  position: relative;
+}
+
+/*.card .card__body * {
+            margin: 0;
+        }*/
+.card .card__body a {
   color: #dc6b2f;
   border-bottom: 1px solid #eba986;
 }
 
-.card__body a:hover,
-.card__body a:active,
-.card__body a:focus {
+.card .card__body a:hover,
+.card .card__body a:active,
+.card .card__body a:focus {
   color: #b9541f;
   border-bottom: 2px solid #eba986;
 }
 
-.card__offset-padding {
+.card .card__offset-padding {
   margin-top: -1.5rem;
   margin-left: -1.5rem;
   margin-right: -1.5rem;
+}
+
+.card .card__body-footer,
+.card .card__body-footer * {
+  margin-bottom: 0;
 }
 
 .list-grid {
@@ -3183,6 +3243,14 @@ main {
 }
 
 /**/
+.sticky-footer-expand {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e2e7df+100 */
+  background: #ffffff;
+  /* Old browsers */
+  background: linear-gradient(to bottom, #ffffff 0%, #e2e7df 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
 .poster {
   position: relative;
 }

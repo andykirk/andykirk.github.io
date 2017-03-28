@@ -1,6 +1,7 @@
 ---
 title: Fall-Back PE Techniques
 poster: posts/fall-back.jpg
+cloudinary_id: blog/fall-back.jpg
 role: Creator / Developer
 ---
 

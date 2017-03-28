@@ -78,7 +78,8 @@ $anchor-border-bottom: 1px solid lighten($primary-color, 10%) !default;
 
 //$fallback--nav-bar--bg-color: #fff;
 $fallback--nav-bar--bg-color: $supporting-color-2--lighter;
-$fallback--nav-bar__link--color: #222;
+//$fallback--nav-bar__link--color: #222;
+$fallback--nav-bar__link--color: $primary-color--darker;
 $fallback--nav-bar__link--bg-color--alt: $fallback--nav-bar--bg-color;
 //$fallback--nav-bar--bg-color: $primary-color;
 //$fallback--nav-bar__link--color: #fff;
