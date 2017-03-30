@@ -10,15 +10,27 @@ $card--background-color: $card--base-color !default;
 $card--border-color: darken($card--background-color, 10%) !default;
 $card--link-color: false !default;
 $card--link-has-border-bottom: false !default;
-@if $card--link-color != false {
-    $card--link-color--alt: darken($card--link-color, 10%) !default;
+$card--link-color--alt: false !default;
+$card--link-has-border-bottom: false !default;
+$card--link-border-bottom: false !default;
+$card--link-border-bottom--hover: false !default;
+
+// If we've specified a link colour for the card, but not an alt state (e.g. hover)
+// then generate one
+@if $card--link-color != false && $card--link-color--alt == false {
+    $card--link-color--alt: darken($card--link-color, 10%);
 }
 
+// If we've specified a link colour for the card, and we want bottom borders, generate the borders:
 @if $card--link-color != false && $card--link-has-border-bottom != false {
     $card--link-border-bottom: 1px solid lighten($card--link-color, 20%) !default;
     $card--link-border-bottom--hover: 2px solid lighten($card--link-color--alt, 30%) !default;
 }
+$card--padding: 1.5rem !default;
 
+
+$card-breakpoint: 30em !default;
+$card-pull: 5rem !default;
 
 .card-wrap {
     display: -webkit-flex;
@@ -38,39 +50,118 @@ $card--link-has-border-bottom: false !default;
         width: 100%;
     }
 
-    .card {
+    .card.card {
         background: $card--background-color;
-        padding: 1.5rem;
+        padding: $card--padding;
         /*height: 100%;*/
         
         outline: 1px solid $card--border-color;
         
         /*max-width: 20em;*/
-        margin: 0 auto;
+        margin-top: 0 auto;
+        margin-bottom: 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        
+        /*
+            If the 'pull' is > module body content height, it'll protrude below the container,
+            so hide it:
+        */
+        overflow: hidden;
     }
 
-        .card__image{
+        .card .card__image {
+            position: relative;
             text-align: center;
         }
+        
+            .card .card__image::after {
+                content: "";
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                /* Extra .5% to prevent bleed due to rounding: */
+                height: 100.5%;
 
-        .card__body * {
+                /* Gradient to make the text more legible: */
+                background-image: linear-gradient(to bottom, rgba($card--background-color,0) 0%,rgba($card--background-color,0) 50%,rgba($card--background-color,1) 100%);
+
+                /* Toggle gradient overlay at the same breakpoint as the 'pull': */
+                width: calc((#{$card-breakpoint} - 100%) * -1000);
+                max-width: 100%;
+            }
+
+                .card .card__image img {
+                    width: 100%;
+                }
+        
+        
+            .card .card__image-link,
+            .card .card__image-link:hover {
+                border-bottom: 0;
+            }
+
+            .card .card__pull {
+                /* Reset to full width to ensure same breakpoint: */
+                margin-left: -1.5rem;
+                margin-right: -1.5rem;               
+                /* Pull the text up over the image by this much: */
+                margin-bottom: -$card-pull;
+                /* Don't allow this container to be larger than the same amount: */
+                max-height: $card-pull;
+                /* and hide any overflow, just to be on the safe side: */
+                overflow: hidden;
+            }
+
+                .card .card__pull::before {
+                    content: "";
+                    display: block;
+                    /* Create the 'switch': */
+                    padding-bottom: calc((#{$card-breakpoint} - 100%) * 1000);
+                }
+            
+            .card .card__pull ~ * {
+                position: relative;
+            }
+
+        /*.card .card__body * {
             margin: 0;
-        }
+        }*/
         
         @if $card--link-color != false {
-            .card__body a {
+            .card .card__body a {
                 color: $card--link-color;
                 @if $card--link-has-border-bottom != false {
                     border-bottom: $card--link-border-bottom;
                 }
             }
             
-            .card__body a:hover,
-            .card__body a:active,
-            .card__body a:focus {
+            .card .card__body a:hover,
+            .card .card__body a:active,
+            .card .card__body a:focus {
                 color: $card--link-color--alt;
                 @if $card--link-has-border-bottom != false {
                     border-bottom: $card--link-border-bottom--hover;
                 }
             }
         }
+        
+        .card .card__offset-padding {
+            margin-top: -$card--padding;
+            margin-left: -$card--padding;
+            margin-right: -$card--padding;
+        }
+        
+        .card .card__title {
+			text-shadow: 1px 1px 2px #fff, -1px -1px 2px #fff;
+		}
+		
+		
+        .card .card__body-footer,
+        .card .card__body-footer * {
+            margin-bottom: 0;
+        }
+        
+        
+        

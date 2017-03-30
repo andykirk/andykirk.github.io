@@ -1,5 +1,6 @@
 ---
 title: Footnotes Plugin for CKEditor
+cloudinary_id: /blog/footnotes.jpg
 role: Creator / Developer
 ---
 

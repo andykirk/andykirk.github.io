@@ -21,6 +21,7 @@ defaults:
     values:
       layout: "post"
       poster: ""
+      cloudinary_id: ""
       role: ""
 
 # Build settings

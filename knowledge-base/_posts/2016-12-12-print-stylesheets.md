@@ -2,6 +2,7 @@
 title: Print Stylesheets
 tag: [CSS,Print]
 poster: posts/print-stylesheets.png
+cloudinary_id: blog/print-stylesheets.png
 ---
 I plan to tidy up and enhance the 'global' print stylesheet for FallBack as soon as I can.
 

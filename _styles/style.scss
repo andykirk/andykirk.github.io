@@ -1,9 +1,44 @@
 @charset "UTF-8";
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
 
-$primary-color: #0B7B80;
-$secondary-color: #E78743;
+// @TODO -0 decide whether the --light/--lighter/--dark/--darker is the way to go, or just use sass
+// colour functions to create tints as needed, or create vars in 10% blocks, i.e. 
+// --light-10; --dark-30.
 
+$primary-color: #2e4d58; //PANTONE 2216 [C: 88, M: 50, Y: 45, K: 50]
+$primary-color--light: #82949b;
+$primary-color--lighter: #c1cacd;
+$primary-color--dark: #253e46;
+$primary-color--darker: #1c2e35;
+
+
+$secondary-color: #dc6b2f; // PANTONE 7579 [C: 0, M: 67, Y: 100, K: 0]
+$secondary-color--light: #eaa682;
+$secondary-color--lighter: #f5d3c1;
+$secondary-color--dark: #b05626;
+$secondary-color--darker: #84401c;
+
+$supporting-color-1: #ffb25b; // PANTONE 150 [C: 0, M: 41, Y: 78, K: 0]
+$supporting-color-1--light: #ffd19d;
+$supporting-color-1--lighter: #ffe8ce;
+$supporting-color-1--dark: #cc8e49;
+$supporting-color-1--darker: #996b37;
+
+$supporting-color-2: #9db092; // PANTONE 7494 [C: 35, M: 5, Y: 42, K: 14]
+$supporting-color-2--light: #c4d0be;
+$supporting-color-2--lighter: #e2e7df;
+$supporting-color-2--dark: #7e8d75;
+$supporting-color-2--darker: #5e6a58;
+
+$supporting-color-3: #008675; // PANTONE 327 [C: 100, M: 2, Y: 60, K: 14]
+$supporting-color-3--light: #66b6ac;
+$supporting-color-3--lighter: #b3dbd6;
+$supporting-color-3--dark: #006b5e;
+$supporting-color-3--darker: #005046;
+
+
+
+$line-gradient: linear-gradient(to right, $supporting-color-1 0%, $supporting-color-1 70%, $secondary-color 70%, $secondary-color 100%);
 
 // FallBack:
 
@@ -36,14 +71,20 @@ $anchor-border-bottom: 1px solid lighten($primary-color, 10%) !default;
 
 
 /* ---------------------------------------------------------------------------------------------- */
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/* --| FALL-BACK |------------------------------------------------------------------------------- */
 
 
 @import "../bower_components/Fall-Back-Over-Panel/_over-panel";
 
-$fallback--nav-bar--bg-color: #fff;
-$fallback--nav-bar__link--color: #222;
-$fallback--nav-bar__link--bg-color--alt: #fff;
+//$fallback--nav-bar--bg-color: #fff;
+$fallback--nav-bar--bg-color: $supporting-color-2--lighter;
+//$fallback--nav-bar__link--color: #222;
+$fallback--nav-bar__link--color: $primary-color--darker;
+$fallback--nav-bar__link--bg-color--alt: $fallback--nav-bar--bg-color;
+//$fallback--nav-bar--bg-color: $primary-color;
+//$fallback--nav-bar__link--color: #fff;
+//$fallback--nav-bar__link--bg-color--alt: $primary-color;
+
 $fallback--nav-bar__link--border-width: 0;
 $fallback--nav-bar__title--font-family: Vollkorn,serif;
 $fallback--nav-bar__title--font-weight: normal;
@@ -71,12 +112,14 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 /* --| OVERRIDES |------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
-/* --| STRUCTURE |------------------------------------------------------------------------------- */
+/* --| LOCAL STRUCTURE |------------------------------------------------------------------------- */
 @import "structure/__all";
 
 
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
-$card--base-color: lighten($secondary-color, 30%);
+/* --| OCAL PATTERNS |--------------------------------------------------------------------------- */
+$card--base-color: $primary-color;
+$card--background-color: #fff;
+$card--border-color: $primary-color;
 $card--link-color: $secondary-color;
 $card--link-has-border-bottom: true;
 @import "patterns/__all";

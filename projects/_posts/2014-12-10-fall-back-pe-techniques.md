@@ -1,6 +1,6 @@
 ---
 title: Fall-Back PE Techniques
-poster: /img/posts/thumb-fall-back.jpg
+cloudinary_id: v1490888058/blog/fall-back.png
 role: Creator / Developer
 ---
 
