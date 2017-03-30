@@ -23,13 +23,18 @@
 
 .nav-bar .nav-bar__title-text .nav-bar__link span {
     display: inline-block;
-    margin-top: 0.1em;
+    margin-bottom: 0.1em;
 }
 
 .nav-bar .nav-bar__inner {
     padding-bottom: 0.5rem;
 }
 
+
+.nav-bar .nav-bar__items .nav-bar__link span {
+    position: relative;
+    top: 2px;
+}
 
 .nav-bar .nav-bar__link {
     position: relative;
