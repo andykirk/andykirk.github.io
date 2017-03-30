@@ -2927,9 +2927,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   position: relative;
 }
 
-.nav-bar .nav-bar__link:active::after,
-.nav-bar .nav-bar__link:focus::after,
-.nav-bar .nav-bar__link:hover::after {
+.nav-bar .nav-bar__link::after {
   content: "";
   display: block;
   height: 3px;
@@ -2938,6 +2936,12 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   right: 0.6428571429em;
   margin-top: 3px;
   z-index: 1;
+  background: transparent;
+}
+
+.nav-bar .nav-bar__link:active::after,
+.nav-bar .nav-bar__link:focus::after,
+.nav-bar .nav-bar__link:hover::after {
   background: linear-gradient(to right, #ffb25b 0%, #ffb25b 70%, #dc6b2f 70%, #dc6b2f 100%);
 }
 

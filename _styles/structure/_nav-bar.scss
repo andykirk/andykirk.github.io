@@ -40,9 +40,7 @@
     position: relative;
 }
 
-.nav-bar .nav-bar__link:active::after,
-.nav-bar .nav-bar__link:focus::after,
-.nav-bar .nav-bar__link:hover::after {
+.nav-bar .nav-bar__link::after {
     content: "";
     display: block;
     height: 3px;
@@ -52,6 +50,12 @@
     margin-top: 3px;
     z-index: 1;
     
+    background: transparent;
+}
+
+.nav-bar .nav-bar__link:active::after,
+.nav-bar .nav-bar__link:focus::after,
+.nav-bar .nav-bar__link:hover::after {
     background: $line-gradient;
 }
 
