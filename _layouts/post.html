@@ -12,7 +12,7 @@ layout: full
         </div>
         <div class="card__pull"></div>
         {% endif %}
-        <h1>{{ post.title }}</h1>
+        <h1 class="card__title">{{ post.title }}</h1>
         <p>
             <time class="post__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%-d %B, %Y' }}</time>
         </p>

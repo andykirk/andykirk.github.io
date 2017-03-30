@@ -1,4 +1,18 @@
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
+/*
+    Colour contrast from https://gist.github.com/FStop/8959422
+    
+    Usage:
+    @if color_contrast($colour, #fff) < 2 {
+        color: #333;
+    }
+    @else{
+        color: #fff;
+    }
+*/
+/* Awesome contrast ratio function
+* via https://gist.github.com/voxpelli/6304812
+**/
 /*------------------------------------------------------------------------------------------------*    Fall-Back Icons v1.0.0
     
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -358,6 +372,7 @@ audio:not([controls]) {
  */
 b {
   font-weight: bolder;
+  line-height: normal;
 }
 
 blockquote {
@@ -402,8 +417,8 @@ button {
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  padding-top: calc(0.1875rem - 1px);
+  padding-bottom: calc(0.1875rem - 1px);
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   vertical-align: baseline;
@@ -488,9 +503,12 @@ fieldset {
   border-width: 1px;
   border-style: solid;
   border-color: #2e4d58;
-  padding-top: 1.4375rem;
-  padding-left: 1.4375rem;
-  padding-right: 1.4375rem;
+  padding-top: -moz-calc(1.5rem - 1px);
+  padding-top: calc(1.5rem - 1px);
+  padding-left: -moz-calc(1.5rem - 1px);
+  padding-left: calc(1.5rem - 1px);
+  padding-right: -moz-calc(1.5rem - 1px);
+  padding-right: calc(1.5rem - 1px);
 }
 
 fieldset::after {
@@ -498,7 +516,7 @@ fieldset::after {
   content: "";
   height: 0;
   margin-top: -1px;
-  margin-bottom: 1.4375rem;
+  margin-bottom: 1.5rem;
 }
 
 fieldset fieldset {
@@ -588,7 +606,7 @@ hr {
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #2e4d58;
-  margin-top: -0.0625rem;
+  margin-top: -1px;
   margin-bottom: 1.5rem;
   overflow: visible;
   /* N: Show the overflow in Edge and IE. */
@@ -637,8 +655,6 @@ input {
   /* S */
   font-weight: inherit;
   /* S */
-  min-height: 1.875rem;
-  /* ~S */
   /* AK: mainly for IE */
   /* -webkit-border-radius: 0; // S: iOS 8+ // AK not needed as radius declared below. */
   background-color: #fff;
@@ -646,12 +662,10 @@ input {
   border-radius: 3px;
   border-color: #1c3037;
   border-style: solid;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  padding-top: calc(0.1875rem - 1px);
+  padding-bottom: calc(0.1875rem - 1px);
   padding-left: 0.375rem;
   padding-right: 0.375rem;
-  margin: 0.1875rem 0;
-  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
   vertical-align: top;
   /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
@@ -676,6 +690,27 @@ input:-moz-focusring {
 
 input:not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="progess"]):focus {
   box-shadow: 0 0 3px 0 #2e4d58 inset;
+}
+
+input:not([type="checkbox"]):not([type="radio"]) {
+  min-height: 1.875rem;
+  /* ~S */
+  margin: 0.1875rem 0;
+  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
+}
+
+input[type=checkbox],
+input[type=radio] {
+  /* Vertical centering via line-height/vertical align not satisfactory: */
+  vertical-align: top;
+  -webkit-transform: translateY(40%);
+  -ms-transform: translateY(40%);
+  transform: translateY(40%);
+  /*
+        IE9 adds the border and background:
+    */
+  border: 0;
+  background: transparent;
 }
 
 /**
@@ -717,8 +752,8 @@ html [type="button"],
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  padding-top: calc(0.1875rem - 1px);
+  padding-bottom: calc(0.1875rem - 1px);
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   vertical-align: baseline;
@@ -768,8 +803,12 @@ html [type="button"]:focus,
   line-height: 1.75rem;
   cursor: pointer;
   padding: 0;
+  /* On smaller devices the width of these inputs can force horizontal scrolling. */
+  /* Max-width doesn't work to solve this, but may be needed to restrict width on larger screens */
+  width: 100%;
 }
 
+/* IE 9 (I think): */
 @media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   [type="file"] {
     padding-left: 0.375rem;
@@ -819,6 +858,8 @@ input[type=file]:-moz-focusring {
 
 [type=file]::-webkit-file-upload-button {
   overflow: visible;
+  vertical-align: top;
+  box-sizing: border-box;
   background-color: #2e4d58;
   color: #fff;
   font-family: inherit;
@@ -828,28 +869,19 @@ input[type=file]:-moz-focusring {
   text-transform: none;
   -webkit-appearance: none;
   cursor: pointer;
-  margin: 0px 0 0 -2px;
-  border-width: 1px;
+  margin: 0 0 0 -2px;
+  border-width: 0 1px 0 0;
   border-color: #1c3037;
   border-style: solid;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  /* padding-top: 0.125rem; */
-  /* padding-bottom: 0.125rem; */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   padding-left: 0.375rem;
   padding-right: 0.375rem;
   border-style: solid;
-}
-
-[type=checkbox],
-[type=radio] {
-  vertical-align: baseline;
-  min-height: auto;
-  /*
-        IE9 adds the border and background:
-    */
-  border: 0;
-  background: transparent;
 }
 
 /**
@@ -901,10 +933,13 @@ kbd {
 }
 
 label {
+  display: inline-block;
   font-weight: bold;
   cursor: pointer;
-  /* vertical-align: middle; */
-  vertical-align: baseline;
+  /* S: Remove the tapping delay from clickable elements */
+  -ms-touch-action: manipulation;
+  /* S: IE10 */
+  touch-action: manipulation;
 }
 
 /**
@@ -1016,7 +1051,7 @@ pre {
   /* A1 */
   overflow-x: scroll;
   /* A1 */
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.9375rem;
   /* A */
   background-color: #c0d6de;
   /* A */
@@ -1024,9 +1059,9 @@ pre {
 
 pre code {
   display: inline-block;
-  line-height: 22px;
-  /* Need to calculate this! */
-  padding: 1rem 0.75rem;
+  line-height: 1.5rem;
+  /* Revert zeroed line-height (see) `code` */
+  padding: 0.75rem;
 }
 
 /*
@@ -1098,18 +1133,18 @@ select {
   /* -webkit-appearance: none; // Chrome 45+ */
   /* Expand button style for IE. (not sure yet as alterntive means it's more similar to Chrome) */
   /*&::-ms-expand {
-		//display: none;        // Edge 12+, Internet Explorer 11-
+        //display: none;        // Edge 12+, Internet Explorer 11-
         background-color: $ui-color--base;
         color: #fff;
         border: 0;
         margin-left: $input-h-padding;
         padding-left: $input-h-padding;
         padding-right: $input-h-padding;
-	}
+    }
 
     &::-ms-expand:hover {
-		background-color: $button-background-color--state-1;
-	}*/
+        background-color: $button-background-color--state-1;
+    }*/
   /* Remove inner padding and border in Firefox 4+. */
 }
 
@@ -1143,7 +1178,10 @@ select:focus {
 
 select[multiple] {
   height: auto;
-  margin: 0.1875rem 0 0.4375rem 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0.1875rem;
+  margin-bottom: calc(0.5625rem - 2px);
 }
 
 small {
@@ -1158,6 +1196,7 @@ small {
  */
 strong {
   font-weight: bolder;
+  line-height: normal;
 }
 
 sub {
@@ -1172,6 +1211,10 @@ summary {
   /* S: Firefox 40+, Internet Explorer 11-, Windows Phone 8.1+ */
   /* N: Correct `block` display not defined for `details` or `summary` in IE 10/11 */
   display: block;
+  /* S: Remove the tapping delay from clickable elements */
+  -ms-touch-action: manipulation;
+  /* S: IE10 */
+  touch-action: manipulation;
   cursor: pointer;
   /* AK */
 }
@@ -1388,7 +1431,7 @@ video {
 
 /*! End Start CSS */
 /* ---------------------------------------------------------------------------------------------- */
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/* --| FALL-BACK |------------------------------------------------------------------------------- */
 /*------------------------------------------------------------------------------------------------*    Fall-Back Over Panel Pattern v1.0.0
 
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -2157,7 +2200,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 /* IE9 hacks: */
 /*
     */
-@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   /*
             The icons force a massive height increase for some reason.
             Setting the height to this only works fine because on 'wide' the nav-bar can't be
@@ -2770,7 +2813,7 @@ body {
 }
 
 /* IE9 hacks: */
-@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   .sticky-footer-wrap {
     display: table;
     width: 100%;
@@ -2842,7 +2885,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 /* ---------------------------------------------------------------------------------------------- */
 /* --| OVERRIDES |------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
-/* --| STRUCTURE |------------------------------------------------------------------------------- */
+/* --| LOCAL STRUCTURE |------------------------------------------------------------------------- */
 .nav-bar.nav-bar {
   padding-top: 0.5rem;
 }
@@ -2927,7 +2970,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   }
 }
 
-/* --| PATTERNS |-------------------------------------------------------------------------------- */
+/* --| OCAL PATTERNS |--------------------------------------------------------------------------- */
 /*
     The `height: 100%;` in the `.card` class below allows the card to fill it's contrain (if inside,
     say, a list-grid). However, it doesn't work in Safari OSX/iOS.
@@ -3024,20 +3067,24 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
         }*/
 .card .card__body a {
   color: #dc6b2f;
-  border-bottom: 1px solid #eba986;
+  border-bottom: false;
 }
 
 .card .card__body a:hover,
 .card .card__body a:active,
 .card .card__body a:focus {
   color: #b9541f;
-  border-bottom: 2px solid #eba986;
+  border-bottom: false;
 }
 
 .card .card__offset-padding {
   margin-top: -1.5rem;
   margin-left: -1.5rem;
   margin-right: -1.5rem;
+}
+
+.card .card__title {
+  text-shadow: 1px 1px 2px #fff, -1px -1px 2px #fff;
 }
 
 .card .card__body-footer,

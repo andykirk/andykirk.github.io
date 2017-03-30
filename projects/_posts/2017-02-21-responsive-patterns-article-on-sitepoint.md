@@ -1,6 +1,6 @@
 ---
 title: Responsive CSS Patterns without Media Queries Article on Sitepoint
-cloudinary_id: blog/responsive-patterns.png
+cloudinary_id: v1490884954/blog/responsive-patterns.png
 role: Author
 ---
 
