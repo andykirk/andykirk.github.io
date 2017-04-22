@@ -3,5 +3,4 @@ backend:
   repo: andykirk/andykirk.github.io
   branch: master
   site_domain: andykirk.net
-  media_folder: "_images/_uploads"
-  public_folder: "/img/uploads"
+  media_folder: "/img/uploads"
