@@ -1,0 +1,5 @@
+backend:
+  name: github
+  repo: andykirk/andykirk.github.io
+  branch: master
+  site_domain: andykirk.net
