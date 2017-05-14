@@ -190,7 +190,7 @@ html {
   /* 2 */
   overflow-y: scroll;
   /* 3 */
-  color: #333;
+  color: #c1cacd;
   background-color: #fff;
   font-family: "Source Sans Pro", sans-serif;
   -ms-text-size-adjust: 100%;
@@ -745,7 +745,7 @@ input {
   border-style: solid;
   border-color: #1c3037;
   border-radius: 3px;
-  color: #333;
+  color: #c1cacd;
   background-color: #fff;
   font-weight: inherit;
   font-style: inherit;
@@ -1191,7 +1191,7 @@ optgroup {
   /* N: Don't inherit the `font-weight` (applied by a rule above). */
   /* NOTE: the default cannot safely be changed in Chrome and Safari on OS X. */
   font-weight: bold;
-  color: #333;
+  color: #c1cacd;
   background-color: #fff;
 }
 
@@ -1208,7 +1208,7 @@ option {
 
 option:hover {
   background-color: #d1e1e7;
-  color: #333;
+  color: #c1cacd;
 }
 
 p {
@@ -1306,7 +1306,7 @@ select {
   /* S */
   font-weight: inherit;
   /* S */
-  color: #333;
+  color: #c1cacd;
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
@@ -1666,7 +1666,7 @@ textarea {
   font-style: inherit;
   font-weight: inherit;
   min-height: 5.125rem;
-  color: #333;
+  color: #c1cacd;
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
@@ -2806,7 +2806,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   /*-moz-box-sizing: border-box !important;
             box-sizing: border-box !important;*/
   background-color: #fff;
-  color: #333;
+  color: #c1cacd;
   height: 1.7142857143em;
   line-height: 1.7142857143em;
   margin: 0.2142857143em 0 0.2142857143em 0.2142857143em;
@@ -2861,7 +2861,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   /*moz-box-sizing: content-box;
         box-sizing: content-box;*/
   background: #b0ccd5;
-  color: #333;
+  color: #c1cacd;
   height: 2.1428571429em;
   line-height: 0;
   margin: 0.2142857143em 0.2142857143em 0.2142857143em 0;
@@ -3012,7 +3012,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
                 order: 2;
             }*/
   .search-form .search-form__cancel {
-    color: #333;
+    color: #c1cacd;
     background-color: #b0ccd5;
     padding: 0 0.6428571429em;
     /*padding-right: $fallback--search-form--spacing * 2;
@@ -3328,6 +3328,10 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   padding-bottom: 0.5rem;
 }
 
+.nav-bar .nav-bar__items {
+  overflow: visible;
+}
+
 .nav-bar .nav-bar__items .nav-bar__link span {
   position: relative;
   top: 2px;
@@ -3413,6 +3417,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 }
 
 .card.card {
+  color: #2e4d58;
   background: #fff;
   padding: 1.5rem;
   /*height: 100%;*/
@@ -3576,24 +3581,26 @@ _:-ms-input-placeholder, :root .list-grid--center {
     text-align: center;
 }*/
 .page-footer {
-  background-color: #2e4d58;
+  background-color: #e2e7df;
   padding: 0.8571428571em;
   font-size: 0.875em;
   text-align: center;
-  color: #fff;
+  color: #2e4d58;
   margin-bottom: 0;
+  border-top: 3px solid #82949b;
 }
 
-.page-footer a[href] {
-  color: #8eb6c4;
-}
-
-.page-footer a[href]:hover,
-.page-footer a[href]:active,
-.page-footer a[href]:focus {
-  color: #51889b;
-}
-
+/*
+    .page-footer a[href] {
+        color: lighten($fallback--base-ui-color, 40%);
+    }
+    
+    .page-footer a[href]:hover,
+    .page-footer a[href]:active,
+    .page-footer a[href]:focus {
+        color: lighten($fallback--base-ui-color, 20%);
+    }
+*/
 /* Help from http://www.mademyday.de/css-height-equals-width-with-pure-css.html */
 .proportional-container {
   position: relative;
@@ -3678,10 +3685,7 @@ main {
 /**/
 .sticky-footer-expand {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e2e7df+100 */
-  background: #ffffff;
-  /* Old browsers */
-  background: linear-gradient(to bottom, #ffffff 0%, #e2e7df 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: #2e4d58;
 }
 
 .poster {
@@ -3709,6 +3713,22 @@ main {
 .card,
 .card__image {
   margin-bottom: 1.5rem;
+}
+
+.card a {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 /* ---------------------------------------------------------------------------------------------- */

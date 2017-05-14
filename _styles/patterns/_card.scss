@@ -6,6 +6,7 @@
 */
 
 $card--base-color: #eee !default;
+$card--text-color: #333 !default;
 $card--background-color: $card--base-color !default;
 $card--border-color: darken($card--background-color, 10%) !default;
 $card--link-color: false !default;
@@ -51,6 +52,7 @@ $card-pull: 5rem !default;
     }
 
     .card.card {
+        color: $card--text-color;
         background: $card--background-color;
         padding: $card--padding;
         /*height: 100%;*/
