@@ -291,7 +291,7 @@ body {
 a[href] {
   padding-bottom: 0.125rem;
   border-bottom: 1px solid #406a79;
-  color: #2e4d58;
+  color: #eaa682;
   background-color: transparent;
   /* 1 */
   text-decoration: none;
@@ -304,8 +304,8 @@ a[href] {
 }
 
 a[href]:hover, a[href]:active, a[href]:focus {
-  border-bottom: 2px solid #48798a;
-  color: #142126;
+  border-bottom: 2px solid #f5d5c3;
+  color: #df7741;
   outline-width: 0;
 }
 
