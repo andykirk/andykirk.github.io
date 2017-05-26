@@ -39,7 +39,7 @@ layout: full
         <p>
             <i><a href="{{ post.url }}">Read more…</a></i>
         </p>
-        <footer class="card__body-footer">
+        {% comment %}<!--<footer class="card__body-footer">
             <p>
                 {% if post.tags != empty %}
                 Tags:
@@ -48,7 +48,7 @@ layout: full
                 {% endfor %}
                 {% endif %}
             </p>
-        </footer>
+        </footer>-->{% endcomment %}
     </div>
 </article>
 {% endfor %}
