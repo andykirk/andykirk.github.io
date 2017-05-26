@@ -119,6 +119,11 @@ _:-o-prefocus, :root .icon {
 
     CSS hacks from http://browserstrangeness.com/css_hacks.html
     (hack and browser support in comments above each usage)
+    
+    !!! Maybe don't include custom properties in this, I think it overcomplicates things and needs
+    gradient background overlays to lighten/darken background colors dynamically.
+    Possibly include a seperate file to add custom property support that overrides what it needs,
+    all wrapped in an `@supports`.
 
 
     Resources:
@@ -152,13 +157,6 @@ _:-o-prefocus, :root .icon {
     ROOT STYLES
 
 \*------------------------------------------------------------------------------------------------*/
-:root {
-  --button-text-color: #fff;
-  --button-background-color: #2e4d58;
-  --button-background-color--state-1: light-shadow;
-  --button-border-colour: rgba(0, 0, 0, 0.2);
-}
-
 /*
     1. Change the default box-sizing (-moz prefix for FF8-28).
 
@@ -220,8 +218,6 @@ html {
   /* 1 */
   margin: 0;
   padding: 0;
-  font-size: inherit;
-  line-height: inherit;
 }
 
 /*
@@ -417,14 +413,16 @@ blockquote {
 
 */
 button {
+  display: inline-block;
+  /* AK. IE9 needs this. */
   overflow: visible;
   /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   background-color: #2e4d58;
   color: #fff;
+  font-size: inherit;
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  display: inline-block;
   min-height: 1.875rem;
   line-height: 1.5rem;
   margin: 0.1875rem 0;
@@ -455,13 +453,6 @@ button {
   /**
      * Restore the focus styles unset by the previous rule.
      */
-}
-
-@supports (--var: value) {
-  button {
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
-  }
 }
 
 button:-moz-focusring {
@@ -747,6 +738,7 @@ input {
   border-radius: 3px;
   color: #c1cacd;
   background-color: #fff;
+  font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
   font-family: inherit;
@@ -800,14 +792,16 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
 [type="button"],
 [type="reset"],
 [type="submit"] {
+  display: inline-block;
+  /* AK. IE9 needs this. */
   overflow: visible;
   /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
   background-color: #2e4d58;
   color: #fff;
+  font-size: inherit;
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  display: inline-block;
   min-height: 1.875rem;
   line-height: 1.5rem;
   margin: 0.1875rem 0;
@@ -838,15 +832,6 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
   /**
      * Restore the focus styles unset by the previous rule.
      */
-}
-
-@supports (--var: value) {
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
-  }
 }
 
 [type="button"]:-moz-focusring,
@@ -944,7 +929,7 @@ _:-ms-input-placeholder, :root [type="file"] {
     MS pseudo-elements.
 
     Note - there's some odd spacing issues between the containing element and the pseudo-elements,
-    where background colours can show through unexpectedly, so there are some tweaks to rectify
+    where background colors can show through unexpectedly, so there are some tweaks to rectify
     this.
 */
 [type=file]::-ms-value {
@@ -985,6 +970,7 @@ _:-ms-input-placeholder, :root [type="file"] {
   border-bottom-right-radius: 2px;
   color: #fff;
   background-color: #2e4d58;
+  font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
   font-family: inherit;
@@ -1003,6 +989,7 @@ _:-ms-input-placeholder, :root [type="file"] {
   box-sizing: border-box;
   background-color: #2e4d58;
   color: #fff;
+  font-size: inherit;
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -1184,6 +1171,7 @@ ol {
 }
 
 optgroup {
+  font-size: inherit;
   font-family: inherit;
   /*  N, S */
   font-style: inherit;
@@ -1300,6 +1288,7 @@ select {
   line-height: 1.5rem;
   text-transform: none;
   /* N1 */
+  font-size: inherit;
   font-family: inherit;
   /* S */
   font-style: inherit;
@@ -1662,6 +1651,7 @@ template {
 textarea {
   resize: vertical;
   overflow: auto;
+  font-size: inherit;
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -1787,8 +1777,8 @@ video {
 [hidden][aria-hidden="false"] {
   clip: rect(0 0 0 0);
   position: absolute;
-  /*display: inline;
-    border: 0;
+  display: inline;
+  /*border: 0;
     height: 1px;
     margin: -1px;
     overflow: hidden;
@@ -1796,7 +1786,8 @@ video {
     width: 1px;*/
 }
 
-[hidden][aria-hidden="false"]:focus, [hidden][aria-hidden="false"]:active {
+a[hidden][aria-hidden="false"]:focus,
+a[hidden][aria-hidden="false"]:active {
   clip: auto;
   position: static;
   /*height: auto;
@@ -3483,6 +3474,69 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   margin-bottom: 0;
 }
 
+.card a.card__cta {
+  display: inline-block;
+  /* AK. IE9 needs this. */
+  overflow: visible;
+  /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+  background-color: #fff;
+  color: #2e4d58;
+  font-size: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  min-height: 1.875rem;
+  line-height: 1.5rem;
+  margin: 0.1875rem 0;
+  text-transform: none;
+  /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+  /* -webkit-appearance: button; // [N2] */
+  -webkit-appearance: none;
+  /* AK */
+  cursor: pointer;
+  /* [N3] */
+  border-color: #2e4d58;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  padding-top: 0.1875rem;
+  padding-top: -moz-calc(0.1875rem - 1px);
+  padding-top: calc(0.1875rem - 1px);
+  padding-bottom: 0.1875rem;
+  padding-bottom: -moz-calc(0.1875rem - 1px);
+  padding-bottom: calc(0.1875rem - 1px);
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  vertical-align: middle;
+  /* S: Remove the tapping delay from clickable elements */
+  -ms-touch-action: manipulation;
+  /* S: IE10 */
+  touch-action: manipulation;
+  /**
+     * Restore the focus styles unset by the previous rule.
+     */
+}
+
+.card a.card__cta:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+.card a.card__cta:hover, .card a.card__cta:active, .card a.card__cta:focus {
+  /*
+            9999px used for shadow to ensure it'll always be big enough.
+            Better way? Performance? Not sure.
+        */
+  background-color: #2e4d58;
+}
+
+.card a.card__cta:focus {
+  outline: 1px dotted #000;
+}
+
+.card a.card__cta:hover, .card a.card__cta:active, .card a.card__cta:focus {
+  color: #fff;
+}
+
 .list-grid {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3684,8 +3738,8 @@ main {
 
 /**/
 .sticky-footer-expand {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e2e7df+100 */
   background: #2e4d58;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e2e7df+100 */
 }
 
 .poster {

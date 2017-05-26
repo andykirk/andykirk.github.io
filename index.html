@@ -37,7 +37,7 @@ layout: full
     
         {{ post.excerpt | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }} 
         <p>
-            <i><a href="{{ post.url }}">Read more…</a></i>
+            <i><a href="{{ post.url }}" class="card__cta">Read more…</a></i>
         </p>
         {% comment %}<!--<footer class="card__body-footer">
             <p>

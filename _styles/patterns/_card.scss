@@ -129,5 +129,18 @@ $card-pull: 5rem !default;
             margin-bottom: 0;
         }
         
-        
+        .card a.card__cta {
+            @include button(
+                $card--text-color, 
+                $card--background-color,
+                $card--base-color,
+                $card--border-color
+            );
+            
+            &:hover,
+            &:active,
+            &:focus {
+                color: #fff;
+            }
+        }
         
