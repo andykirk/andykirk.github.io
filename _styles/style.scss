@@ -42,13 +42,14 @@ $line-gradient: linear-gradient(to right, $supporting-color-1 0%, $supporting-co
 
 // FallBack:
 
-//$fallback--base-font-size: 10px;
+$fallback--root-font-size: 10px;
 $fallback--base-ui-color: $primary-color;
 $fallback--breakpoint--enhanced: 30em;
 
 
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Vollkorn');
+$fallback--base-font-family: 'Lato', sans-serif;
 
-$fallback--base-font-family: 'Source Sans Pro', sans-serif;
 
 
 @import "../bower_components/Fall-Back-Base/_fallback-base";
@@ -67,7 +68,7 @@ $anchor-text-color: $secondary-color--light;
 //$anchor-text-color: $ui-color--base !default;
 //$anchor-text-color--hover: darken($anchor-text-color, 15%) !default;
 //$anchor-text-decoration: none !default;
-$anchor-border-bottom: 1px solid lighten($primary-color, 10%) !default;
+//$anchor-border-bottom: 1px solid lighten($primary-color, 10%) !default;
 //$anchor-border-bottom--hover: 2px solid lighten($anchor-text-color--hover, 30%) !default;
 @import "../bower_components/Fall-Back-Start-CSS/_start";
 

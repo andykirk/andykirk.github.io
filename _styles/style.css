@@ -1,4 +1,5 @@
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900|Vollkorn");
 /*
     Colour contrast from https://gist.github.com/FStop/8959422
     
@@ -119,12 +120,11 @@ _:-o-prefocus, :root .icon {
 
     CSS hacks from http://browserstrangeness.com/css_hacks.html
     (hack and browser support in comments above each usage)
-    
+
     !!! Maybe don't include custom properties in this, I think it overcomplicates things and needs
     gradient background overlays to lighten/darken background colors dynamically.
     Possibly include a seperate file to add custom property support that overrides what it needs,
     all wrapped in an `@supports`.
-
 
     Resources:
     * http://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly/
@@ -141,6 +141,14 @@ _:-o-prefocus, :root .icon {
    (These must come before the Setting, as the settings make use of some of these)
 
 \*------------------------------------------------------------------------------------------------*/
+/*
+	Apply a border and a paddind that offsets the border-width from one spacing unit so as not to
+	affect the vertical rhythm.
+	Note the Opera Mini doesn't support `calc` so we need to include normal padding for that
+	browser.
+	Also, since we're supporting FF 8+, we're including -moz-calc fro versions up to 16.
+	I may consider removing this as those browsers are dead, but I'm just being thorough for now.
+*/
 /*------------------------------------------------------------------------------------------------*
     SETTINGS
 
@@ -148,9 +156,10 @@ _:-o-prefocus, :root .icon {
 /* Global focus style: */
 /* Output class for reference (tmp): */
 .ref {
-  fallback--base-rem-space-unit: 1.5rem;
-  fallback--base-rem-1px: 0.0625rem;
-  fallback--root-font-size-percent: 100;
+  fallback--base-rem-space-unit: 2.4rem;
+  fallback--base-rem-1px: 0.1rem;
+  fallback--root-font-size: 10px;
+  fallback--root-font-size-percent: 62.5;
 }
 
 /*------------------------------------------------------------------------------------------------*
@@ -170,8 +179,7 @@ _:-o-prefocus, :root .icon {
        navigating between pages that do/do not have enough content to produce
        scrollbars naturally. (I)
 
-    4. If not using default (16px) font-size, convert the value to a percentage so as not to
-       override user font settings.
+    4. Convert the value to a percentage so as not to override user font settings.
 
     5. Prevent font size adjustments after orientation changes in IE and iOS. (N)
 
@@ -190,7 +198,9 @@ html {
   /* 3 */
   color: #c1cacd;
   background-color: #fff;
-  font-family: "Source Sans Pro", sans-serif;
+  font-size: 62.5%;
+  /* 4 */
+  font-family: "Lato", sans-serif;
   -ms-text-size-adjust: 100%;
   /* 5 */
   -webkit-text-size-adjust: 100%;
@@ -202,6 +212,16 @@ html {
 /*
     Fix font size for IE9,10 as it can't calculate % to 1 decimal place! Grrr.
 */
+@media screen and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+  html {
+    font-size: calc(0.625rem + 0.1px);
+  }
+}
+
+_:-ms-lang(x), html {
+  font-size: calc(0.625rem + 0.1px) \9;
+}
+
 /*
     'Global' reset.
 
@@ -267,8 +287,8 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 0.875em;
-  line-height: 1.5rem;
+  font-size: 1.6em;
+  line-height: 2.4rem;
 }
 
 /*------------------------------------------------------------------------------------------------*
@@ -285,8 +305,9 @@ body {
     3. Remove the tapping delay from clickable elements . (S)
 */
 a[href] {
-  padding-bottom: 0.125rem;
-  border-bottom: 1px solid #406a79;
+  margin-bottom: -3px;
+  padding-bottom: 0;
+  border-bottom: 3px double;
   color: #eaa682;
   background-color: transparent;
   /* 1 */
@@ -300,8 +321,7 @@ a[href] {
 }
 
 a[href]:hover, a[href]:active, a[href]:focus {
-  border-bottom: 2px solid #f5d5c3;
-  color: #df7741;
+  border-bottom: 3px solid;
   outline-width: 0;
 }
 
@@ -336,17 +356,17 @@ abbr[title] {
 }
 
 address {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 article {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 aside {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 /*
@@ -378,8 +398,8 @@ b {
 }
 
 blockquote {
-  margin-bottom: 1.5rem;
-  margin-left: 1.5rem;
+  margin-bottom: 2.4rem;
+  margin-left: 2.4rem;
   font-style: italic;
   /*
         @TODO - set up vars and styles for the most common quote styles.
@@ -423,9 +443,9 @@ button {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  min-height: 1.875rem;
-  line-height: 1.5rem;
-  margin: 0.1875rem 0;
+  min-height: 3rem;
+  line-height: 2.4rem;
+  margin: 0.3rem 0;
   text-transform: none;
   /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   /* -webkit-appearance: button; // [N2] */
@@ -437,42 +457,44 @@ button {
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  padding-top: 0.1875rem;
-  padding-top: -moz-calc(0.1875rem - 1px);
-  padding-top: calc(0.1875rem - 1px);
-  padding-bottom: 0.1875rem;
-  padding-bottom: -moz-calc(0.1875rem - 1px);
-  padding-bottom: calc(0.1875rem - 1px);
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+  padding-top: 0.3rem;
+  padding-top: -moz-calc(0);
+  padding-top: calc(0.3rem - 1px);
+  padding-bottom: 0.3rem;
+  padding-bottom: -moz-calc(0);
+  padding-bottom: calc(0.3rem - 1px);
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   vertical-align: middle;
   /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
-  /**
-     * Restore the focus styles unset by the previous rule.
-     */
-}
-
-button:-moz-focusring {
-  outline: 1px dotted ButtonText;
+  /*
+	&:hover,
+    &:active,
+    &:focus {
+        // 9999px used for shadow to ensure it'll always be big enough. Better way? Performance? Not sure.
+        @if $bg-color--state-1 == light-shadow {
+            box-shadow: 0 0 0 9999px $ui-shadow-light inset, $button-focus-shadow;
+        } @else if $bg-color--state-1 == dark-shadow {
+            box-shadow: 0 0 0 9999px $ui-shadow-dark inset, $button-focus-shadow;
+        } @else {
+            background-color: $bg-color--state-1;
+        }
+        //background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%)  $bg-color;
+        //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#33000000',GradientType=0 );
+    }
+	*/
 }
 
 button:hover, button:active, button:focus {
-  /*
-            9999px used for shadow to ensure it'll always be big enough.
-            Better way? Performance? Not sure.
-        */
-  box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.2) inset;
-}
-
-button:focus {
-  outline: 1px dotted #000;
+  box-shadow: 0 0 0 2px #6da0b2 inset;
+  outline: 0;
 }
 
 _:-o-prefocus, :root button {
-  line-height: 1.5rem !important;
+  line-height: 2.4rem !important;
 }
 
 /*
@@ -483,19 +505,27 @@ _:-o-prefocus, :root button {
     Early FF doesn't correctly apply the box sizing to inputs (buttons?)
     Adding margin to -moz-focus-inner helps to force the correct height.
     It doesn't have any effect in newer FF.
-    It ceases to have an effect from around FF54 onwards? Dev edition.
-    The correct box sizing is applied from FF30 onwards.
+    --It ceases to have an effect from around FF54 onwards? Dev edition.--
+    --The correct box sizing is applied from FF30 onwards.--
+    
+    NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
 */
 button::-moz-focus-inner {
-  margin: 2px 0;
+  margin: -1px 0;
 }
 
-@supports (-moz-appearance: none) and (background-blend-mode: difference, normal) {
-  button::-moz-focus-inner {
-    margin: 0;
-  }
+/*
+    Reset for FF16+
+*/
+_:-moz-meter-optimum, :root button::-moz-focus-inner {
+  margin: 0;
 }
 
+/*@supports (-moz-appearance:none) and (background-blend-mode:difference,normal) {
+    button::-moz-focus-inner {
+        margin: 0;
+    }
+}*/
 /*
     1. Add the correct display in IE 9-. (N)
 */
@@ -507,10 +537,10 @@ canvas {
 
 caption {
   display: table-caption;
-  padding-top: 0.75rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 0.75rem;
+  padding-top: 1.2rem;
+  padding-right: 1.2rem;
+  padding-bottom: 1.2rem;
+  padding-left: 1.2rem;
   color: #fff;
   background-color: #2e4d58;
   font-weight: bold;
@@ -533,7 +563,7 @@ code {
 }
 
 dd {
-  margin-left: 2.25rem;
+  margin-left: 3.6rem;
 }
 
 details {
@@ -551,11 +581,13 @@ dfn {
 /*
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+	   a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+	       bottom borders get cropped, so using b instead.
 */
 dl {
-  overflow: hidden;
-  /* 1 */
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
+  display: table;
+  /* 1b */
 }
 
 dt {
@@ -563,19 +595,19 @@ dt {
 }
 
 fieldset {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
   border-width: 1px;
   border-style: solid;
   border-color: #2e4d58;
-  padding-top: 1.5rem;
-  padding-top: -moz-calc(1.5rem - 1px);
-  padding-top: calc(1.5rem - 1px);
-  padding-left: 1.5rem;
-  padding-left: -moz-calc(1.5rem - 1px);
-  padding-left: calc(1.5rem - 1px);
-  padding-right: 1.5rem;
-  padding-right: -moz-calc(1.5rem - 1px);
-  padding-right: calc(1.5rem - 1px);
+  padding-top: 2.4rem;
+  padding-top: -moz-calc(2.4rem - 1px);
+  padding-top: calc(2.4rem - 1px);
+  padding-left: 2.4rem;
+  padding-left: -moz-calc(2.4rem - 1px);
+  padding-left: calc(2.4rem - 1px);
+  padding-right: 2.4rem;
+  padding-right: -moz-calc(2.4rem - 1px);
+  padding-right: calc(2.4rem - 1px);
 }
 
 fieldset::after {
@@ -583,7 +615,7 @@ fieldset::after {
   content: "";
   height: 0;
   margin-top: -1px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 fieldset fieldset {
@@ -602,21 +634,21 @@ figcaption {
 
 figure {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 footer {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 form {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 header {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 hgroup {
@@ -624,39 +656,39 @@ hgroup {
 }
 
 h1 {
-  margin-bottom: 1.5rem;
-  font-size: 3em;
-  line-height: 3rem;
+  margin-bottom: 2.4rem;
+  font-size: 3.25em;
+  line-height: 6rem;
 }
 
 h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2.1428571429em;
-  line-height: 2.25rem;
+  margin-bottom: 2.4rem;
+  font-size: 2.5em;
+  line-height: 4.8rem;
 }
 
 h3 {
-  margin-bottom: 1.5rem;
-  font-size: 1.7142857143em;
-  line-height: 2.25rem;
+  margin-bottom: 2.4rem;
+  font-size: 1.875em;
+  line-height: 3.6rem;
 }
 
 h4 {
-  margin-bottom: 1.5rem;
-  font-size: 1.2857142857em;
-  line-height: 1.5rem;
+  margin-bottom: 2.4rem;
+  font-size: 1.375em;
+  line-height: 3.6rem;
 }
 
 h5 {
-  margin-bottom: 1.5rem;
-  font-size: 1.0714285714em;
-  line-height: 1.5rem;
+  margin-bottom: 2.4rem;
+  font-size: 1.125em;
+  line-height: 2.4rem;
 }
 
 h6 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
   font-size: 1em;
-  line-height: 1.5rem;
+  line-height: 2.4rem;
 }
 
 /*
@@ -667,7 +699,7 @@ hr {
   overflow: visible;
   /* 1 */
   margin-top: -1px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
   border-top: none;
   border-right: none;
   border-bottom: 1px solid #2e4d58;
@@ -711,6 +743,15 @@ img {
 }
 
 /*
+    Special treatment for images inside links.
+*/
+a img {
+  margin-bottom: -3px;
+  border-width: inherit;
+  border-style: inherit;
+}
+
+/*
 
 
     1. Allow inputs to contract to avoid braking containers:
@@ -724,14 +765,14 @@ img {
 input {
   max-width: 100%;
   /* 1 */
-  padding-top: 0.1875rem;
+  padding-top: 0.3rem;
   /* 2 */
-  padding-top: calc(0.1875rem - 1px);
-  padding-right: 0.375rem;
-  padding-bottom: 0.1875rem;
+  padding-top: calc(0.3rem - 1px);
+  padding-right: 0.6rem;
+  padding-bottom: 0.3rem;
   /* 2 */
-  padding-bottom: calc(0.1875rem - 1px);
-  padding-left: 0.375rem;
+  padding-bottom: calc(0.3rem - 1px);
+  padding-left: 0.6rem;
   border-width: 1px;
   border-style: solid;
   border-color: #1c3037;
@@ -748,6 +789,8 @@ input {
   /* 3 */
   vertical-align: middle;
   /* 4 */
+  min-height: 3rem;
+  margin: 0.3rem 0;
 }
 
 input::-moz-focus-inner {
@@ -768,23 +811,35 @@ input:-moz-focusring {
   border: 0;
 }
 
-input:not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus {
-  box-shadow: 0 0 3px 0 #2e4d58 inset;
+input:not([type]):focus,
+[type="color"]:focus,
+[type="date"]:focus,
+[type="datetime"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="number"]:focus,
+[type="password"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="text"]:focus,
+[type="time"]:focus,
+[type="url"]:focus,
+[type="week"]:focus {
+  box-shadow: 0 0 0 2px #8eb6c4 inset;
   outline: 0;
 }
 
+/*
 input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
-  min-height: 1.875rem;
-  /* ~S */
-  margin: 0.1875rem 0;
-  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
+    min-height: $input-min-height;
+    margin: ($fallback--base-rem-space-unit / 8) 0;
 }
-
+*/
 /*
     IE9 adds the border and background:
 */
-[type=checkbox],
-[type=radio] {
+[type="checkbox"],
+[type="radio"] {
   border: 0;
   background: transparent;
 }
@@ -802,9 +857,9 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  min-height: 1.875rem;
-  line-height: 1.5rem;
-  margin: 0.1875rem 0;
+  min-height: 3rem;
+  line-height: 2.4rem;
+  margin: 0.3rem 0;
   text-transform: none;
   /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   /* -webkit-appearance: button; // [N2] */
@@ -816,28 +871,35 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  padding-top: 0.1875rem;
-  padding-top: -moz-calc(0.1875rem - 1px);
-  padding-top: calc(0.1875rem - 1px);
-  padding-bottom: 0.1875rem;
-  padding-bottom: -moz-calc(0.1875rem - 1px);
-  padding-bottom: calc(0.1875rem - 1px);
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+  padding-top: 0.3rem;
+  padding-top: -moz-calc(0);
+  padding-top: calc(0.3rem - 1px);
+  padding-bottom: 0.3rem;
+  padding-bottom: -moz-calc(0);
+  padding-bottom: calc(0.3rem - 1px);
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   vertical-align: middle;
   /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
-  /**
-     * Restore the focus styles unset by the previous rule.
-     */
-}
-
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
+  /*
+	&:hover,
+    &:active,
+    &:focus {
+        // 9999px used for shadow to ensure it'll always be big enough. Better way? Performance? Not sure.
+        @if $bg-color--state-1 == light-shadow {
+            box-shadow: 0 0 0 9999px $ui-shadow-light inset, $button-focus-shadow;
+        } @else if $bg-color--state-1 == dark-shadow {
+            box-shadow: 0 0 0 9999px $ui-shadow-dark inset, $button-focus-shadow;
+        } @else {
+            background-color: $bg-color--state-1;
+        }
+        //background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%)  $bg-color;
+        //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#33000000',GradientType=0 );
+    }
+	*/
 }
 
 [type="button"]:hover, [type="button"]:active, [type="button"]:focus,
@@ -847,17 +909,8 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
 [type="submit"]:hover,
 [type="submit"]:active,
 [type="submit"]:focus {
-  /*
-            9999px used for shadow to ensure it'll always be big enough.
-            Better way? Performance? Not sure.
-        */
-  box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.2) inset;
-}
-
-[type="button"]:focus,
-[type="reset"]:focus,
-[type="submit"]:focus {
-  outline: 1px dotted #000;
+  box-shadow: 0 0 0 2px #6da0b2 inset;
+  outline: 0;
 }
 
 /*
@@ -877,16 +930,16 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
        line-height settings don't seem consistent.
        Using height explictly for now.
 
-    3. Make sure button corners aren't visisible.
+    3. Make sure button corners aren't visible.
 */
 [type="file"] {
   width: 100%;
   /* 1 */
   max-width: 18.5em;
-  min-height: 1.875rem;
+  min-height: 3rem;
   overflow: hidden;
   /* 3 */
-  margin: 0.1875rem 0;
+  margin: 0.3rem 0;
   padding: 0;
   cursor: pointer;
 }
@@ -895,7 +948,7 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
     Fix button height in Firefox.
 */
 _:-moz-any-link, :root [type="file"] {
-  height: 1.875rem;
+  height: 3rem;
 }
 
 _:-ms-input-placeholder, :root [type="file"] {
@@ -905,7 +958,7 @@ _:-ms-input-placeholder, :root [type="file"] {
 /* IE 9 (I think): */
 @media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   [type="file"] {
-    padding-left: 0.375rem;
+    padding-left: 0.6rem;
   }
 }
 
@@ -918,7 +971,7 @@ _:-ms-input-placeholder, :root [type="file"] {
   margin: 0;
 }
 
-[type=file]:-moz-focusring {
+[type="file"]:-moz-focusring {
   outline: 1px dotted #f00;
 }
 
@@ -932,7 +985,7 @@ _:-ms-input-placeholder, :root [type="file"] {
     where background colors can show through unexpectedly, so there are some tweaks to rectify
     this.
 */
-[type=file]::-ms-value {
+[type="file"]::-ms-value {
   margin-right: 0;
   margin-left: -6px;
   padding-left: 0.5em;
@@ -942,25 +995,25 @@ _:-ms-input-placeholder, :root [type="file"] {
 }
 
 @supports (-ms-ime-align: auto) {
-  [type=file]::-ms-value {
+  [type="file"]::-ms-value {
     background: transparent;
   }
 }
 
-[type=file]:focus::-ms-value {
-  box-shadow: 0 0 3px 0 #2e4d58 inset;
+[type="file"]:focus::-ms-value {
+  box-shadow: 0 0 0 2px #8eb6c4 inset;
   outline: 0;
 }
 
 /*
     1. IE10 doesn't like rem so convert to px.
 */
-[type=file]::-ms-browse {
-  min-height: 1.875rem;
-  padding-right: 0.375rem;
+[type="file"]::-ms-browse {
+  min-height: 3rem;
+  padding-right: 0.6rem;
   padding-right: 6px\9;
   /* 1 */
-  padding-left: 0.375rem;
+  padding-left: 0.6rem;
   padding-left: 6px\9;
   /* 1 */
   border-width: 0 0 0 1px;
@@ -978,13 +1031,14 @@ _:-ms-input-placeholder, :root [type="file"] {
   cursor: pointer;
 }
 
-[type=file]:hover::-ms-browse,
-[type=file]:active::-ms-browse,
-[type=file]:focus::-ms-browse {
-  background-color: light-shadow;
+[type="file"]:hover::-ms-browse,
+[type="file"]:active::-ms-browse,
+[type="file"]:focus::-ms-browse {
+  box-shadow: 0 0 0 2px #6da0b2 inset;
+  outline: 0;
 }
 
-[type=file]::-webkit-file-upload-button {
+[type="file"]::-webkit-file-upload-button {
   vertical-align: top;
   box-sizing: border-box;
   background-color: #2e4d58;
@@ -993,7 +1047,7 @@ _:-ms-input-placeholder, :root [type="file"] {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  height: calc(1.875rem - 2px);
+  height: calc(3rem - 2px);
   text-transform: none;
   -webkit-appearance: none;
   cursor: pointer;
@@ -1007,15 +1061,28 @@ _:-ms-input-placeholder, :root [type="file"] {
     border-bottom-right-radius: 0;*/
   padding-top: 0;
   padding-bottom: 0;
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   border-style: solid;
 }
 
-[type=file]:hover::-webkit-file-upload-button,
-[type=file]:active::-webkit-file-upload-button,
-[type=file]:focus::-webkit-file-upload-button {
-  background-color: light-shadow;
+[type="file"]:hover::-webkit-file-upload-button,
+[type="file"]:active::-webkit-file-upload-button,
+[type="file"]:focus::-webkit-file-upload-button {
+  box-shadow: 0 0 0 2px #6da0b2 inset;
+  outline: 0;
+}
+
+/*
+    iOS turns these inputs into selects which are a touch too high.
+*/
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="time"],
+[type="week"] {
+  height: 2.8rem;
+  /* ~S */
 }
 
 /*
@@ -1091,8 +1158,8 @@ label {
   font-weight: bold;
   cursor: pointer;
   vertical-align: middle;
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
   /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
@@ -1116,7 +1183,7 @@ legend {
   /* padding: 0; /* N3 */
   white-space: normal;
   /* N1 */
-  padding: 0 0.375rem;
+  padding: 0 0.6rem;
   /* AK */
   font-weight: bold;
   /* AK */
@@ -1131,7 +1198,7 @@ legend {
 }
 
 li {
-  margin-left: 2.25rem;
+  margin-left: 3.6rem;
 }
 
 li ul,
@@ -1141,7 +1208,7 @@ li ol {
 
 main {
   display: block;
-  max-width: 50em;
+  max-width: 40em;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1163,11 +1230,13 @@ object {
 /*
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+	   a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+	       bottom borders get cropped, so using b instead.
 */
 ol {
-  overflow: hidden;
-  /* 1 */
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
+  display: table;
+  /* 1b */
 }
 
 optgroup {
@@ -1186,21 +1255,21 @@ optgroup {
 option {
   cursor: pointer;
   /* Sc */
-  min-height: 1.5rem;
+  min-height: 2.4rem;
   /* AK */
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   display: flex;
   align-items: center;
 }
 
 option:hover {
-  background-color: #d1e1e7;
+  background-color: #8eb6c4;
   color: #c1cacd;
 }
 
 p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 /*
@@ -1225,7 +1294,7 @@ pre {
   /* 3 */
   overflow-x: scroll;
   /* 3 */
-  margin-bottom: 1.9375rem;
+  margin-bottom: 3.1rem;
   /* 3 */
   background-color: #c0d6de;
   /*3 */
@@ -1233,16 +1302,16 @@ pre {
 
 @supports (-ms-ime-align: auto) {
   pre {
-    margin-bottom: 2.25rem;
+    margin-bottom: 3.6rem;
     /* 3 */
   }
 }
 
 pre code {
   display: inline-block;
-  line-height: 1.5rem;
+  line-height: 2.4rem;
   /* Revert zeroed line-height (see) `code` */
-  padding: 0.75rem;
+  padding: 1.2rem;
 }
 
 /*
@@ -1258,16 +1327,16 @@ progress {
 }
 
 /*
-    1. Correct the inheritance and scaling of font size in all browsers. (N)
-
-    2. Address odd `em`-unit font size rendering in all browsers. (N)
+    1. Address odd `em`-unit font size rendering in all browsers. (N)
+	
+	2. Correct the inheritance and scaling of font size in all browsers. (N)
 
     3. Prevent the element increasing the line-height of the parent.
 */
 samp {
-  font-family: monospace, monospace;
-  /* 1 */
   font-size: 1em;
+  /* 1 */
+  font-family: monospace, monospace;
   /* 2 */
   line-height: 0;
   /* 3 */
@@ -1276,16 +1345,16 @@ samp {
 section {
   display: block;
   /* N */
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
 }
 
 select {
   cursor: pointer;
   /* Sc */
   /* AK: height because min-height doesn't change the expand button height in FF: */
-  height: 1.875rem;
+  height: 3rem;
   /* ~S */
-  line-height: 1.5rem;
+  line-height: 2.4rem;
   text-transform: none;
   /* N1 */
   font-size: inherit;
@@ -1304,14 +1373,14 @@ select {
   /* padding-top: ($fallback--base-rem-space-unit / 8) - calc-rem-from-px($input-border-width); */
   /* padding-bottom: ($fallback--base-rem-space-unit / 8) - calc-rem-from-px($input-border-width); */
   /* padding-right: $input-h-padding; */
-  margin: 0.1875rem 0;
+  margin: 0.3rem 0;
   vertical-align: top;
   /* AK: For FF */
   /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
-  /* margin: calc(0.1875rem * 1.1) 0; // AK: calc for IE rounding issue */
+  /* margin: calc(0.3rem * 1.1) 0; // AK: calc for IE rounding issue */
   /* S: */
   /* -moz-appearance: none;    // Firefox 35+ */
   /* -webkit-appearance: none; // Chrome 45+ */
@@ -1336,8 +1405,8 @@ select::-ms-expand {
   background-color: transparent;
   color: #000;
   border: 0;
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
 }
 
 select::-ms-value {
@@ -1350,17 +1419,25 @@ select::-moz-focus-inner {
   padding: 0;
 }
 
+/*
+    Make the arrow indicator the same across browsers.
+    
+    1. FF48- does not support background-position-x/y.
+    2. FF34- does not remove the arrow but does not show the background image until FF29-, at which
+       point both are shown.
+*/
 select:not([multiple]) {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNC45NSAxMCI+PHBvbHlnb24gZmlsbD0iIzQ0NCIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBmaWxsPSIjNDQ0IiBwb2ludHM9IjMuNTQgNS4zMyAyLjQ4IDYuODIgMS40MSA1LjMzIDMuNTQgNS4zMyIvPjwvc3ZnPg==);
   background-repeat: no-repeat;
-  background-position-x: 95%;
-  background-position-y: 50%;
+  background-position: 95% center;
+  /* 1 */
   -moz-appearance: none;
+  /* 2 */
   -webkit-appearance: none;
   appearance: none;
-  padding-left: 0.1875rem;
-  -webkit-padding-start: 0.375rem;
-  padding-right: 1.5rem;
+  padding-left: 0.3rem;
+  -webkit-padding-start: 0.6rem;
+  padding-right: 2.4rem;
 }
 
 _::selection, select:not([multiple]) {
@@ -1369,7 +1446,7 @@ _::selection, select:not([multiple]) {
 }
 
 select:focus {
-  box-shadow: 0 0 3px 0 #2e4d58 inset;
+  box-shadow: 0 0 0 2px #8eb6c4 inset;
   outline: 0;
 }
 
@@ -1379,11 +1456,14 @@ select:focus {
         padding-right: $input-h-padding;
     }
 }*/
+/*
+    Note that Opera 25- treat select [size]s of <4 as 4.
+*/
 select[multiple] {
   height: auto;
-  margin-top: 0.1875rem;
+  margin-top: 0.3rem;
   margin-right: 0;
-  margin-bottom: calc(0.5625rem - 2px);
+  margin-bottom: calc(0.9rem - 2px);
   margin-left: 0;
 }
 
@@ -1392,17 +1472,29 @@ select[multiple] {
 */
 _::-webkit-full-page-media, _:future, :root select[multiple] {
   margin-bottom: 0;
-  padding: 0.125rem;
+  padding: 0.2rem;
 }
 
 /*
     ... but reset for Mac Safari .
 */
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-  margin-bottom: calc(0.5625rem - 2px);
+  margin-bottom: calc(0.9rem - 2px);
   padding: 0;
 }
 
+/*
+    Various browsers do not allow <option>s height to be specified.
+    The ones I've found are:
+    
+    * IE11-
+    * Chrome 38-
+    * Opera 24-
+
+    NOT FOR PRODUCTION
+    The following techniques are messy and break if the font-family or font size changes.
+    Move them to the test CSS only so I can see if OTHER elements are falling off the grid.
+*/
 /*
     Safari refuses to adjust the height of select[multiple] options.
     The only way I've managed to get it to adhere to the vertical rhythm is by adjust the font-size
@@ -1471,63 +1563,52 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="
 
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    select[size] { margin-bottom: calc(0.5625rem - 2px); }
+    select[size] { margin-bottom: calc(0.9rem - 2px); }
 }
 */
 /*
-    Similar problem with IE10-11:
+    Similar problem with IE9-11:
+*/
+/* @media screen and (min-width:0\0) and (min-resolution:+72dpi) { .selector { property:value; } } */
+/* These sizings are for 14px sans-serif font: */
+/*
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="2"]  { margin-bottom: calc(1.3rem - 2px - 0.2px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="3"]  { margin-bottom: calc(0.9rem - 2px - 0.3px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="4"]  { margin-bottom: calc(0.5rem - 2px - 0.4px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="5"]  { margin-bottom: calc(1.3rem - 2px - 0.5px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="6"]  { margin-bottom: calc(0.9rem - 2px - 0.6px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="7"]  { margin-bottom: calc(0.5rem - 2px - 0.7px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="8"]  { margin-bottom: calc(1.3rem - 2px - 0.8px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="9"]  { margin-bottom: calc(0.9rem - 2px - 0.9px); } }
+@media screen and (min-width:0\0) and (min-resolution:+72dpi) { select[size="10"] { margin-bottom: calc(0.5rem - 2px - 1px);   } }
 */
 @media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="2"] {
-    margin-bottom: calc(1.3rem - 2px - 0.2px);
+    margin-bottom: calc(2.4rem - 1.1em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="3"] {
-    margin-bottom: calc(0.9rem - 2px - 0.3px);
+    margin-bottom: calc(2.4rem - 0.75em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="4"] {
-    margin-bottom: calc(0.5rem - 2px - 0.4px);
+    margin-bottom: calc(2.4rem - 1.25em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="5"] {
-    margin-bottom: calc(1.3rem - 2px - 0.5px);
+    margin-bottom: calc(2.4rem - 0.95em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="6"] {
-    margin-bottom: calc(0.9rem - 2px - 0.6px);
+    margin-bottom: calc(2.4rem - 0.65em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="7"] {
-    margin-bottom: calc(0.5rem - 2px - 0.7px);
+    margin-bottom: calc(2.4rem - 1.1em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="8"] {
-    margin-bottom: calc(1.3rem - 2px - 0.8px);
+    margin-bottom: calc(2.4rem - 0.75em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="9"] {
-    margin-bottom: calc(0.9rem - 2px - 0.9px);
+    margin-bottom: calc(2.4rem - 1.25em - 2px);
   }
-}
-
-@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
   select[size="10"] {
-    margin-bottom: calc(0.5rem - 2px - 1px);
+    margin-bottom: calc(2.4rem - 0.95em - 2px);
   }
 }
 
@@ -1547,11 +1628,11 @@ strong {
 }
 
 sub {
+  position: relative;
+  bottom: -0.25em;
   font-size: 75%;
   line-height: 0;
-  position: relative;
   vertical-align: baseline;
-  bottom: -0.25em;
 }
 
 summary {
@@ -1572,12 +1653,12 @@ summary::-webkit-details-marker {
 }
 
 details > summary::before {
-  content: '\25BA';
-  font-family: serif;
-  font-size: 0.75em;
   display: inline-block;
-  vertical-align: top;
+  content: '\25BA';
   margin-right: 0.5em;
+  font-size: 0.75em;
+  font-family: serif;
+  vertical-align: top;
 }
 
 details[open] > summary::before {
@@ -1585,11 +1666,11 @@ details[open] > summary::before {
 }
 
 sup {
+  position: relative;
+  top: -0.5em;
   font-size: 75%;
   line-height: 0;
-  position: relative;
   vertical-align: baseline;
-  top: -0.5em;
 }
 
 /**
@@ -1611,18 +1692,16 @@ svg:not(:root) {
     2. Calc to deduct any border-width.
 */
 table {
-  border-collapse: collapse;
-  /* N */
-  border-spacing: 0;
-  /* N */
-  border: 1px solid #2e4d58;
-  background-color: #fff;
-  margin-bottom: 1.5rem;
-  /* 1 */
-  margin-bottom: calc(1.5rem - 1px);
-  /* 2 */
   width: 100%;
   /* @TODO - possibly make this configurable to be 'natural' width but centered instead. */
+  border-collapse: collapse;
+  margin-bottom: 2.4rem;
+  /* 1 */
+  margin-bottom: calc(2.4rem - 1px);
+  /* 2 */
+  border: 1px solid #2e4d58;
+  background-color: #fff;
+  border-spacing: 0;
 }
 
 /*
@@ -1630,14 +1709,14 @@ table {
     2. Calc to deduct any border-width.
 */
 td {
-  border: 1px solid #2e4d58;
-  padding-top: 0.75rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1.2rem;
+  padding-right: 1.2rem;
+  padding-bottom: 1.2rem;
   /* 1 */
-  padding-bottom: calc(0.75rem - 1px);
+  padding-bottom: calc(1.2rem - 1px);
   /* 2 */
-  padding-left: 0.75rem;
+  padding-left: 1.2rem;
+  border: 1px solid #2e4d58;
 }
 
 template {
@@ -1655,16 +1734,16 @@ textarea {
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  min-height: 5.125rem;
+  min-height: 8.2rem;
   color: #c1cacd;
   background-color: #fff;
   border-width: 1px;
   border-radius: 3px;
   border-color: #1c3037;
   border-style: solid;
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
-  margin-top: 0.125rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  margin-top: 0.2rem;
   margin-bottom: 0;
   /* 3 */
   vertical-align: top;
@@ -1674,7 +1753,7 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 3px 0 #2e4d58 inset;
+  box-shadow: 0 0 0 2px #8eb6c4 inset;
   outline: 0;
 }
 
@@ -1683,24 +1762,80 @@ textarea:focus {
     2. Calc to deduct any border-width.
 */
 th {
-  border: 1px solid #2e4d58;
-  padding-top: 0.75rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1.2rem;
+  padding-right: 1.2rem;
+  padding-bottom: 1.2rem;
   /* 1 */
-  padding-bottom: calc(0.75rem - 1px);
+  padding-bottom: calc(1.2rem - 1px);
   /* 2 */
-  padding-left: 0.75rem;
+  padding-left: 1.2rem;
+  border: 1px solid #2e4d58;
 }
 
 /*
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+	   a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+	       bottom borders get cropped, so using b instead.
 */
 ul {
-  overflow: hidden;
-  /* 1 */
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.4rem;
+  display: table;
+  /* 1b */
+}
+
+/*
+    In IE, bullet charactes can affect line-height. Also, there are differences in how the bullet
+    characters are displayed, so using custom ones.
+    @TODO - make this configurable.
+*/
+ul li {
+  list-style: none;
+}
+
+ul li:before {
+  content: "";
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  background-color: currentColor;
+  border-radius: 50%;
+  vertical-align: top;
+  top: 0.6em;
+  position: relative;
+  left: -1em;
+  margin-right: -0.4em;
+}
+
+ul ul li:before {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  width: 0.45em;
+  height: 0.45em;
+}
+
+ul ul ul li:before {
+  background-color: currentColor;
+  border: none;
+  border-radius: 0;
+  width: 0.4em;
+  height: 0.4em;
+}
+
+/* In IE, the heights of the bullets is too big! */
+@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+  ul li:before {
+    width: 0.4em;
+    height: 0.35em;
+  }
+  ul ul li:before {
+    width: 0.45em;
+    height: 0.4em;
+  }
+  ul ul ul li:before {
+    width: 0.4em;
+    height: 0.35em;
+  }
 }
 
 /*
@@ -1969,11 +2104,11 @@ a[hidden][aria-hidden="false"]:active {
   .over-panel__close.over-panel__close {
     color: #fff;
     background-color: #2e4d58;
-    width: 2.5714285714em;
+    width: 2.25em;
     margin: 0;
-    padding: 0 0.6428571429em;
-    height: 2.5714285714em;
-    line-height: 2.5714285714em;
+    padding: 0 0.5625em;
+    height: 2.25em;
+    line-height: 2.25em;
     border: 0;
     text-decoration: none;
     text-align: center;
@@ -2125,8 +2260,8 @@ a[hidden][aria-hidden="false"]:active {
   /* [1] */
   background: #e2e7df;
   display: inline-block;
-  height: 1.7142857143em;
-  line-height: 1.7142857143em;
+  height: 1.5em;
+  line-height: 1.5em;
   font-family: Vollkorn, serif;
   font-weight: normal;
   font-style: normal;
@@ -2134,8 +2269,8 @@ a[hidden][aria-hidden="false"]:active {
 }
 
 .nav-bar .nav-bar__title-text .nav-bar__link {
-  height: 1.7142857143em;
-  line-height: 1.7142857143em;
+  height: 1.5em;
+  line-height: 1.5em;
 }
 
 @media only screen and (max-width: 30em) {
@@ -2236,11 +2371,12 @@ a[hidden][aria-hidden="false"]:active {
 /* -------------------------------------------------------------------------------------------*/
 /* -- .subnav --------------------------------------------------------------------------------*/
 .nav-bar .subnav {
+  display: block;
   list-style-type: none;
   padding: 0;
-  margin: 0 0.3214285714em 0 1.2857142857em;
+  margin: 0 0.28125em 0 1.125em;
   background-color: #0b1215;
-  min-height: 2.5714285714em;
+  min-height: 2.25em;
 }
 
 .nav-bar .subnav::before,
@@ -2265,7 +2401,7 @@ a[hidden][aria-hidden="false"]:active {
 .nav-bar .subnav__heading {
   display: block;
   margin: 0;
-  padding: 0.4285713214em 0.6428571429em;
+  padding: 0.3749999063em 0.5625em;
   border: 0;
 }
 
@@ -2480,7 +2616,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     padding: 0;
     margin: 0;
     padding: 0;
-    height: 2.5714285714em;
+    height: 2.25em;
     -webkit-transition: margin-top 0.5s ease;
     -moz-transition: margin-top 0.5s ease;
     -o-transition: margin-top 0.5s ease;
@@ -2509,7 +2645,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         }*/
   .nav-bar .subnav:target {
     visibility: visible;
-    margin-top: 2.5714285714em;
+    margin-top: 2.25em;
   }
   /*
             Fixes cancel button behaviour if not using overflow:hidden on .nav-bar__inner
@@ -2552,7 +2688,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         }*/
   .nav-bar .subnav:target ~ .subnav__cancel {
     visibility: visible;
-    margin-top: 2.5714285714em;
+    margin-top: 2.25em;
   }
   /* @micropattern:pseudo-dataicon-middle */
   /*
@@ -2601,7 +2737,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 /* IE9 hacks: */
 /*
     */
-@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
   /*
             The icons force a massive height increase for some reason.
             Setting the height to this only works fine because on 'wide' the nav-bar can't be
@@ -2609,7 +2745,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         */
   .nav-bar .subnav__open,
   .nav-bar .subnav__cancel {
-    height: 2.5714285714em;
+    height: 2.25em;
   }
   .nav-bar .subnav__open::after {
     /* Increase icon width due to odd cropping, then rescale down: */
@@ -2798,10 +2934,10 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
             box-sizing: border-box !important;*/
   background-color: #fff;
   color: #c1cacd;
-  height: 1.7142857143em;
-  line-height: 1.7142857143em;
-  margin: 0.2142857143em 0 0.2142857143em 0.2142857143em;
-  padding: 0.2142857143em;
+  height: 1.5em;
+  line-height: 1.5em;
+  margin: 0.1875em 0 0.1875em 0.1875em;
+  padding: 0.1875em;
   float: left;
   -moz-box-flex: 1;
   -webkit-flex: 1 1 auto;
@@ -2827,6 +2963,11 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 
 .search-form .search-form__field:focus {
   background-color: #ffffdc;
+  margin-left: 0.3rem;
+}
+
+.search-form .search-form__field.search-form__field:first-child {
+  margin-left: 0.3rem;
 }
 
 /*
@@ -2853,10 +2994,10 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         box-sizing: content-box;*/
   background: #b0ccd5;
   color: #c1cacd;
-  height: 2.1428571429em;
+  height: 1.875em;
   line-height: 0;
-  margin: 0.2142857143em 0.2142857143em 0.2142857143em 0;
-  padding: 0 0.4285714286em;
+  margin: 0.1875em 0.1875em 0.1875em 0;
+  padding: 0 0.375em;
   float: left;
   -moz-box-flex: 0;
   -webkit-flex: 0 0 auto;
@@ -2887,19 +3028,19 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 }
 
 .search-form .search-form__submit svg {
-  height: 1.7142857143em;
-  width: 1.7142857143em;
+  height: 1.5em;
+  width: 1.5em;
 }
 
 /* PNG Fall-Back */
-.no-inlinesvg.datauri .search-form .search-form__submit:before {
-  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6VT21GDQBTNAv9qBaEDSQUij3+pQNMBnUgHagXJPw+3A0kFxg5SAA/P2VlmFtw4ZmQmA7t377nnsREr40mSJMfyEb9Ab7fjOBZ1Xb+Z58xvwUUYhtee570bjcvzbdd191LK07KgAOI4boUQt5j2hWXe933Lfdd1yaRAbY13W1XV5geApv3MZjQGyylkByAOWA/DsG2a5nUmwZieQevephVnHgCws7EQYDCyCRpvbBq1Rz48+uQ3ZCjZ0/N/gEskwKcDZE4RKxIiiqInx3FeUDzCxM0ZEz/ggW81cRHjEQdz+HHgPnQzWsbo26YrBtokRiV5F2wpsFnXJMAzk+XMUcohgwmIjWTA7JGWBPgdo0R9W5alumwzANv0ac+8UAA9ASRDpPLPAARK0zRAM5lccU1TLwJgE6SEePGPt1JMfqN9rqajLwCw/wY2tMxY4fByDwAAAABJRU5ErkJggg==");
-}
+/*.no-inlinesvg.datauri .search-form .search-form__submit:before {
+        content: url($fallback--search-form__submit--png);
+        //vertical-align: middle;
+    }
 
-.no-inlinesvg.datauri .search-form .search-form__submit span {
-  display: none;
-}
-
+    .no-inlinesvg.datauri .search-form .search-form__submit span {
+        display: none;
+    }*/
 /* -------------------------------------------------------------------------------------------*/
 /* -- .search-form__collapse -----------------------------------------------------------------*/
 .search-form .search-form__collapse {
@@ -2942,15 +3083,12 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   }
   .search-form--right .search-form__field,
   .search-form--after .search-form__field {
-    margin-left: 0.2142857143em;
+    margin-left: 0.1875em;
     margin-right: 0;
   }
   .search-form .search-form__collapse {
     width: 100%;
   }
-  /*.no-flexbox .search-form {
-            display: block;
-        }*/
 }
 
 @media only screen and (min-width: 30em) {
@@ -3005,7 +3143,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   .search-form .search-form__cancel {
     color: #c1cacd;
     background-color: #b0ccd5;
-    padding: 0 0.6428571429em;
+    padding: 0 0.5625em;
     /*padding-right: $fallback--search-form--spacing * 2;
             padding-left: $fallback--search-form--spacing * 2;
             padding-top: 0;
@@ -3055,92 +3193,8 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     display: -ms-flexbox;
     display: flex;
   }
-  /*
-            Expander issue:
-            Collapse block is hidden but search field doesn't expand so it looks weird.
-            Affects: browsers that DON'T support flexbox, but DO support :focus ~ selector.
-                IE9 - had to use hack - see below.
-                FF3.5 - 21 (note - look into using the -moz prefix for flexbox in this case for 8+)
-                Safari6 (CSS Cut-off won't load CSS for this browser so shouldn't be an issue any more)
-
-
-
-            --Modernizr adds the .flexbox class. If JS unavailable, expanding doesn't work.
-            That's ok, but I may as well just have used JS to make the expanding working the first
-            place!!!!??? :-(--
-
-            If no-flexbox, undo Expander and Cancel.
-            Note, without JS the issue described above will still occur, but it's still usable.
-
-        */
-  /*.no-flexbox .search-form__field:focus ~ .search-form__collapse {
-            display: block;
-        }
-
-        .no-flexbox .search-form__field:focus ~ .search-form__cancel {
-            display: none;
-        }*/
-  /*.search-form .search-form__collapse {
-            width: auto;
-        }*/
 }
 
-/* IE9 hacks: */
-/*
-        Expander issue: Collapse block is hidden but search field doesn't expand so it looks weird.
-    */
-/*@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
-            .search-form .search-form__field:focus ~ .search-form__collapse {
-                display: block;
-            }
-
-            .search-form .search-form__field:focus ~ .search-form__cancel {
-                display: none;
-            }
-    }*/
-/*
-    Older webkit browsers - those supporting the -webkit-box-flex syntax (Chrome 21-28, Maxthon)
-    - don't let the flex declarations override floats properly, so the the floats applied above
-    cause serious breakage, so we need to undo those floats.
-    Also the vertical centering of the cancel icon doesn't work properly, so we provide a fix
-    for that too.
-    Applies to newer webkit too, but works just as well. Mainly this prevents IE10 from
-    applying this (where the cancel icon styling fails).
-    However, older webkit (Safari, Android) baulk at this so following are some hacks to reset the float.
-    Horrid but haven't found a better way yet.
-    Can't use JS to detect these either, as it's totally broken if JS isn't available.
-
-    */
-/* no longer applies due to CSS Cutt-off
-    @media screen and (-webkit-min-device-pixel-ratio: 0) {
-        .search-form__submit,
-        .search-form__field,
-        .search-form__collapse {
-            float: none;
-        }
-
-        .search-form__cancel:after {
-            display: table-cell;
-            height: 40px;
-            height: 4rem;
-        }
-    }*/
-/* Android 2.3+ and Safari 3-4 */
-/*@media screen and (min-width: 0\-) {
-        .search-form__submit,
-        .search-form__field,
-        .search-form__collapse {
-            float: left;
-        }
-    }*/
-/* iOS (iOS Safari 3.2+), Android (Base browser 2.1+ & Chrome 22+, Opera Mobile 10+) */
-/*@media screen and (-webkit-min-device-pixel-ratio:1.1) {
-        .search-form__submit,
-        .search-form__field,
-        .search-form__collapse {
-            float: left;
-        }
-    }*/
 /* ---------------------------------------------------------------------------------------------- */
 /*------------------------------------------------------------------------------------------------*    Fall-Back Sticky Footer Pattern v1.0.0
 
@@ -3214,7 +3268,7 @@ body {
 }
 
 /* IE9 hacks: */
-@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
   .sticky-footer-wrap {
     display: table;
     width: 100%;
@@ -3249,7 +3303,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   width: 100%;
   bottom: 0;
   z-index: 2000;
-  padding: 0.8571428571em;
+  padding: 0.75em;
   background-color: #000;
   color: #fff;
   opacity: 1;
@@ -3323,6 +3377,10 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   overflow: visible;
 }
 
+.nav-bar .nav-bar__item::before {
+  display: none;
+}
+
 .nav-bar .nav-bar__items .nav-bar__link span {
   position: relative;
   top: 2px;
@@ -3339,7 +3397,6 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   position: absolute;
   left: 0.6428571429em;
   right: 0.6428571429em;
-  margin-top: 3px;
   z-index: 1;
   background: transparent;
 }
@@ -3353,7 +3410,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 .nav-bar__inner .nav-bar__link:active::after,
 .nav-bar__inner .nav-bar__link:focus::after,
 .nav-bar__inner .nav-bar__link:hover::after {
-  margin-top: 11px;
+  margin-top: 8px;
   left: 0.6428571429em;
   right: 0.6428571429em;
 }
@@ -3485,9 +3542,9 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   font-family: inherit;
   font-style: inherit;
   font-weight: inherit;
-  min-height: 1.875rem;
-  line-height: 1.5rem;
-  margin: 0.1875rem 0;
+  min-height: 3rem;
+  line-height: 2.4rem;
+  margin: 0.3rem 0;
   text-transform: none;
   /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
   /* -webkit-appearance: button; // [N2] */
@@ -3499,38 +3556,40 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
-  padding-top: 0.1875rem;
-  padding-top: -moz-calc(0.1875rem - 1px);
-  padding-top: calc(0.1875rem - 1px);
-  padding-bottom: 0.1875rem;
-  padding-bottom: -moz-calc(0.1875rem - 1px);
-  padding-bottom: calc(0.1875rem - 1px);
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+  padding-top: 0.3rem;
+  padding-top: -moz-calc(0);
+  padding-top: calc(0.3rem - 1px);
+  padding-bottom: 0.3rem;
+  padding-bottom: -moz-calc(0);
+  padding-bottom: calc(0.3rem - 1px);
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   vertical-align: middle;
   /* S: Remove the tapping delay from clickable elements */
   -ms-touch-action: manipulation;
   /* S: IE10 */
   touch-action: manipulation;
-  /**
-     * Restore the focus styles unset by the previous rule.
-     */
-}
-
-.card a.card__cta:-moz-focusring {
-  outline: 1px dotted ButtonText;
+  /*
+	&:hover,
+    &:active,
+    &:focus {
+        // 9999px used for shadow to ensure it'll always be big enough. Better way? Performance? Not sure.
+        @if $bg-color--state-1 == light-shadow {
+            box-shadow: 0 0 0 9999px $ui-shadow-light inset, $button-focus-shadow;
+        } @else if $bg-color--state-1 == dark-shadow {
+            box-shadow: 0 0 0 9999px $ui-shadow-dark inset, $button-focus-shadow;
+        } @else {
+            background-color: $bg-color--state-1;
+        }
+        //background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%)  $bg-color;
+        //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#33000000',GradientType=0 );
+    }
+	*/
 }
 
 .card a.card__cta:hover, .card a.card__cta:active, .card a.card__cta:focus {
-  /*
-            9999px used for shadow to ensure it'll always be big enough.
-            Better way? Performance? Not sure.
-        */
-  background-color: #2e4d58;
-}
-
-.card a.card__cta:focus {
-  outline: 1px dotted #000;
+  box-shadow: 0 0 0 2px #6da0b2 inset;
+  outline: 0;
 }
 
 .card a.card__cta:hover, .card a.card__cta:active, .card a.card__cta:focus {
@@ -3636,7 +3695,7 @@ _:-ms-input-placeholder, :root .list-grid--center {
 }*/
 .page-footer {
   background-color: #e2e7df;
-  padding: 0.8571428571em;
+  padding: 0.75em;
   font-size: 0.875em;
   text-align: center;
   color: #2e4d58;
@@ -3734,6 +3793,51 @@ h3 a[href]:focus {
 
 main {
   padding: 1.5rem;
+}
+
+/**/
+dl, ol, ul {
+  width: 100%;
+}
+
+main :target,
+main :target + ul {
+  -moz-animation: target-fade 3s 1;
+  -webkit-animation: target-fade 3s 1;
+  animation: target-fade 3s 1;
+}
+
+@-moz-keyframes target-fade {
+  0% {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 1.2rem rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 1.2rem rgba(255, 255, 255, 0);
+  }
+}
+
+@-webkit-keyframes target-fade {
+  0% {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 1.2rem rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 1.2rem rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes target-fade {
+  0% {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 1.2rem rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 1.2rem rgba(255, 255, 255, 0);
+  }
 }
 
 /**/
