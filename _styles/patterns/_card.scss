@@ -27,7 +27,7 @@ $card--link-border-bottom--hover: false !default;
     $card--link-border-bottom: 1px solid lighten($card--link-color, 20%) !default;
     $card--link-border-bottom--hover: 2px solid lighten($card--link-color--alt, 30%) !default;
 }
-$card--padding: 1.5rem !default;
+$card--padding: 2rem !default;
 
 
 $card-breakpoint: 30em !default;

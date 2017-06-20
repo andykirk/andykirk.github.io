@@ -127,6 +127,7 @@ $card--background-color: #fff;
 $card--border-color: $primary-color;
 $card--link-color: $secondary-color;
 $card--link-has-border-bottom: true;
+$card--padding: $fallback--base-rem-space-unit;
 @import "patterns/__all";
 
 /* ---------------------------------------------------------------------------------------------- */

@@ -3467,7 +3467,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 .card.card {
   color: #2e4d58;
   background: #fff;
-  padding: 1.5rem;
+  padding: 2.4rem;
   /*height: 100%;*/
   outline: 1px solid #2e4d58;
   /*max-width: 20em;*/
@@ -3503,9 +3503,9 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 
 .card .card__body {
   background: #fff;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-  padding: 1.5rem;
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+  padding: 2.4rem;
 }
 
 .card .card__body a {
@@ -3521,9 +3521,9 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 }
 
 .card .card__offset-padding {
-  margin-top: -1.5rem;
-  margin-left: -1.5rem;
-  margin-right: -1.5rem;
+  margin-top: -2.4rem;
+  margin-left: -2.4rem;
+  margin-right: -2.4rem;
 }
 
 .card .card__body-footer,
@@ -3792,7 +3792,7 @@ h3 a[href]:focus {
 }
 
 main {
-  padding: 1.5rem;
+  padding: 2.4rem;
 }
 
 /**/
