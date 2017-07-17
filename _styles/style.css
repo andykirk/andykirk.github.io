@@ -2737,7 +2737,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 /* IE9 hacks: */
 /*
     */
-@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   /*
             The icons force a massive height increase for some reason.
             Setting the height to this only works fine because on 'wide' the nav-bar can't be
@@ -3268,7 +3268,7 @@ body {
 }
 
 /* IE9 hacks: */
-@media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
   .sticky-footer-wrap {
     display: table;
     width: 100%;
@@ -3593,7 +3593,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 }
 
 .card a.card__cta:hover, .card a.card__cta:active, .card a.card__cta:focus {
-  color: #fff;
+  color: #2e4d58;
 }
 
 .list-grid {

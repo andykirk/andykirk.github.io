@@ -140,7 +140,7 @@ $card-pull: 5rem !default;
             &:hover,
             &:active,
             &:focus {
-                color: #fff;
+                color: $card--text-color;
             }
         }
         
