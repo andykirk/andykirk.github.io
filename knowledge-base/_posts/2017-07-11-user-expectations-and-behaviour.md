@@ -19,25 +19,25 @@ Summary:
 Users do scroll / There is no fold
 ----------------------------------
 
-* http://abovethefold.fyi
-* http://uxmyths.com/post/654047943/myth-people-dont-scroll
+* <http://abovethefold.fyi>
+* <http://uxmyths.com/post/654047943/myth-people-dont-scroll>
 
 
 Opera Mini
 ----------
 
 Lots of people use Opera Mini:
-* http://www.brucelawson.co.uk/2016/one-weird-trick-to-get-online-designers-hate-it/
+* <http://www.brucelawson.co.uk/2016/one-weird-trick-to-get-online-designers-hate-it/>
 
 
-User don't interact with Carousels
-----------------------------------
+Users don't interact with Carousels
+-----------------------------------
 
 Usually they don't:
-* https://erikrunyon.com/2013/01/carousel-stats/
+* <https://erikrunyon.com/2013/01/carousel-stats/>
 
 Carousels MAY be appropriate in some cases, just not as banner / signpost unless navigation is VERY obvious:
-https://www.smashingmagazine.com/2015/02/carousel-usage-exploration-on-mobile-e-commerce-websites/
+<https://www.smashingmagazine.com/2015/02/carousel-usage-exploration-on-mobile-e-commerce-websites/>
 
 Some things to avoid, including carousels:
-http://www.sitepoint.com/5-fancy-useless-web-components-avoid/
+<http://www.sitepoint.com/5-fancy-useless-web-components-avoid/>
