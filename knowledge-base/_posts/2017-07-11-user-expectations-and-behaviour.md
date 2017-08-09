@@ -11,6 +11,7 @@ Retain Homepage Links
 
 
 Summary:
+
 * Keep logos top-left
 * Make sure logos link to the homepage
 * Also provide a text-base 'Home' link
