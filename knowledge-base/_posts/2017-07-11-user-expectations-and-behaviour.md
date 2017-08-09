@@ -8,7 +8,8 @@ Retain Homepage Links
 ---------------------
 
 [Homepage Links Remain a Necessity](https://www.nngroup.com/articles/homepage-links)
-  
+
+
 Summary:
 * Keep logos top-left
 * Make sure logos link to the homepage
