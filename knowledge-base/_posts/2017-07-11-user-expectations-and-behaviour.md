@@ -2,7 +2,7 @@
 title: User Expectations and Behaviour
 tag: [User Expectations and Behaviour]
 ---
-Probably add more links to this post, but here's the first:
+I'll probably add more links to this post, but here's the first few:
 
 Retain Homepage Links
 ---------------------
