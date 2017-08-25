@@ -3912,10 +3912,6 @@ h3 a[href]:focus {
 main {
   padding: 2.4rem;
   background: rgba(0, 0, 0, 0.6);
-}
-
-main > article,
-main > section {
   position: relative;
 }
 
@@ -3967,6 +3963,7 @@ main :target + ul {
 /**/
 .sticky-footer-expand {
   background: #2e4d58;
+  position: relative;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e2e7df+100 */
 }
 
@@ -4013,11 +4010,12 @@ main :target + ul {
   hyphens: auto;
 }
 
+/*
 .sticky-footer-expand {
-  position: relative;
-  z-index: -2;
+	position: relative;
+	z-index: -2;
 }
-
+*/
 .page-background {
   display: block;
   position: absolute;
@@ -4026,8 +4024,6 @@ main :target + ul {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
-  z-index: -1;
   background-size: cover;
   background-position: center center;
 }

@@ -1,3 +1,4 @@
+{% assign post = page %}
 <!doctype html>
 <html lang="en-gb">
 <head>
@@ -51,7 +52,7 @@
         </p>
         <hr />
     </div>
-
+	
     <div class="sticky-footer-wrap">           
         <header class="header">
         
@@ -127,6 +128,9 @@
         </header>
         
         <div class="sticky-footer-expand">
+			{% if post.cloudinary_id %}
+			<div class="page-background" style="background-image: url('http://res.cloudinary.com/andykirk/image/upload/b_rgb:000000,o_40,e_blur:500,c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}');"></div>
+			{% endif %}
             <main role="main" class="main-container">
                 {{ content }}
             </main>
