@@ -14,7 +14,6 @@ module.exports = function(grunt) {
                 src: [
                     './_scripts/cookie-notice-settings.js',
                     './bower_components/Fall-Back-Cookie-Notice/js/cookie-notice.js',
-                    './bower_components/Fall-Back-Base/js/no-history.js',
                     './bower_components/Fall-Back-SVG/js/svg.js'
                 ],
                 dest: './_scripts/script.js'
@@ -159,7 +158,7 @@ module.exports = function(grunt) {
 
     /* ----------------------------------------------------------------------------------------- *\
         NOTE:
-        Removing autoprefixer for now as Fall Back, Inuit and Scut include prefixes I don't want
+        Removing autoprefixer for now as Fall-Back includes deliberate prefixes I don't want
         tampered with.
         Other CSS _MAY_ need this, so I'd have to compile those separately WITH autoprefixer
         then run a CONCAT to join them together before miniying.
