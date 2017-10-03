@@ -5,9 +5,9 @@ NOTES
 module.exports = function(grunt) {
 
     var grunt_config = {
-    
+
         pkg: grunt.file.readJSON('package.json'),
-        
+
         // https://github.com/gruntjs/grunt-contrib-concat
         concat: {
             js: {
@@ -18,16 +18,9 @@ module.exports = function(grunt) {
                     './bower_components/Fall-Back-SVG/js/svg.js'
                 ],
                 dest: './_scripts/script.js'
-            }/*,
-            css: {
-                src: [
-                    'css/normalize.css',
-                    'css/foundation.css'
-                ],
-                dest: 'css/style.css'
-            }*/
+            }
         },
-        
+
         // https://github.com/gruntjs/grunt-contrib-cssmin
         cssmin: {
             minify: {
@@ -38,7 +31,7 @@ module.exports = function(grunt) {
                 ext: '.min.css'
             }
         },
-        
+
         // https://github.com/gruntjs/grunt-contrib-imagemin
         imagemin: {
             dynamic: {
@@ -54,7 +47,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        
+
         // https://github.com/yoniholmes/grunt-text-replace
         replace: {
             svg_cleanup: {
@@ -72,7 +65,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
-                
+
         // https://github.com/gruntjs/grunt-contrib-sass
         // Default precision is 10
         sass: {
@@ -93,9 +86,9 @@ module.exports = function(grunt) {
                 /*files: {
                     '** /*.css': '** /*.scss'
                 }*/
-            } 
+            }
         },
-        
+
         // https://npmjs.org/package/grunt-svg2png
         svg2png: {
             all: {
@@ -122,7 +115,7 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        
+
         // https://github.com/gruntjs/grunt-contrib-uglify
         uglify: {
             build: {
@@ -145,7 +138,7 @@ module.exports = function(grunt) {
         }
 
     };
-    
+
     grunt.initConfig(grunt_config);
     // General tools:
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -163,21 +156,21 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     // FTP:
     //grunt.loadNpmTasks('grunt-ftp-deploy');
-    
+
     /* ----------------------------------------------------------------------------------------- *\
         NOTE:
-        Removing autoprefixer for now as Fall Back, Inuit and Scut include prefixes I don't want 
+        Removing autoprefixer for now as Fall Back, Inuit and Scut include prefixes I don't want
         tampered with.
         Other CSS _MAY_ need this, so I'd have to compile those separately WITH autoprefixer
         then run a CONCAT to join them together before miniying.
         DO THIS as and when.
-    
+
     \* ----------------------------------------------------------------------------------------- */
-    
-    
+
+
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('css', ['sass', 'cssmin']); 
+    grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['concat', 'uglify']);
     grunt.registerTask('img', ['svg2png', 'imagemin', 'svgmin', 'replace:svg_cleanup']);
 
