@@ -45,7 +45,8 @@ It's intended to constantly evolve and as such will never be 'complete' but will
 <h2 id="{{ tag | slugify }}">{{ tag }}</h2>
 
 <ul>
-    {% for post in site.posts %}{% if post.tags contains tag %}
+    {% assign posts = site.posts | sort %}
+    {% for post in posts %}{% if post.tags contains tag %}
     <li>
         <a href="{{ post.url }}">{{ post.title }}</a> - <small>{{ post.date | date_to_string }}</small>
     </li>
