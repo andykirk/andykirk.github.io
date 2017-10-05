@@ -41,7 +41,7 @@ It's intended to constantly evolve and as such will never be 'complete' but will
     {% for tag in tags %}- <a href="#{{ tag | slugify }}">{{ tag }}</a> {% endfor %}
 </p>
 
-{% assign posts = site.posts | sort %}
+{% assign posts = site.posts | sort: 'title' %}
 {% for tag in tags %}
 <h2 id="{{ tag | slugify }}">{{ tag }}</h2>
 
