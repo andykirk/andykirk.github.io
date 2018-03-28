@@ -2,7 +2,7 @@
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
 
 // @TODO -0 decide whether the --light/--lighter/--dark/--darker is the way to go, or just use sass
-// colour functions to create tints as needed, or create vars in 10% blocks, i.e. 
+// colour functions to create tints as needed, or create vars in 10% blocks, i.e.
 // --light-10; --dark-30.
 
 $primary-color: #2e4d58; //PANTONE 2216 [C: 88, M: 50, Y: 45, K: 50]
@@ -47,7 +47,7 @@ $fallback--base-ui-color: $primary-color;
 $fallback--breakpoint--enhanced: 30em;
 
 
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Vollkorn');
+//@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Vollkorn');
 $fallback--base-font-family: 'Lato', sans-serif;
 
 
@@ -80,7 +80,7 @@ $anchor-text-color: $secondary-color--light;
 @import "../bower_components/Fall-Back-Over-Panel/_over-panel";
 
 
-//$fallback--nav-bar--bg-color: #fff;
+$fallback--nav-bar--bg-color: $supporting-color-2--lighter;
 $fallback--nav-bar--background-color: $supporting-color-2--lighter;
 //$fallback--nav-bar__link--color: #222;
 $fallback--nav-bar__link--color: $primary-color--darker;
@@ -139,4 +139,3 @@ $card--padding: $fallback--base-rem-space-unit;
 
 
 /* ---------------------------------------------------------------------------------------------- */
-

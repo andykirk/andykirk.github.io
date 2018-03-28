@@ -33,8 +33,9 @@ $proportions: (
     /* (in portrait images this will leave gaps at the sides) */
     .proportional-container__image-cover {
         position: absolute;
-        width: 100%;
+        left: 0;
         top: 50%;
+        width: 100%;
         transform: translateY(-50%);
     }
 

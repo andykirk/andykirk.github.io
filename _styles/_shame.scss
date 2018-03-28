@@ -1,5 +1,4 @@
 h1, h2, h3 {
-    font-family: 'Vollkorn', serif;
     font-weight: normal;
 
     a[href],
@@ -101,9 +100,18 @@ main :target + ul {
   -webkit-hyphens: auto;
   hyphens: auto;
 
-  
-  
+
+
 }
+
+@media (max-width: 35em) {
+    .card .card__body {
+        margin-top: 0;
+        margin-left: -$card--padding;
+        margin-right: -$card--padding;
+    }
+}
+
 /*
 .sticky-footer-expand {
 	position: relative;
@@ -120,5 +128,5 @@ main :target + ul {
 	top: 0;
 	background-size: cover;
 	background-position: center center;
-	
 }
+

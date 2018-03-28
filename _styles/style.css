@@ -1,5 +1,4 @@
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900|Vollkorn");
 /*
     Colour contrast from https://gist.github.com/FStop/8959422
     
@@ -14,7 +13,8 @@
 /* Awesome contrast ratio function
 * via https://gist.github.com/voxpelli/6304812
 **/
-/*------------------------------------------------------------------------------------------------*    Fall-Back Icons v1.0.0
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Icons v1.0.0
     
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
     IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
@@ -110,6 +110,9 @@ _:-o-prefocus, :root .icon {
 /* --| BASE |------------------------------------------------------------------------------------ */
 /*! Start CSS. See SCSS file for documentation. */
 /*
+    Design for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
 
     Notes:
 
@@ -133,12 +136,12 @@ _:-o-prefocus, :root .icon {
 
 
 */
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     FUNCTIONS AND MIXINS
    (These must come before the Setting, as the settings make use of some of these)
 
-|-------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 /*
 	Apply a border and a paddind that offsets the border-width from one spacing unit so as not to
 	affect the vertical rhythm.
@@ -147,11 +150,11 @@ _:-o-prefocus, :root .icon {
 	Also, since we're supporting FF 8+, we're including -moz-calc fro versions up to 16.
 	I may consider removing this as those browsers are dead, but I'm just being thorough for now.
 */
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     SETTINGS
 
-|-------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 /* Global focus style: */
 /* Output class for reference (tmp): */
 .ref {
@@ -161,11 +164,11 @@ _:-o-prefocus, :root .icon {
   fallback--root-font-size-percent: 62.5;
 }
 
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     ROOT STYLES
 
-|-------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 /*
     1. Change the default box-sizing (-moz prefix for FF8-28).
 
@@ -283,6 +286,7 @@ body {
   /* 1 */
   min-width: 250px;
   max-width: none;
+  -height: 100%;
   min-height: 100%;
   margin: 0;
   padding: 0;
@@ -290,11 +294,11 @@ body {
   line-height: 2.4rem;
 }
 
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     ALL ELEMENTS
 
-|-------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 /*
     a:link a:visited a:hover a:active a:focus
 
@@ -322,7 +326,7 @@ a[href] {
 
 a[href]:hover, a[href]:active, a[href]:focus {
   border-bottom: 3px solid;
-  outline: 0;
+  outline-width: 0;
 }
 
 a[href][rel="external"]::after {
@@ -507,7 +511,7 @@ _:-o-prefocus, :root button {
     It doesn't have any effect in newer FF.
     --It ceases to have an effect from around FF54 onwards? Dev edition.--
     --The correct box sizing is applied from FF30 onwards.--
-
+    
     NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
 */
 button::-moz-focus-inner {
@@ -594,11 +598,6 @@ dt {
   font-weight: bold;
 }
 
-/*
-    Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
-    as the default - just a bit of theming.
-    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
-*/
 fieldset {
   margin-bottom: 2.4rem;
   border-width: 1px;
@@ -821,7 +820,6 @@ input:not([type]):focus,
 [type="date"]:focus,
 [type="datetime"]:focus,
 [type="datetime-local"]:focus,
-[type="file"]:focus,
 [type="month"]:focus,
 [type="number"]:focus,
 [type="password"]:focus,
@@ -833,17 +831,6 @@ input:not([type]):focus,
 [type="week"]:focus {
   box-shadow: 0 0 0 2px #8eb6c4 inset;
   outline: 0;
-}
-
-[type="checkbox"]:focus,
-[type="radio"]:focus {
-  box-shadow: 0 0 0 2px #8eb6c4;
-  outline: 0;
-}
-
-_::-webkit-full-page-media, _:future, :root [type="checkbox"]:focus,
-_::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
-  border: 2px solid #8eb6c4;
 }
 
 /*
@@ -1183,11 +1170,6 @@ label {
   touch-action: manipulation;
 }
 
-/*
-    Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
-    as the default - just a bit of theming.
-    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
-*/
 /**
  * N1. Correct the text wrapping in Edge and IE.
  * N2. Correct the color inheritance from `fieldset` elements in IE.
@@ -1253,14 +1235,11 @@ object {
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
 	   a. This causes problems with some decoration. E.g. if the last element in the list is a link,
-	      bottom borders get cropped, so using b instead.
-       b. `flow-root` is the better option but support is low, so using table-cell as well.
+	       bottom borders get cropped, so using b instead.
 */
 ol {
   margin-bottom: 2.4rem;
-  display: table-cell;
-  /* 1b */
-  display: flow-root;
+  display: table;
   /* 1b */
 }
 
@@ -1353,7 +1332,7 @@ progress {
 
 /*
     1. Address odd `em`-unit font size rendering in all browsers. (N)
-
+	
 	2. Correct the inheritance and scaling of font size in all browsers. (N)
 
     3. Prevent the element increasing the line-height of the parent.
@@ -1446,7 +1425,7 @@ select::-moz-focus-inner {
 
 /*
     Make the arrow indicator the same across browsers.
-
+    
     1. FF48- does not support background-position-x/y.
     2. FF34- does not remove the arrow but does not show the background image until FF29-, at which
        point both are shown.
@@ -1482,8 +1461,7 @@ select:focus {
     }
 }*/
 /*
-    Note that Opera 25- and Safari(all - 10.1.1 latest at time of writing) treat select [size]s of
-    less than as 4.
+    Note that Opera 25- treat select [size]s of <4 as 4.
 */
 select[multiple] {
   height: auto;
@@ -1512,14 +1490,14 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multip
 /*
     Various browsers do not allow <option>s height to be specified.
     The ones I've found are:
-
+    
     * IE11-
     * Chrome 38-
     * Opera 24-
 
-    MAYBE NOT FOR PRODUCTION?
+    NOT FOR PRODUCTION
     The following techniques are messy and break if the font-family or font size changes.
-    Maybe move them to the test CSS only so I can see if OTHER elements are falling off the grid.
+    Move them to the test CSS only so I can see if OTHER elements are falling off the grid.
 */
 /*
     Safari refuses to adjust the height of select[multiple] options.
@@ -1552,39 +1530,39 @@ _:scope, _:future, _:not(*:root), select[size="9"]  { margin-bottom: calc(1.3rem
 _:scope, _:future, _:not(*:root), select[size="10"] { margin-bottom: calc(0.8rem - 2px); }
 */
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"] {
-  margin-bottom: calc(2.4rem - 0.6em - 2px);
+  margin-bottom: 0;
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"] {
-  margin-bottom: calc(2.4rem - 0.6em - 2px);
+  margin-bottom: 0;
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"] {
-  margin-bottom: calc(2.4rem - 0.6em - 2px);
+  margin-bottom: 0;
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"] {
-  margin-bottom: calc(2.4rem - 1.1em - 2px);
+  margin-bottom: calc(0.9rem - 2px);
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"] {
-  margin-bottom: calc(2.4rem - 0.85em - 2px);
+  margin-bottom: calc(0.4rem - 2px);
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"] {
-  margin-bottom: calc(2.4rem - 0.6em - 2px);
+  margin-bottom: calc(1.1rem - 2px);
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"] {
-  margin-bottom: calc(2.4rem - 1.1em - 2px);
+  margin-bottom: calc(0.6rem - 2px);
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"] {
-  margin-bottom: calc(2.4rem - 0.85em - 2px);
+  margin-bottom: calc(1.3rem - 2px);
 }
 
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] {
-  margin-bottom: calc(2.4rem - 0.6em - 2px);
+  margin-bottom: calc(0.8rem - 2px);
 }
 
 /*
@@ -1802,14 +1780,11 @@ th {
     1. Either of these will make lists behave properly next to floated items.
        (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
 	   a. This causes problems with some decoration. E.g. if the last element in the list is a link,
-	      bottom borders get cropped, so using b instead.
-       b. `flow-root` is the better option but support is low, so using table-cell as well.
+	       bottom borders get cropped, so using b instead.
 */
 ul {
   margin-bottom: 2.4rem;
-  display: table-cell;
-  /* 1b */
-  display: flow-root;
+  display: table;
   /* 1b */
 }
 
@@ -1905,11 +1880,11 @@ video {
   text-shadow: none;
 }
 
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     ACCESSIBILITY / ARIA
 
-|-------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 [aria-busy="true"] {
   cursor: progress;
 }
@@ -1961,11 +1936,11 @@ a[hidden][aria-hidden="false"]:active {
         width: auto;*/
 }
 
-/*-------------------------------------------------------------------------------------------------|
+/*------------------------------------------------------------------------------------------------*\
 
     UTILITIES
 
--|------------------------------------------------------------------------------------------------*/
+\*------------------------------------------------------------------------------------------------*/
 /*
     Clearfix: contain floats for modern browsers
 
@@ -1997,7 +1972,9 @@ a[hidden][aria-hidden="false"]:active {
 /*! End Start CSS */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| FALL-BACK |------------------------------------------------------------------------------- */
-/*------------------------------------------------------------------------------------------------*    
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Over Panel Pattern v1.0.0
+
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
     IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
@@ -2007,7 +1984,8 @@ a[hidden][aria-hidden="false"]:active {
     E.g. `.{pattern}__open.{pattern}__open` overrides `a[href]`.
 
 \*------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*    Import Fall-Back vars:
+/*------------------------------------------------------------------------------------------------*\
+    Import Fall-Back vars:
 
     Slightly hacky way of allowing the main UI colour of this pattern to be:
      - base-ui colour (if set)
@@ -2218,149 +2196,141 @@ a[hidden][aria-hidden="false"]:active {
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-/*-------------------------------------------------------------------------------------------------|
-    Fall-Back Start-CSS Settings v1.0.0
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Nav Bar Pattern v1.0.0
 
-    Fall-Back is designed for use with the basic
-    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-    
-    This determines a browser support base of:
-    
+    Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
     IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-    
-    
-    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+
+    Any double-classing (e.g. `.class.class`) is deliberatly in place in order to increase specifity.
     This allows Start-CSS declarations to be overidden.
     E.g. `.{pattern}__open.{pattren}__open` overrides `a[href]`.
-    
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-    Fall-Back Nav Bar Pattern v2.0.0
-|-------------------------------------------------------------------------------------------------*/
-/* -- Basic/fallback layout --------------------------------------------------------------------- */
-/****
-    // Mini reset if Start-CSS not present: (do we really need a condition? How do we do NOT variable-exists?)
-    //@if variable-exists($using-start-css) {
-        // Actually, this might be a good this to have anyway, not as a reset.
-        // Could then remove other declarations of `line-height`.
-        .nav-bar,
-        .nav-bar * {
-            line-height: $fallback--nav-bar__title--height;
-        }
 
-        .nav-bar a {
-            text-decoration: none;
-        }
-    //}
-*/
+\*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*\
+    Import Fall-Back vars:
+
+    Slightly hacky way of allowing the main UI colour of this pattern to be:
+     - base-ui colour (if set)
+     - otherwise #999
+     - but can be specifically overridden
+\*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
 /* -- .nav-bar -------------------------------------------------------------------------------*/
-/*
-    */
 .nav-bar {
   background-color: #e2e7df;
 }
 
-/* -------------------------------------------------------------------------------------------*/
-/* -- .nav-bar__title ----------------------------------------------------------------*/
-/*
-        1. For IE 9 and FF 21-.
-    */
-/****
-    .nav-bar .nav-bar__title {
-        white-space: nowrap; /* [1] * /
-        vertical-align: top; /* [1] * /
-        //--@include fallback-rem(min-height, $fallback--nav-bar--height);
-
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-
-        //display: -webkit-flex;
-        //display: -ms-flexbox;
-        //display: flex;
-
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-
-        //-webkit-box-pack: justify;
-        //   -ms-flex-pack: justify;
-        // justify-content: space-between;
+/* Not sure why I need float clearing here. Keep for reference. */
+/*.nav-bar::before,
+    .nav-bar::after,
+    .nav-bar .nav-bar__inner::before,
+    .nav-bar .nav-bar__inner::after {
+        content: " ";
+        display: table;
     }
-*/
+
+    .nav-bar::after,
+    .nav-bar .nav-bar__inner::after {
+        clear: both;
+    }*/
+/* -------------------------------------------------------------------------------------------*/
+/* -- .nav-bar__title-section ----------------------------------------------------------------*/
 /*
         1. For IE 9 and FF 21-.
     */
-.nav-bar .nav-bar__title {
+.nav-bar .nav-bar__title-section {
+  white-space: nowrap;
+  /* [1] */
+  vertical-align: top;
+  /* [1] */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  /*display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;*/
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  /*-webkit-box-pack: justify;
+           -ms-flex-pack: justify;
+         justify-content: space-between;*/
+}
+
+/*
+            1. For IE 9 and FF 21-.
+        */
+.nav-bar .nav-bar__title-text {
+  vertical-align: top;
+  /* [1] */
   background: #e2e7df;
+  display: inline-block;
   height: 1.5em;
   line-height: 1.5em;
   font-family: Vollkorn, serif;
   font-weight: normal;
   font-style: normal;
   font-size: 1.5em;
-  white-space: nowrap;
 }
 
-.nav-bar .nav-bar__title .nav-bar__link {
+.nav-bar .nav-bar__title-text .nav-bar__link {
   height: 1.5em;
   line-height: 1.5em;
 }
 
-/****
-    @media only screen and (max-width: $fallback--nav-bar--breakpoint--enhanced) {
-        // Apply the table-cell hack to IE9.
-        _::selection, .nav-bar__title > * {
-            display: table-cell\0 !important;
-            width: 1px\0;
-        }
-        // Note this isn't very robust:
-        _::selection, .nav-bar__title > div {
-            display: table-cell\0 !important;
-            width: 100%\0;
-            text-align: center;
-        }
+@media only screen and (max-width: 30em) {
+  /*
+            Apply the table-cell hack to IE9.
+        */
+  _::selection, .nav-bar__title-section > * {
+    display: table-cell\0  !important;
+    width: 1px\0;
+  }
+  _::selection, .nav-bar__title-section > div {
+    display: table-cell\0  !important;
+    width: 100%\0;
+    text-align: center;
+  }
+  /*
+            Without flexbox positioning doesn't sort itself out, so use text-align to position
+            the title.
+        */
+  /* If there's no control to the left: */
+  _::selection, .nav-bar__title-section > div:first-child {
+    text-align: left;
+  }
+  /* If there's no control to the right */
+  _::selection, .nav-bar__title-section > div:last-child {
+    text-align: right;
+  }
+  /*
+            Apply hacks for old FF.
+        */
+  _:-moz-tree-row(hover), .nav-bar__title-section {
+    display: -moz-box;
+    -moz-box-pack: justify;
+    width: 100%;
+    text-align: center;
+  }
+  _:-moz-tree-row(hover), .nav-bar__title-section > div {
+    -moz-box-flex: 1;
+  }
+}
 
-        // Without flexbox positioning doesn't sort itself out, so use text-align to position the title.
-        // If there's no control to the left:
-        _::selection, .nav-bar__title > div:first-child {
-            text-align: left;
-        }
-        // If there's no control to the right
-        _::selection, .nav-bar__title > div:last-child {
-            text-align: right;
-        }
-
-
-        //Apply hacks for old FF.
-        _:-moz-tree-row(hover), .nav-bar__title {
-            display: -moz-box;
-            -moz-box-pack: justify;
-            width: 100%;
-            text-align: center;
-        }
-
-        _:-moz-tree-row(hover), .nav-bar__title >  div {
-            -moz-box-flex: 1;
-        }
-    }
-*/
 /* -- .nav-bar__inner ------------------------------------------------------------------------*/
 /*
         1. Duplicating parent background-color here. There HAS to be a colour here for the pattern
            to work, the parent background-color is there to allow things to be NOT BROKEN on
            browsers that don't support HTML semantic elements.
-
-        2. Prevent any overflow and possible contain floats.
     */
 .nav-bar .nav-bar__inner {
   background-color: #e2e7df;
-  /* 1 */
   overflow: hidden;
-  /* 2 */
 }
 
 /* -------------------------------------------------------------------------------------------*/
@@ -2384,27 +2354,19 @@ a[hidden][aria-hidden="false"]:active {
     */
 /* -------------------------------------------------------------------------------------------*/
 /* -- .nav-bar__items -------------------------------------------------------------------------*/
-/*
-        1. F
-    */
 .nav-bar .nav-bar__items {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  /****float: left;
-
-        -webkit-box-flex: 0;
-            -webkit-flex: 0 1 auto;
-                -ms-flex: 0 1 auto;
-                    flex: 0 1 auto;*/
+  float: left;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .nav-bar .nav-bar__item {
   margin: 0;
-}
-
-.nav-bar .nav-bar__item::before {
-  display: none;
 }
 
 /*.nav-bar .nav-bar__item:not(:first-child) {
@@ -2415,39 +2377,31 @@ a[hidden][aria-hidden="false"]:active {
 
         .nav-bar .nav-bar__item:last-child {
             border-right-width: $fallback--nav-bar__link--border-width;
-        }* /
-
-    /* -------------------------------------------------------------------------------------------*/
+        }*/
+/* -------------------------------------------------------------------------------------------*/
 /* -- .subnav --------------------------------------------------------------------------------*/
 .nav-bar .subnav {
-  padding: 0;
-  margin-left: 1.125em;
-  background-color: #0b1215;
-}
-
-.nav-bar .subnav__items {
+  display: block;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0.28125em 0 1.125em;
+  background-color: #0b1215;
+  min-height: 2.25em;
 }
 
-.nav-bar .subnav__items::before,
-.nav-bar .subnav__items::after {
+.nav-bar .subnav::before,
+.nav-bar .subnav::after {
   content: " ";
   display: table;
 }
 
-.nav-bar .subnav__items::after {
+.nav-bar .subnav::after {
   clear: both;
 }
 
 .nav-bar .subnav__item {
   margin: 0;
   float: left;
-}
-
-.nav-bar .subnav__item::before {
-  display: none;
 }
 
 /* -------------------------------------------------------------------------------------------*/
@@ -2457,12 +2411,8 @@ a[hidden][aria-hidden="false"]:active {
 .nav-bar .subnav__heading {
   display: block;
   margin: 0;
-  padding-left: 0.5625em;
-  padding-right: 0.5625em;
+  padding: 0.375em 0.5625em;
   border: 0;
-  line-height: 2.25em;
-  text-decoration: none;
-  outline: 0;
 }
 
 .nav-bar .nav-bar__link:hover,
@@ -2474,12 +2424,11 @@ a[hidden][aria-hidden="false"]:active {
   border: 0;
 }
 
-/****
-    .nav-bar__title-text .nav-bar__link {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-*/
+.nav-bar__title-text .nav-bar__link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /*
         Fix for Opera Mini vertical centering:
         (affects Opera 12.10-16 as well)
@@ -2487,7 +2436,7 @@ a[hidden][aria-hidden="false"]:active {
 _:-o-prefocus, body:last-child .nav-bar .nav-bar__link,
 _:-o-prefocus, body:last-child .nav-bar .subnav__link,
 _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
-  line-height: 2.25em !important;
+  line-height: 1.71428571429 !important;
 }
 
 .nav-bar .nav-bar__link {
@@ -2495,16 +2444,16 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   background-color: #e2e7df;
 }
 
-/****
-    .nav-bar .nav-bar__link .icon {
-        display: none;
-    }
-*/
+.nav-bar .nav-bar__link .icon {
+  display: none;
+}
+
 .nav-bar .subnav__heading {
   color: #1c2e35;
 }
 
 .nav-bar .subnav__link {
+  display: inline-block;
   color: #1c2e35;
   background-color: #0b1215;
 }
@@ -2513,17 +2462,16 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         Don't allow the usual interaction effects on ALL nav-bar links:
         (this is to allow submenu heading links to appear as a non-link)
     */
-/****
-    .nav-bar .nav-bar__link:hover,
-    .nav-bar .nav-bar__link:focus,
-    .nav-bar .nav-bar__link:active,
-    .nav-bar .subnav__link:hover,
-    .nav-bar .subnav__link:focus,
-    .nav-bar .subnav__link:active {
-        text-decoration: none;
-        outline: 0;
-    }
-*/
+.nav-bar .nav-bar__link:hover,
+.nav-bar .nav-bar__link:focus,
+.nav-bar .nav-bar__link:active,
+.nav-bar .subnav__link:hover,
+.nav-bar .subnav__link:focus,
+.nav-bar .subnav__link:active {
+  text-decoration: none;
+  outline: 0;
+}
+
 /*
         Provide interaction effects for nav-bar links that ARE links:
         (this excludes submenu heading links - note that submenu links should never also be
@@ -2533,7 +2481,7 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 .nav-bar .nav-bar__link:focus,
 .nav-bar .nav-bar__link:active {
   color: #1c2e35;
-  background-color: #e2e7df;
+  background-color: #c8d1c2;
 }
 
 .nav-bar .subnav__link:hover,
@@ -2555,156 +2503,121 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
         content: attr(data-content);
         display: inline-block;
     }*/
-.nav-bar .subnav__control {
+.nav-bar .subnav__cancel,
+.nav-bar .subnav__open {
   display: none;
 }
 
 /* -----------------------------------------------------------------------------------------------*/
-/* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
 @media only screen and (min-width: 30em) {
   /*
-            1. Flex is only really needed for 'additional' to fill up the space.
-               I don't think this would actually do any harm...
         */
   .nav-bar {
     position: relative;
     z-index: 1000;
+    /* @var */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    /* 1 */
-  }
-  /*
-            Child items are floated, so clear those.
-        */
-  .nav-bar::before,
-  .nav-bar::after {
-    content: " ";
-    display: table;
-  }
-  .nav-bar::after {
-    clear: both;
-  }
-  /*
-            1. Floating left to allow 'additional' to appear on the same line, but width 100% to
-               make sure any subnavs are properly obscured, otherwise it looks weird.
-               However, this makes 'additional' collapse to it's content.
-               In the case of search form, this means the form is smaller than it could be.
-               It's still useable, but ...
-
-            2. ... flex makes this better ...
-        */
-  .nav-bar .nav-bar__inner {
-    float: left;
-    /* 1 */
-    width: 100%;
-    /* 1 */
-    -webkit-flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-    /* 2 */
-  }
-  /*
-            1. ... but we need to turn off 100% width if we're using flex.
-        */
-  @supports (display: -webkit-flex) or (display: -ms-flex) or (display: flex) {
-    .nav-bar .nav-bar__inner {
-      width: auto;
-      /* 1 */
-    }
   }
   /*
             Set flex-grow for immediate children to help with things like top-bar combinations
             (search form won't grow otherwise).
         */
-  /****
-        .nav-bar > * {
+  .nav-bar > * {
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+  .nav-bar .nav-bar__title-section {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+  /*.nav-bar .nav-bar__inner {
             -webkit-flex: 1 0 auto;
                 -ms-flex: 1 0 auto;
-             *       flex: 1 0 auto;
-        }
-
-        .nav-bar .nav-bar__title {
-            -webkit-flex: 0 0 auto;
-                -ms-flex: 0 0 auto;
-                    flex: 0 0 auto;
-        }
-*/
+                    flex: 1 0 auto;
+        }*/
   /*
             Apply table-cell hack to all FF because -moz-box in FF12- doesn't honour
             `position:relative` and applying the table-cell hack to everything causes other
             problems.
         */
-  /****
-        _:-moz-tree-row(hover), .nav-bar > * {
-            display: table-cell;
-            width: 100%;
-        }
-        _:-moz-tree-row(hover), .nav-bar .nav-bar__title {
-            display: table-cell;
-            width: 1px;
-        }
-*/
+  _:-moz-tree-row(hover), .nav-bar > * {
+    display: table-cell;
+    width: 100%;
+  }
+  _:-moz-tree-row(hover), .nav-bar .nav-bar__title-section {
+    display: table-cell;
+    width: 1px;
+  }
   /*
             Apply the table-cell hack to IE9.
         */
-  /****
-        _::selection, .nav-bar > * {
-            display: table-cell\0;
-            width: 100%\0;
-        }
-        _::selection, .nav-bar .nav-bar__title {
-            display: table-cell\0;
-            width: 1px\0;
-        }
-*/
+  _::selection, .nav-bar > * {
+    display: table-cell\0;
+    width: 100%\0;
+  }
+  _::selection, .nav-bar .nav-bar__title-section {
+    display: table-cell\0;
+    width: 1px\0;
+  }
   /*
             Remove table hack properties for browsers that support flexbox AND @supports.
             Note, we're only interested in FF here, as other browsers already have flexbox properties
             applied if they support it, so in this case the following is only relevent for FF22+
             (below that FF will still use the table hack as applied above).
         */
-  /***
-        @supports (display: flex) {
-            .nav-bar > *,
-            .nav-bar .nav-bar__title {
-                display: block;
-                width: auto;
-            }
-        }
-*/
+  @supports (display: flex) {
+    .nav-bar > *,
+    .nav-bar .nav-bar__title-section {
+      display: block;
+      width: auto;
+    }
+  }
   /*
             Add dividers.
             Dividers created by adding right borders to nav-bar__items.
         */
-  .nav-bar .nav-bar__title,
   .nav-bar .nav-bar__item {
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
     border-top-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
     border-right-width: 0;
   }
-  .nav-bar .nav-bar__link + .subnav__control {
-    border-style: dashed;
-    border-color: rgba(255, 255, 255, 0.3);
-    border-top-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 1px;
-    border-right-width: 0;
+  /*
+            If there's a title section, add a left border to the first item too.
+        */
+  .nav-bar .nav-bar__title-section + * .nav-bar__item:first-child {
+    border-left-width: 0;
   }
-  .nav-bar .nav-bar__title,
-  .nav-bar .nav-bar__item,
-  .nav-bar .nav-bar__link,
-  .nav-bar .subnav__link,
-  .nav-bar .subnav__heading {
-    white-space: nowrap;
+  /**/
+  .nav-bar .nav-bar__item {
     float: left;
+  }
+  .nav-bar .nav-bar__link .icon {
+    display: inline;
+  }
+  .nav-bar .has-subnav > .nav-bar__link {
+    float: left;
+  }
+  /*
+            Allow interaction effects for ALL nav-bar links now we're wide enough to show the nav-bar
+            enhanced version.
+        */
+  .nav-bar .nav-bar__link:hover,
+  .nav-bar .nav-bar__link:focus,
+  .nav-bar .nav-bar__link:active {
+    background-color: #c8d1c2;
+    cursor: pointer;
   }
   .nav-bar .subnav {
     position: absolute;
+    /*display: none;/**/
     visibility: hidden;
     left: 0;
     right: 0;
@@ -2714,14 +2627,6 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     margin: 0;
     padding: 0;
     height: 2.25em;
-    -webkit-transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-    -moz-transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-    -o-transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-    transition: margin-top 0.5s ease, visibility 0s   ease 0.5s;
-  }
-  :target + .subnav {
-    visibility: visible;
-    margin-top: 2.25em;
     -webkit-transition: margin-top 0.5s ease;
     -moz-transition: margin-top 0.5s ease;
     -o-transition: margin-top 0.5s ease;
@@ -2730,39 +2635,28 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
   .nav-bar .subnav__heading {
     display: none;
   }
-  /****
-        .nav-bar .subnav__link {
-            white-space: nowrap;
-        }
-
-*/
+  .nav-bar .subnav__link {
+    white-space: nowrap;
+    /*OLD-webkit-transition: margin-top 0.5s ease;
+               -moz-transition: margin-top 0.5s ease;
+                 -o-transition: margin-top 0.5s ease;
+                    transition: margin-top 0.5s ease;*/
+  }
   .nav-bar .subnav__open {
     display: block;
   }
-  .nav-bar .subnav__control-heading::before {
+  .nav-bar .subnav__open::before {
     content: attr(data-content);
     display: inline-block;
-    speak: none;
-  }
-  .nav-bar .subnav__heading + .subnav__open::before {
-    padding-right: 0.5625em;
-  }
-  .nav-bar .subnav__is-closed-message {
-    display: inline;
-  }
-  .nav-bar .subnav__is-open-message {
-    display: none;
-  }
-  .nav-bar :target .subnav__is-closed-message {
-    display: none;
-  }
-  .nav-bar :target .subnav__is-open-message {
-    display: inline;
   }
   /*.nav-bar .subnav__open:focus + .subnav .subnav__link,
         .nav-bar .subnav__link:focus {
             margin-top: $fallback--nav-bar--height;
         }*/
+  .nav-bar .subnav:target {
+    visibility: visible;
+    margin-top: 2.25em;
+  }
   /*
             Fixes cancel button behaviour if not using overflow:hidden on .nav-bar__inner
             (Maybe be temp - I can't quite remember what the overflow:hidden was for.
@@ -2776,142 +2670,138 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
             float: none;
             display: table-cell;
         }*/
-  .nav-bar .subnav__items {
-    float: left;
-  }
+  /*
+            1. Make background transparent so transition looks smoother.
+        */
   .nav-bar .subnav__cancel {
     display: block;
-    float: right;
+    /**/
+    visibility: hidden;
+    /**/
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0;
+    z-index: -1;
+    background: transparent;
+    /* [1] */
+    -webkit-transition: margin-top 0.5s ease;
+    -moz-transition: margin-top 0.5s ease;
+    -o-transition: margin-top 0.5s ease;
+    transition: margin-top 0.5s ease;
   }
-  /*
-            1. The 9999 hack forces this element to take up as much room as it can.
-               (See http://joren.co/flex-grow-9999-hack/)
-        */
-  .nav-bar .nav-bar__additional {
-    background-color: #e2e7df;
-    float: right;
-    -webkit-flex: 9999 0 auto;
-    -ms-flex: 9999 0 auto;
-    flex: 9999 0 auto;
-    /* 1 */
+  /*.nav-bar .subnav__cancel:focus {
+            margin-top: 0;
+        }*/
+  /*.nav-bar .subnav__open:focus ~ .subnav__cancel {
+            margin-top: $fallback--nav-bar--height;
+        }*/
+  .nav-bar .subnav:target ~ .subnav__cancel {
+    visibility: visible;
+    margin-top: 2.25em;
   }
+  /* @micropattern:pseudo-dataicon-middle */
   /*
-            This zeros out Start-CSS form margin. Probably not the most robust.
-        */
-  .nav-bar .nav-bar__additional > form {
-    margin-bottom: 0;
-  }
-  /*
-            This will probably be better off in utility classes, but that introduces more
-            dependancies.
-            An alternative could be:
-            ```
-            .nav-bar .nav-bar__additional--push-end > * {
-                float: right;
-            }
-            ```
-            but I like the idea of controlling this from the parent, rather than an unknown child.
+        .nav-bar .subnav__open::after,
+        .nav-bar .subnav__cancel::after {
+            /* These styles are enough for modern FF to V-center the icon: *
+            display: inline-block;
+            vertical-align: middle;
 
+            //width: 12px;
+
+            /* IE10-11 flexbox chokes without width: *
+            //@include fallback-rem(width, ($fallback--nav-bar--height / 2 ));
+            /* IE11 flexbox stretches icon without height: *
+            //@include fallback-rem(height, ($fallback--nav-bar--height / 2 ));
+            /* But now blink pushes the icon to the bottom without line-height: 0. *
+            line-height: 0;
+        }
         */
-  .nav-bar .nav-bar__additional--push-end {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    /* 1 */
-    -webkit-justify-content: flex-end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-  }
+  /*
+        .nav-bar .subnav__open::after {
+            width: $fallback--nav-bar___open--size;
+        }
+
+        .nav-bar .subnav__cancel::after {
+            width: $fallback--nav-bar___cancel--size;
+        }
+
+        .nav-bar .subnav__open::after {
+            content: url($fallback--nav-bar__open--svg);
+        }
+
+        .nav-bar .subnav__cancel::after {
+            content: url($fallback--nav-bar__cancel--svg);
+        }
+        */
+  /*.nav-bar .subnav__open--fake::after {
+            margin-left: $fallback--nav-bar--spacing * 2;
+        }*/
+  /*.subnav__open svg,
+        .subnav__cancel svg {
+            vertical-align: text-bottom;
+        }*/
 }
 
 /* IE9 hacks: */
 /*
     */
-/****
-    @media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
-        /*
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+  /*
             The icons force a massive height increase for some reason.
             Setting the height to this only works fine because on 'wide' the nav-bar can't be
             allowed to be double-lined or it breaks, and on 'narrow' the icons are hidden.
-        * /
-
-        .nav-bar .subnav__open,
-        .nav-bar .subnav__cancel {
-            height: $fallback--nav-bar--height;
-        }
-
-
-        //.nav-bar .subnav__cancel::after,
-        .nav-bar .subnav__open::after {
-            // Increase icon width due to odd cropping, then rescale down:
-            width: 1rem;
-            -ms-transform: scale(0.5);
-        }
-
-        .nav-bar .subnav__cancel::after {
-            // Increase icon width due to odd cropping, then rescale down:
-            width: 1.1rem;
-            -ms-transform: scale(0.8);
-        }
-    }
-*/
-@media screen and (min-width: 30em) and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
-  .nav-bar {
-    display: table;
-    width: 100%;
+        */
+  .nav-bar .subnav__open,
+  .nav-bar .subnav__cancel {
+    height: 2.25em;
   }
-  .nav-bar .nav-bar__title {
-    display: table-cell;
-    width: 1%;
+  .nav-bar .subnav__open::after {
+    /* Increase icon width due to odd cropping, then rescale down: */
+    width: 1rem;
+    -ms-transform: scale(0.5);
   }
-  .nav-bar .nav-bar__inner {
-    display: table-cell;
-    width: 99%;
+  .nav-bar .subnav__cancel::after {
+    /* Increase icon width due to odd cropping, then rescale down: */
+    width: 1.1rem;
+    -ms-transform: scale(0.8);
   }
 }
 
 /* -----------------------------------------------------------------------------------------------*/
 /* ---------------------------------------------------------------------------------------------- */
 /* -- Fit layout -------------------------------------------------------------------------------- */
-/****
-    @media only screen and (min-width: $fallback--nav-bar--breakpoint--enhanced) {
-        .nav-bar--fit {}
+@media only screen and (min-width: 30em) {
+  .nav-bar--fit .nav-bar__items {
+    width: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+  .nav-bar--fit .nav-bar__item {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    text-align: center;
+    border: 0;
+  }
+  .nav-bar--fit .has-subnav {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
 
-            .nav-bar--fit .nav-bar__items {
-                width: 100%;
-
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                display: flex;
-
-                -webkit-justify-content: space-around;
-                          -ms-flex-pack: distribute;
-                        justify-content: space-around;
-            }
-
-
-            .nav-bar--fit .nav-bar__item {
-                -webkit-flex: 0 0 auto;
-                    -ms-flex: 0 0 auto;
-                        flex: 0 0 auto;
-                text-align: center;
-                // Borders don't really work in this scenario:
-                border: 0;
-            }
-
-            .nav-bar--fit .has-subnav {
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-justify-content: center;
-                          -ms-flex-pack: center;
-                        justify-content: center;
-            }
-    }
-*/
 /* -----------------------------------------------------------------------------------------------*/
 /*
-    These classes help control the layout in the nav-bar__title.
+    These classes help control the layout in the nav-bar__title-section.
 
     There are different ways to achieve these layouts with pros and cons to each.
     There are also differences in possible behaviours so there's no right/wrong way.
@@ -2935,17 +2825,18 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 
     RELATIVELY CENTERED (centered on remaining space)
 
-    .nav-bar__title--relatively-centered {
+    .nav-bar__title-section--relatively-centered {
         margin: 0 auto;
     }
 
 */
-/****
-    .nav-bar__title--relatively-centered {
-        margin: 0 auto;
-    }
-*/
-/*------------------------------------------------------------------------------------------------*
+.nav-bar__title-section--relatively-centered {
+  margin: 0 auto;
+}
+
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Search Form Pattern v1.0
+
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
     IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
@@ -2965,7 +2856,8 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
     for 28+.
 
 \*------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*    Import Fall-Back vars:
+/*------------------------------------------------------------------------------------------------*\
+    Import Fall-Back vars:
 
     Slightly hacky way of allowing the main UI colour of this pattern to be:
      - base-ui colour (if set)
@@ -3316,7 +3208,9 @@ _:-o-prefocus, body:last-child .nav-bar .subnav__heading {
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-/*------------------------------------------------------------------------------------------------*
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Sticky Footer Pattern v1.0.0
+
     Designed for use with the basic [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
     IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
     Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
@@ -3406,8 +3300,11 @@ $fallback-svg--border-color:      #666;
 $fallback-svg--link-bg-color:     #fff;
 $fallback-svg--link-bg-color-alt: #ffdd79;
 @import "../bower_components/Fall-Back-SVG/_svg";*/
-/*------------------------------------------------------------------------------------------------*\*------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------*    Import Fall-Back vars:
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Cookie Notice Pattern v0.1
+\*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*\
+    Import Fall-Back vars:
 
     Slightly hacky way of allowing the main UI colour of this pattern to be:
      - base-ui colour (if set)
@@ -3634,7 +3531,7 @@ $fallback-svg--link-bg-color-alt: #ffdd79;
 .card .card__body a:hover,
 .card .card__body a:active,
 .card .card__body a:focus {
-  color: #b9541f;
+  color: false;
   border-bottom: false;
 }
 
@@ -3832,7 +3729,6 @@ _:-ms-input-placeholder, :root .list-grid--center {
         color: lighten($fallback--base-ui-color, 20%);
     }
 */
-/* Help from http://www.mademyday.de/css-height-equals-width-with-pure-css.html */
 .proportional-container {
   position: relative;
   overflow: hidden;
@@ -3841,8 +3737,7 @@ _:-ms-input-placeholder, :root .list-grid--center {
 .proportional-container::before {
   content: "";
   display: block;
-  padding-top: 100%;
-  /* initial ratio of 1:1*/
+  width: 100%;
 }
 
 .proportional-container__content {
@@ -3853,12 +3748,13 @@ _:-ms-input-placeholder, :root .list-grid--center {
   right: 0;
 }
 
-/* Make the iamge fill the widrh and be vertically centered: */
+/* Make the image fill the width and be vertically centered: */
 /* (in portrait images this will leave gaps at the sides) */
 .proportional-container__image-cover {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  left: 0;
   top: 50%;
+  width: 100%;
   transform: translateY(-50%);
 }
 
@@ -3872,7 +3768,11 @@ _:-ms-input-placeholder, :root .list-grid--center {
   }
 }
 
-.proportional-container--2-1:before {
+.proportional-container--1-1::before {
+  padding-top: 100%;
+}
+
+.proportional-container--2-1::before {
   padding-top: 50%;
 }
 
@@ -3892,7 +3792,6 @@ _:-ms-input-placeholder, :root .list-grid--center {
 /* ---------------------------------------------------------------------------------------------- */
 /* --| SHAME |----------------------------------------------------------------------------------- */
 h1, h2, h3 {
-  font-family: 'Vollkorn', serif;
   font-weight: normal;
 }
 
@@ -4010,6 +3909,14 @@ main :target + ul {
   hyphens: auto;
 }
 
+@media (max-width: 35em) {
+  .card .card__body {
+    margin-top: 0;
+    margin-left: -2.4rem;
+    margin-right: -2.4rem;
+  }
+}
+
 /*
 .sticky-footer-expand {
 	position: relative;
@@ -4029,5 +3936,3 @@ main :target + ul {
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-
-/*# sourceMappingURL=style.css.map */
