@@ -12,3 +12,4 @@ Useful stuff has come from Normalise.css and the HTML5 Boilerplate, but I'm coll
 * [Better Links for Printed Web Pages with JavaScript](http://thenewcode.com/1186/Better-Links-for-Printed-Web-Pages-with-JavaScript)
 * [Gutenberg - Modern framework to print correctly](https://github.com/BafS/Gutenberg)
 * [A Guide To The State Of Print Stylesheets In 2018](https://www.smashingmagazine.com/2018/05/print-stylesheets-in-2018/)
+* [Designing For Print With CSS](https://www.smashingmagazine.com/2015/01/designing-for-print-with-css/)
