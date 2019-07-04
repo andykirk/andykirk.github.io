@@ -8,3 +8,4 @@ Articles on CSS Tricks:
 
 * [Handling Long Words and URLs (Forcing Breaks, Hyphenation, Ellipsis, etc)](https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/)
 * [Handling Long and Unexpected Content in CSS](https://css-tricks.com/handling-long-unexpected-content-css)
+* [Wrapping long words with CSS or HTML](https://www.cjcid.com/articles/wrapping-long-words-css-html)
