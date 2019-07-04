@@ -1,6 +1,6 @@
 ---
 title: Is there really such a thing as a 'purely decorative' image?
-tags: [Thoughts, Images, Markup]
+tags: [Images, Markup, Thoughts]
 ---
 Well, technically, yes. You can use an `<img>` tag to load any image, but when was the last time anyone used one as part of a decorative flourish on site's design? Or anywhere else for that matter?
 That's all done with CSS these days, right?
