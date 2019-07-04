@@ -1,6 +1,6 @@
 ---
 title: Media Queries
-tag: [Accessibility, Lauout]
+tag: [Accessibility, Design, Layout]
 ---
 A useful primer:
 
