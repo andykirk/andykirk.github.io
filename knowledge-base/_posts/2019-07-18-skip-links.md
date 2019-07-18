@@ -1,6 +1,6 @@
 ---
 title: Skip Links
-tag: [CSS, Skip Links]
+tag: [Accessibility, CSS, Skip Links]
 ---
 Useful reference:
 
