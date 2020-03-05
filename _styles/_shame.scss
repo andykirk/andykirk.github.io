@@ -10,7 +10,7 @@ h1, h2, h3 {
 }
 
 main {
-    padding: $fallback--base-rem-space-unit;
+    padding: $f__base-rem-space-unit;
 	background: rgba(0,0,0,0.6);
 	position: relative;
 }
@@ -46,7 +46,7 @@ main :target + ul {
 /**/
 
 .sticky-footer-expand {
-    background: $fallback--base-ui-color;
+    background: $f__base-ui-color;
 	// This is so the background image div will fill _this_ container:
 	position: relative;
 

@@ -35,4 +35,19 @@ kramdown:
 
 
 
-exclude: ["node_modules", "bower_components", "Gemfile", "Gemfile.lock", "Gruntfile.js", "bower.json", "package.json", "README.md"]
+exclude: [
+    "_archive",
+    "_images",
+    "_scripts",
+    "_styles",
+    "bower.json",
+    "bower_components",
+    "Gemfile",
+    "Gemfile.lock",
+    "gulpfile.js",
+    "local-gulp.bat",
+    "local-jekyll.bat",
+    "node_modules",
+    "package.json",
+    "README.md"
+]

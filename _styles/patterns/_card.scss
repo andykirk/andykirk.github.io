@@ -130,7 +130,7 @@ $card-pull: 5rem !default;
         }
         
         .card a.card__cta {
-            @include button(
+            @include f__button(
                 $card--text-color, 
                 $card--background-color,
                 $card--base-color,
