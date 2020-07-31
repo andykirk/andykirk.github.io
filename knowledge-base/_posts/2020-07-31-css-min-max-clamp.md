@@ -1,6 +1,6 @@
 ---
 title: CSS min(), max, and clamp()
-tag: [Accessibility, CSS, Skip Links]
+tag: [CSS]
 ---
 A thorough look at the CSS functions `min()`, `max()` and `clamp()`:
 
