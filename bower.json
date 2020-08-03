@@ -1,12 +1,10 @@
 {
-    "name": "AndyKirk",
+    "name": "andykirk.net",
     "description": "This file lists all the front-end packages required for the project.",
     "homepage": "https://github.com/andykirk/andykirk.github.io",
     "dependencies": {
         "Fall-Back-Start-CSS":     "https://github.com/Fall-Back/Start-CSS.git",
         "Fall-Back-Patterns":      "https://github.com/Fall-Back/Patterns.git",
-        "Fall-Back-Cookie-Notice": "https://github.com/Fall-Back/Cookie-Notice.git",
-        "Fall-Back-Filterability": "https://github.com/Fall-Back/Filterability.git",
-        "Details-Polyfill":        "https://github.com/javan/details-element-polyfill.git"
+        "Fall-Back-Cookie-Notice": "https://github.com/Fall-Back/Cookie-Notice.git"
     }
 }

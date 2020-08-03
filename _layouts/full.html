@@ -2,12 +2,35 @@
 <html lang="en-gb">
 <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} | Andy Kirk</title>
+
     <meta name="description" content="{{ site.description }}">
     <meta name="author" content="Andy Kirk">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	
     <!-- Built with Jekyll and FallBack patterns -->
+
+    <style>
+        /* FOUC font match fallback */
+        /* Match your final body webfont with this tool: https://meowni.ca/font-style-matcher/ */
+        /* Paste the output here */
+        
+        /* Tiny fallback styles */
+        /* (https://github.com/Fall-Back/Base/edit/master/tiny-fallback-styles.css) */
+        body{padding:1em;margin:0 auto;max-width: 50em;}
+        img{max-width:100%;-ms-interpolation-mode: bicubic;}
+        [hidden]{display:none;}
+        main{display:block;}
+
+        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
+        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+    
+        <!--
+        Accessible font loading. FOUT is a lesser evil than FOIT.
+        (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
     
     <!--
         Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE 10+ (including Edge)
@@ -29,20 +52,6 @@
 </head>
 <body role="document"{% if page.body_id %} class="{{ page.body_id }}"{% endif %}>
     
-    <svg xmlns="http://www.w3.org/2000/svg" display="none">
-        <symbol id="icon-triangle-down" viewBox="0 0 12 16">
-            <path d="M1,6h10l-5,5L1,6z"></path>
-        </symbol>
-        <symbol id="icon-cross" viewBox="0 0 16 16">
-            <path d="M15.5,2L14,0.5l-6,6l-6-6L0.5,2l6,6l-6,6L2,15.5l6-6l6,6l1.5-1.5l-6-6L15.5,2z"></path>
-        </symbol>
-        <symbol id="icon-menu" viewBox="0 0 16 16">
-            <rect x="0" width="16" height="3"/>
-            <rect x="0" y="6" width="16" height="3"/>
-            <rect y="12" width="16" height="3"/>
-        </symbol>
-        <!-- Other <symbol>s? -->
-    </svg>
 
     <div class="no-style-notice  no-css-only" aria-hidden="true">
         <hr />
@@ -51,93 +60,27 @@
         </p>
         <hr />
     </div>
-
-    <div class="sticky-footer-wrap">           
-        <header class="header">
         
-            <div class="over-panel  over-panel--slide" id="nav">
-                <a href="#" tabindex="-1" class="over-panel__overlay  js-no-history"></a>
-
-                <div class="nav-bar">
-                    <div class="nav-bar__title-section">
-
-                        <div class="nav-bar__title-text">
-                            <a href="/" class="nav-bar__link">
-                            <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 36" width="48px" height="36px">
-                                <polygon fill="#82949b" points="0,36 24,36 24,0 "/>
-                                <polygon fill="#82949b" points="48,0 24,0 36,18 "/>
-                                <polygon fill="#FBB15D" points="24,0 24,36 36,18 "/>
-                                <polygon fill="#DC6B2C" points="24,36 36,18 48,36 "/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 36" width="48px" height="36px">
-                                <polygon fill="#ffffff" points="0,36 24,36 24,0 " opacity="0.9"/>
-                                <polygon fill="#ffffff" points="48,0 24,0 36,18 " opacity="0.9"/>
-                                <polygon fill="#ffffff" points="24,0 24,36 36,18 " opacity="0.5"/>
-                                <polygon fill="#ffffff" points="24,36 36,18 48,36 " opacity="0.9"/>
-                            </svg>-->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 36" width="48px" height="36px">
-                                <polygon fill="#2E4D58" points="0,36 24,36 24,0 "/>
-                                <polygon fill="#2E4D58" points="48,0 24,0 36,18 "/>
-                                <polygon fill="#FBB15D" points="24,0 24,36 36,18 "/>
-                                <polygon fill="#DC6B2C" points="24,36 36,18 48,36 "/>
-                            </svg>
-                            <span>Andy Kirk</span>
-                            </a>
-                        </div>
-                        
-                        <a href="#nav" class="over-panel__open  js-no-history" hidden><svg display="none" class="icon" aria-label="Open menu"><use xlink:href="#icon-menu"></use></svg></a>
-
-                    </div>
-                    <div class="over-panel__wrap">
-                        <a href="#" class="over-panel__close  js-no-history" hidden><svg display="none" class="icon" aria-label="Close menu"><use xlink:href="#icon-cross"></use></svg></a>
-
-                        <nav class="nav-bar__inner">
-                            <h2 class="visually-hidden" hidden aria-hidden="false">Navigation</h2>
-                            <!--<form action="/search" id="searchform" class="search-form  search-form--right" method="GET">
-                                <input type="search" class="search-form__field" id="search" placeholder="Search" name="s" value="" aria-label="Search" />
-                                <button class="search-form__submit" type="submit">
-                                    <span>
-                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
-                                            <path fill="#333333" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                                            <text y="-1">Search</text>
-                                        </svg>
-                                    </span>
-                                </button>
-                                <a href="#" tabindex="-1" class="search-form__cancel  icon-wrap  js-no-history"><svg display="none" class="icon"><use xlink:href="#icon-cross"></use></svg></a>-->
-                                <ul class="search-form__collapse  nav-bar__items">
-                                    <li class="nav-bar__item"><a href="/projects" class="nav-bar__link"><span>Projects</span></a></li>
-                                    <li class="nav-bar__item"><a href="/knowledge-base" class="nav-bar__link"><span>Knowledge Base</span></a></li>
-                                    <!--<li class="nav-bar__item  has-subnav">
-                                        <span class="subnav__heading">Patterns:</span>
-                                        <a href="#patterns-submenu" data-content="Patterns:" class="nav-bar__link  subnav__open  js-no-history" aria-label="Patterns Submenu" hidden> <svg display="none" class="icon  icon--narrow"><use xlink:href="#icon-triangle-down"></use></svg></a>
-                                        <ul class="subnav" id="patterns-submenu">
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Nav-Bar" class="subnav__link">Nav Bar</a></li>
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Search-Form" class="subnav__link">Search Form</a></li>
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Off-Canvas" class="subnav__link">Off Canvas</a></li>
-                                            <li class="subnav__item"><a href="https://github.com/Fall-Back/Over-Panel" class="subnav__link">Over Panel</a></li>
-                                        </ul>
-                                        <a href="#" class="subnav__link  subnav__cancel  js-no-history" hidden><svg display="none" class="icon" aria-label="Close submenu"><use xlink:href="#icon-cross"></use></svg></a>
-                                    </li>-->
-                                </ul>
-                            <!--</form>-->
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <header class="header">
+        <nav class="nav-bar__inner">
+            <h2 hidden aria-hidden="false">Navigation</h2>
+            <ul class="search-form__collapse  nav-bar__items">
+                <li><a href="/"><span>Home</span></a></li>
+                <li><a href="/projects"><span>Projects</span></a></li>
+                <li><a href="/knowledge-base"><span>Knowledge Base</span></a></li>
+            </ul>
+        </nav>
+    </header>
         
-        <div class="sticky-footer-expand">
-            <main role="main" class="main-container">
-                {{ content }}
-            </main>
-        </div>
-        
-        <footer class="sticky-footer" role="contentinfo">
-            <p class="page-footer">
-                <a href="#">Top</a> | <a href="https://github.com/andykirk/andykirk.github.io">Github</a> | &copy; Andy Kirk 2016
-            </p>
-        </footer>
-    </div>
+    <main id="main">
+        {{ content }}
+    </main>
+    
+    <footer role="contentinfo">
+        <p class="page-footer">
+            <a href="#">Top</a> | <a href="https://github.com/andykirk/andykirk.github.io">Github</a> | &copy; Andy Kirk 2020
+        </p>
+    </footer>
 
 
     <script src="/js/script.min.js"></script>
