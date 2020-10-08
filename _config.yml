@@ -5,6 +5,7 @@ description: "Portfolio and Blog."
 repository: "andykirk/andykirk.github.io"
 baseurl: ""
 url: "http://andykirk.net"
+port: 4003
 
 # Defaults
 defaults:
