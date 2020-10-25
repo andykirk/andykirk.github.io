@@ -50,10 +50,10 @@
     <meta name="theme-color" content="#ffffff">
     
 </head>
-<body role="document"{% if page.body_id %} class="{{ page.body_id }}"{% endif %}>
+<body role="document"{% if page.body_id %} id="{{ page.body_id }}"{% endif %}>
     
 
-    <div class="no-style-notice  no-css-only" aria-hidden="true">
+    <div aria-hidden="true">
         <hr />
         <p>
             <b>Notice:</b> You are viewing an <em>unstyled</em> version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
@@ -61,10 +61,10 @@
         <hr />
     </div>
         
-    <header class="header">
-        <nav class="nav-bar__inner">
+    <header>
+        <nav>
             <h2 hidden aria-hidden="false">Navigation</h2>
-            <ul class="search-form__collapse  nav-bar__items">
+            <ul>
                 <li><a href="/"><span>Home</span></a></li>
                 <li><a href="/projects"><span>Projects</span></a></li>
                 <li><a href="/knowledge-base"><span>Knowledge Base</span></a></li>
@@ -77,7 +77,7 @@
     </main>
     
     <footer role="contentinfo">
-        <p class="page-footer">
+        <p>
             <a href="#">Top</a> | <a href="https://github.com/andykirk/andykirk.github.io">Github</a> | &copy; Andy Kirk 2020
         </p>
     </footer>
