@@ -17,6 +17,10 @@ $f__root-font-size: 10px;
 @import '../bower_components/Fall-Back-Start-CSS/scss/_start-icons.scss';
 @import '../bower_components/Fall-Back-Start-CSS/scss/_start-experimental.scss';
 
-$e__main-position: 4;
+
+$e__listing__display-type: grid;
+//$e__listing__display-type: columns;
+$e__listing__item-basis: 25rem;
+$e__main-position: 5;
 
 @import '../bower_components/Fall-Back-Elementary/scss/_0-elementary.scss';
