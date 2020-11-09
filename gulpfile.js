@@ -168,11 +168,9 @@ exports.img = series(do_svg2png, do_imagemin, do_svgmin);
 /*------------------------------------------------------------------------------------------------*\
     JS
 \*------------------------------------------------------------------------------------------------*/
-const js_src             = './_scripts/';
-const js_dest            = './js/';
-const js_filename        = 'script.js';
-const js_map_filename    = 'map.js';
-const js_filter_filename = 'filter.js';
+const js_src      = './_scripts/';
+const js_dest     = './js/';
+const js_filename = 'script.js';
 
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -182,50 +180,12 @@ const uglify = require('gulp-uglify');
 function do_concat_js(cb) {
     console.log('Running concat_js...');
 
-    // Common script:
-    /*gulp.src([
-        './_scripts/js/cookie-notice-settings.js',
-        './_scripts/js/fit-contents.js',
-        './_scripts/js/layout-adjustments.js',
-        './_scripts/js/image-cover.js',
-        './bower_components/Fall-Back-Cookie-Notice/cookie-notice.js',
-        './bower_components/Fall-Back-Patterns/Nav Bar/js/nav-bar.js',
-        './bower_components/Fall-Back-Patterns/Over Panel/js/over-panel.js',
-        './bower_components/Fall-Back-Patterns/Dropdown/js/dropdown.js',
-        './bower_components/Details-Polyfill/dist/details-element-polyfill.js'
-    ])*/
     gulp.src([
-        './_scripts/js/cookie-notice-settings.js',
-        './_scripts/js/fit-contents.js',
-        './_scripts/js/layout-adjustments.js',
-        './_scripts/js/image-cover.js',
-        './bower_components/Details-Polyfill/dist/details-element-polyfill.js'
+        js_src + 'cookie-notice-settings.js',
+        './bower_components/Fall-Back-Cookie-Notice/cookie-notice.js'
     ])
     .pipe(concat(js_filename))
     .pipe(gulp.dest(js_src));
-
-    // Separate map script:
-    /*gulp.src([
-        './_scripts/vendor/leaflet/leaflet-src.js',
-        './_scripts/vendor/leaflet-svgicon/leaflet-svg-icon.js',
-        './_scripts/js/leaflet-map.js',
-        './_scripts/vendor/leaflet-fullscreen/Control.FullScreen.js'
-    ])
-
-    .pipe(concat(js_map_filename))
-    .pipe(gulp.dest(js_src));
-    */
-
-    // Separate filter script:
-    /*gulp.src([
-        './bower_components/Mark-JS/dist/mark.js',
-        './bower_components/Fall-Back-Filterability/filterability.js'
-    ])
-
-    .pipe(concat(js_filter_filename))
-    .pipe(gulp.dest(js_src));
-    */
-
 
     // Callback:
     cb();
@@ -236,11 +196,6 @@ function do_uglify(cb) {
     console.log('Running uglify...');
 
     pump([
-        /*gulp.src([
-            js_src + js_filename,
-            js_src + js_map_filename,
-            js_src + js_filter_filename
-        ]),*/
         gulp.src([
             js_src + js_filename
         ]),
@@ -257,6 +212,8 @@ exports.uglify    = do_uglify;
 // This combined task makes it convenient to run all the steps together.
 exports.js = series(do_concat_js, do_uglify);
 
+exports.js_concat = do_concat_js;
+exports.js_uglify = do_uglify;
 
 
 /*------------------------------------------------------------------------------------------------*\
