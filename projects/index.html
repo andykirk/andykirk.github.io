@@ -3,32 +3,37 @@ layout: full
 title: Projects
 body_id: projects
 ---
+<div>
 
-<h1>{{ page.title }}</h1>
+    <header>
+        <h1>{{ page.title }}</h1>
+    </header>
 
-<div class="list-grid  list-grid--basis-20  list-grid--gutter-small">
+    <ul>
     {% for post in site.posts %}{% if post.role != '' %}
-    <div class="list-grid__item  card-wrap">
-        <article class="card">
+    <li>
             {% if post.cloudinary_id != "" %}
-            <div class="card__image  card__offset-padding  proportional-container  proportional-container--2-1">
-                <div class="proportional-container__content ">
-                    <a href="{{ post.url }}" class="card__image-link">
-                        <img src=" http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}" alt="" class="proportional-container__image-cover">
-                    </a>
-                </div>
-            </div>      
-            <div class="card__pull"></div>
+                {% assign img_src = "http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
+            {% else %}
+                {% assign img_src = false %}
             {% endif %}
-            <div class="card__body">
-                <dl>
-                    <dt>Project:</dt>
-                    <dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
-                    <dt>Role:</dt>
-                    <dd>{{ post.role }}</dd>
-                </dl>
-            </div>
-        </article>
-    </div>
+            {% capture content %}
+                <p>Role: {{ post.role }}</p>
+            {% endcapture %}
+            {% capture cta_text %}
+                Read more<span hidden aria-hidden="false"> about {{ post.title }}</span>
+            {% endcapture %}
+            {% include card.html
+                title = post.title
+                img_src = img_src
+                img_alt = ""
+                hx = "2"
+                content = content
+                cta_url = post.url
+                cta_text = cta_text
+            %}
+        </li>
     {% endif %}{% endfor %}
+    </ul>
+    
 </div>

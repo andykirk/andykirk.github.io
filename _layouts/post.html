@@ -2,25 +2,22 @@
 layout: full
 ---
 {% assign post = page %}
-<article class="card">
+<article>
     <header>
         {% if post.cloudinary_id != "" %}
-        <div class="card__image  card__offset-padding  proportional-container  proportional-container--2-1">
-            <div class="proportional-container__content ">
-                <img src=" http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}" alt="" class="proportional-container__image-cover">
-            </div>
+        <div>
+            <img src=" http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}" alt="">
         </div>
-        <div class="card__pull"></div>
         {% endif %}
-        <h1 class="card__title">{{ post.title }}</h1>
+        <h1>{{ post.title }}</h1>
         <p>
-            <time class="post__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%-d %B, %Y' }}</time>
+            <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%-d %B, %Y' }}</time>
         </p>
     </header>
-    <div class="card__body">
-        {{ post.content }}
-    </div>
-    <footer class="card__body-footer">
+
+    {{ post.content }}
+
+    <footer>
         <p>
             {% if post.tags != empty %}
             Tags:

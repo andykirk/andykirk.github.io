@@ -1,0 +1,3 @@
+<a {% if page.url == include.href %}href="#main" aria-current="page"{% else %}href="{{ include.href }}"{% endif %}>
+    <span>{{ include.text }}</span>
+</a>
