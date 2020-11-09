@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-gb">
+<html lang="en-gb" id="{{ page.title | slugify }}">
 <head>
     <meta charset="utf-8">
     <title>{{ page.title }} | Andy Kirk</title>
@@ -11,19 +11,15 @@
     <!-- Built with Jekyll and FallBack patterns -->
 
     <style>
-        /* FOUC font match fallback */
-        /* Match your final body webfont with this tool: https://meowni.ca/font-style-matcher/ */
-        /* Paste the output here */
-        
-        /* Tiny fallback styles */
-        /* (https://github.com/Fall-Back/Base/edit/master/tiny-fallback-styles.css) */
-        body{padding:1em;margin:0 auto;max-width: 50em;}
-        img{max-width:100%;-ms-interpolation-mode: bicubic;}
+        /* Tiny fallback styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md) */
+        body{font-family:sans-serif;padding:1em;margin:0 auto;max-width:50em;}
+        img{max-width:100%;-ms-interpolation-mode:bicubic;}
         [hidden]{display:none;}
         main{display:block;}
+        pre{overflow-x:scroll;overflow-y:auto;}
 
         /* For YouTube via http://embedresponsively.com. May or may not be needed. */
-        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top 0;left:0;width:100%;height:100%;}
     </style>
     
         <!--
@@ -31,15 +27,8 @@
         (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
     -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    
-    <!--
-        Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE 10+ (including Edge)
-        FF29+ 
-    -->
-    <link rel="stylesheet" href="/css/style.min.css" media="
-        only all and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none),
-        only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)
-    ">
+
+    {% include cut_em2.html css="/css/style.min.css" %}
     
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -50,24 +39,39 @@
     <meta name="theme-color" content="#ffffff">
     
 </head>
-<body role="document"{% if page.body_id %} id="{{ page.body_id }}"{% endif %}>
+<body role="document">
     
 
-    <div aria-hidden="true">
-        <hr />
+    <div data-css-only="true">
+        <hr aria-hidden="true" />
         <p>
-            <b>Notice:</b> You are viewing an <em>unstyled</em> version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
+            <b>Notice:</b> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="http://browsehappy.com/">please consider upgrading</a>.
         </p>
         <hr />
     </div>
         
     <header>
-        <nav>
-            <h2 hidden aria-hidden="false">Navigation</h2>
+        <nav aria-labelledby="primary-navigation">
+            <b id="primary-navigation" hidden>Primary</b>
             <ul>
-                <li><a href="/"><span>Home</span></a></li>
-                <li><a href="/projects"><span>Projects</span></a></li>
-                <li><a href="/knowledge-base"><span>Knowledge Base</span></a></li>
+                <li>
+                    {% include nav_item.html
+                        href="/"
+                        text="Andy Kirk"
+                    %}
+                </li>
+                <li>
+                    {% include nav_item.html
+                        href="/projects/"
+                        text="Projects"
+                    %}
+                </li>
+                <li>
+                    {% include nav_item.html
+                        href="/knowledge-base/"
+                        text="Knowledge Base"
+                    %}
+                </li>
             </ul>
         </nav>
     </header>
@@ -76,7 +80,7 @@
         {{ content }}
     </main>
     
-    <footer role="contentinfo">
+    <footer>
         <p>
             <a href="#">Top</a> | <a href="https://github.com/andykirk/andykirk.github.io">Github</a> | &copy; Andy Kirk 2020
         </p>

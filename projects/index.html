@@ -3,32 +3,37 @@ layout: full
 title: Projects
 body_id: projects
 ---
-
-<h1>{{ page.title }}</h1>
-
 <div>
+
+    <header>
+        <h1>{{ page.title }}</h1>
+    </header>
+
+    <ul>
     {% for post in site.posts %}{% if post.role != '' %}
-    <div>
-        <article>
+    <li>
             {% if post.cloudinary_id != "" %}
-            <div>
-                <div>
-                    <a href="{{ post.url }}">
-                        <img src=" http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/{{ post.cloudinary_id }}" alt="">
-                    </a>
-                </div>
-            </div>      
-            <div></div>
+                {% assign img_src = "http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
+            {% else %}
+                {% assign img_src = false %}
             {% endif %}
-            <div>
-                <dl>
-                    <dt>Project:</dt>
-                    <dd><a href="{{ post.url }}">{{ post.title }}</a></dd>
-                    <dt>Role:</dt>
-                    <dd>{{ post.role }}</dd>
-                </dl>
-            </div>
-        </article>
-    </div>
+            {% capture content %}
+                <p>Role: {{ post.role }}</p>
+            {% endcapture %}
+            {% capture cta_text %}
+                Read more<span hidden aria-hidden="false"> about {{ post.title }}</span>
+            {% endcapture %}
+            {% include card.html
+                title = post.title
+                img_src = img_src
+                img_alt = ""
+                hx = "2"
+                content = content
+                cta_url = post.url
+                cta_text = cta_text
+            %}
+        </li>
     {% endif %}{% endfor %}
+    </ul>
+    
 </div>

@@ -1,26 +1,30 @@
-/*
-
-*/
-
-$s__base-font-family: 'Lato', sans-serif;
-
-$s__root-font-size: 10px;
 
 
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start_functions.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start_mixins.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
-//@import '../bower_components/Fall-Back-Start-CSS/scss/_start-classes.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start-accessibility.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start-utilities.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start-icons.scss';
-@import '../bower_components/Fall-Back-Start-CSS/scss/_start-experimental.scss';
+$s__base-ui-color: #333333;
 
-
-$e__listing__display-type: grid;
-//$e__listing__display-type: columns;
-$e__listing__item-basis: 25rem;
 $e__main-position: 5;
+
+$e__listing__item--basis: 25rem;
+$e__listing__display-type: columns;
+
+$s__html-background-color: darken($s__base-ui-color, 15%);
+$s__main-background-color: lighten($s__base-ui-color, 61%);
+
+
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
+
+/*-------------------------------------------------------------------------------------------------|
+
+    ELEMENTARY
+
+|-------------------------------------------------------------------------------------------------*/
 
 @import '../bower_components/Fall-Back-Elementary/scss/_0-elementary.scss';
