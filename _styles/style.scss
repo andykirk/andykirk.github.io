@@ -12,7 +12,6 @@ $s__main-background-color: lighten($s__base-ui-color, 61%);
 
 
 
-
 /*-------------------------------------------------------------------------------------------------|
 
     START-CSS
@@ -20,6 +19,19 @@ $s__main-background-color: lighten($s__base-ui-color, 61%);
 |-------------------------------------------------------------------------------------------------*/
 
 @import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
+
+
+/*-------------------------------------------------------------------------------------------------|
+
+    COOKIE NOTICE
+
+|-------------------------------------------------------------------------------------------------*/
+
+$s__cookie-notice__link--color:      lighten($s__base-ui-color, 60%);
+$s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
+
+@import '../bower_components/Fall-Back-Cookie-Notice/_cookie-notice.scss';
+
 
 /*-------------------------------------------------------------------------------------------------|
 
