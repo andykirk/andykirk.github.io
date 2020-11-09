@@ -1,69 +1,3 @@
-/*
-    Prevents in-page action link clicks from being added to the browser history.
-    If the JS fails to load or doesn't run, the actions still work but history is added to.
-    I believe this is an acceptable fallback.
-    
-    Both plain JS and jQuery versions available
-    Un/comment the one you want to use.
-    May consider auto-detecting jQuery to decide which one to use.
-*/
-
-// Prevent errors in in-supporting browsers (old IE and old FF):
-if (document.getElementsByClassName) {
-    window.onload = (function(onload) {
-        return function(event) {
-            onload && onload(event);
-            
-            // Plain JS version:
-            var links = document.getElementsByClassName('js-no-history');
-            var l     = links.length;
-            for(var i = 0; i < l; i++)
-            {
-                links.item(i).addEventListener('click', function(e) {
-                    e.preventDefault();
-                    location.replace(this.href);
-                }, false);
-            }
-            
-            // jQuery version:
-            /*
-            $(".js-no-history").on("click", function(e) {
-                e.preventDefault();
-                location.replace(e.target.href)
-            });
-            */
-        }
-    }(window.onload));
-}
-/*
-    Adds the Opera Mini class name and provides tweaks for some of the odd Opera Mini behaviour.
-    I've not managed to disable JS on Opera Mini, so I guess this is safe.
-*/
-var isOperaMini  = (navigator.userAgent.indexOf('Opera Mini') > -1
-                 || navigator.userAgent.indexOf('OPiOS') > -1);
-/*var isOperaMini8 = (navigator.userAgent.indexOf('Opera Mini/8') > -1);*/
-if (isOperaMini) {
-    var root = document.documentElement;
-    root.className += " opera-mini";
-    
-    /*if (isOperaMini8) {
-        var root = document.documentElement;
-        root.className += "-8";
-    }*/
-    
-    /* Add input size attribute for Opera Mini so that the input can collapse */
-    window.onload = (function(onload) {
-        return function(event) {
-            onload && onload(event);
-
-            var search_fields = document.getElementsByClassName('search-form__field');
-            var i = search_fields.length;
-            while (i--) {
-                search_fields[i].setAttribute("size", "1");
-            }
-        }
-    }(window.onload));
-}
 /*------------------------------------------------------------------------------------------------*\
     Fall-Back Cookie Notice Pattern v0.1
     ------------------------------------
@@ -86,51 +20,70 @@ var cookie_html                   =
 '<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
 '</div>';
 
-/*------------------------------------------------------------------------------------------------*\
-    Fall-Back Cookie Notice Pattern v0.1
-\*------------------------------------------------------------------------------------------------*/
-
-function createCookie(name,value,days) {
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime()+(days*24*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
+/*!
+    Fall-Back Cookie Notice v1.1.0
+    https://github.com/Fall-Back/Cookie-Notice
+    Copyright (c) 2017, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+*/
+(function() {
+    var ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
     }
-    else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/";
-}
-
-function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {
-    createCookie(name,"",-1);
-}
-
-
-var accepted_cookies = readCookie(cookie_name);
-if (!accepted_cookies) {
-    var body_el = document.getElementsByTagName('body')[0];
-    body_el.insertAdjacentHTML('afterbegin', cookie_html);
     
-    document.getElementById(cookie_button_id).onclick = function(){
-        createCookie(cookie_name, 'true', cookie_expire_days);
-        document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
-        /*
-            Without CSS (or transition suport - IE9) the notice won't disappear, so wait until fade 
-            has finished then remove:
-        */
-        setTimeout(function(){
-            var c = document.getElementById(cookie_notice_id);
-            c.parentNode.removeChild(c);
-        }, cookie_notice_effect_duration);
-    };
-}
+    var createCookie = function(name,value,days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+    }
+
+    var readCookie = function(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    var eraseCookie = function(name) {
+        createCookie(name,"",-1);
+    }
+    
+    var cookienotice = {
+
+        init: function() {
+            var accepted_cookies = readCookie(cookie_name);
+            if (!accepted_cookies) {
+                var body_el = document.getElementsByTagName('body')[0];
+                body_el.insertAdjacentHTML('afterbegin', cookie_html);
+                
+                document.getElementById(cookie_button_id).onclick = function(){
+                    createCookie(cookie_name, 'true', cookie_expire_days);
+                    document.getElementById(cookie_notice_id).setAttribute('data-close', true);
+                    //document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
+                    /*
+                        Without CSS (or transition support - IE9) the notice won't disappear, so wait until fade 
+                        has finished then remove:
+                    */
+                    setTimeout(function(){
+                        var c = document.getElementById(cookie_notice_id);
+                        c.parentNode.removeChild(c);
+                    }, cookie_notice_effect_duration);
+                };
+            }
+        }
+    }
+    
+    ready(cookienotice.init);
+})();
