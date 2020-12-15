@@ -16,7 +16,7 @@ var cookie_expire_days            = 60;
 var cookie_notice_effect_duration = 1000;
 
 var cookie_html                   =
-'<div id="' + cookie_notice_id + '">' + "\n" +
+'<fieldset role="presentation" id="' + cookie_notice_id + '">' + "\n" +
 '<p>This site uses <a href="http://www.allaboutcookies.org/" rel="external noopener noreferrer" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
 '<button id="' + cookie_button_id + '">Dismiss</button>' + "\n" +
-'</div>';
+'</fieldset>';

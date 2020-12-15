@@ -12,10 +12,12 @@ layout: full
     </header>
 
     <h2>Recent posts</h2>
+    
+    <p>{{ site.posts.size }} posts</p>
 
-    <ul>
+    <div>
         {% for post in site.posts %}
-        <li>
+        <fieldset role="presentation">
             {% if post.cloudinary_id != "" %}
                 {% assign img_src = "http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
             {% else %}
@@ -31,7 +33,7 @@ layout: full
             {% endcapture %}
             {% endif %}
             {% capture cta_text %}
-                Read more<span hidden aria-hidden="false"> about {{ post.title }}</span>
+                Read more<span hidden="false" aria-hidden="false"> about {{ post.title }}</span>
             {% endcapture %}
             {% include card.html
                 title = post.title
@@ -44,7 +46,9 @@ layout: full
                 cta_text = cta_text
                 footer = footer
             %}
-        </li>
+        </fieldset>
+        <br data-css-only="true">
         {% endfor %}
-    </ul>
+    </div>
+    
 </div>

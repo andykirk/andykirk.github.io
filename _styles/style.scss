@@ -12,6 +12,9 @@ $e__listing__display-type: columns;
 $s__html-background-color: darken($s__base-ui-color, 15%);
 $s__main-background-color: lighten($s__base-ui-color, 61%);
 
+$es__page_main:    "body > main";
+$es__page_main__header--listing: "#{$es__page_main} > div > header";
+$es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ div";
 
 /*-------------------------------------------------------------------------------------------------|
 
@@ -41,3 +44,8 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 |-------------------------------------------------------------------------------------------------*/
 
 @import '../bower_components/Fall-Back-Elementary/scss/_0-elementary.scss';
+
+// Fieldsets use the module spacing fix by default but we don't want that in this case.
+#{$es__page_main__header--listing__list} > *:after {
+    display: none;
+}
