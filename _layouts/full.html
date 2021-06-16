@@ -1,35 +1,57 @@
-{% assign post = page %}
 <!doctype html>
-<html lang="en-gb" id="{{ page.title | slugify }}">
+<html lang="en-gb" id="{{ page.title | slugify }}" data-elementary>
 <head>
-    <meta charset="utf-8">
+    {% capture ignore %}
+
+
+    {% if layout.cut %}
+        {% assign cut = layout.cut %}
+    {% else %}
+        {% assign cut = "em2" %}
+    {% endif %}
+
+    {% assign cut_file = "cut_" | append: cut | append: ".html" %}
+    {% endcapture %}<meta charset="utf-8">
     <title>{{ page.title }} | Andy Kirk</title>
 
     <meta name="description" content="{{ site.description }}">
     <meta name="author" content="Andy Kirk">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
     <!-- Built with Jekyll and FallBack patterns -->
 
     <style>
-        /* Tiny fallback styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md) */
-        body{font-family:sans-serif;padding:1em;margin:0 auto;max-width:50em;}
-        img{max-width:100%;-ms-interpolation-mode:bicubic;}
-        [hidden]{display:none;}
-        main{display:block;}
-        pre{overflow-x:scroll;overflow-y:auto;}
-
-        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
-        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top 0;left:0;width:100%;height:100%;}
+        html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}body{font:1em/1.4 sans-serif;padding:1em;margin:0 auto;max-width:50em}article,aside,details,dialog,fieldset,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;margin-bottom:1em;margin-top:1em}summary{display:listitem}@media screen and (-ms-high-contrast:active),(-ms-high-contrast:none){summary{display:block}}mark{background:#ff0;color:#000}[hidden],template{display:none}fieldset{border:.1rem solid;padding:1em;border-color:#777}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}button,input,option,select,textarea{vertical-align:middle;min-height:2.2em}input[type=file]::-webkit-file-upload-button,input[type=file]::file-selector-button{min-height:inherit}input[type=file]::-ms-browse,input[type=file]::-ms-value{min-height:inherit}select{height:2.2em}select[multiple]{height:auto}option{display:flex;align-items:center}hr{border-style:solid;border-width:1px 0 0 0;height:0;margin:1em 0;color:#777}pre{width:100%;overflow-x:scroll;overflow-y:auto}table{width:100%;border:1px solid #777;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:#eee}caption,td,th{padding:.5em}
     </style>
-    
-        <!--
+
+    <!--[if !IE]><!-->
+
+    <style>
+        [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell}[data-fs-block~=flex]{display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
+    </style>
+
+    <!--
         Accessible font loading. FOUT is a lesser evil than FOIT.
         (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
     -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
-    {% include cut_em2.html css="/css/style.min.css" %}    
+    {% include {{ cut_file }} css="/css/style.min.css" %}
+
+    {% include {{ cut_file }} css="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" %}
+    <style>
+        /* Override hljs styles to reset to StartCSS: */
+        .hljs {
+            display: inline-block;
+            overflow-x: auto;
+            padding: 1.2rem;
+            background: transparent;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+
+    <!--<![endif]-->
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -37,10 +59,10 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2e4d58">
     <meta name="theme-color" content="#ffffff">
-    
+
 </head>
 <body role="document">
-    
+
 
     <div data-css-only="true">
         <fieldset aria-hidden="true" />
@@ -49,50 +71,52 @@
             </p>
         </fieldset>
     </div>
-        
+
     <header>
         <nav aria-labelledby="primary-navigation">
             <b id="primary-navigation" hidden>Primary</b>
-            <ul>
-                <li>
+            <p role="list">
+                <span role="listitem">
                     {% include nav_item.html
                         href="/"
                         text="Andy Kirk"
                     %}
-                </li>
-                <li>
+                </span>
+                <span role="listitem">
                     {% include nav_item.html
                         href="/projects/"
                         text="Projects"
                     %}
-                </li>
-                <li>
+                </span>
+                <span role="listitem">
                     {% include nav_item.html
                         href="/knowledge-base/"
                         text="Knowledge Base"
                     %}
-                </li>
-            </ul>
+                </span>
+            </p>
         </nav>
     </header>
-        
+
     <main id="main">
         {{ content }}
     </main>
-    
+
     <footer>
         <p>
-            <a href="#">Top</a> | <a href="https://github.com/andykirk/andykirk.github.io">Github</a> | &copy; Andy Kirk 2020
+            <a href="#">Top</a> | <a href="https://github.com/andykirk/andykirk.github.io">Github</a> | &copy; Andy Kirk {{ 'now' | date: "%Y" }}
         </p>
     </footer>
 
 
     <script src="/js/script.min.js"></script>
     <script>
+        hljs.initHighlightingOnLoad();
+
         window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
         ga('create','UA-92529838-1','auto');ga('send','pageview')
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    
+
 </body>
 </html>

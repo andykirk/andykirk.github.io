@@ -3,7 +3,7 @@ title: CSS Hide-and-Seek
 tag: [CSS,Accessibility,Visually Hidden]
 ---
 
-A useful insight into visualy hidden text by [Gaël Poupard](https://twitter.com/ffoodd_fr) (translated by [Hugo Giraudel](hugogiraudel.com))
+A useful insight into visually hidden text by [Gaël Poupard](https://twitter.com/ffoodd_fr) (translated by [Hugo Giraudel](hugogiraudel.com))
 
 [CSS Hide-and-Seek](http://hugogiraudel.com/2016/10/13/css-hide-and-seek)
 

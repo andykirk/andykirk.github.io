@@ -9,9 +9,9 @@ body_id: projects
         <h1>{{ page.title }}</h1>
     </header>
 
-    <ul>
+    <div role="list">
     {% for post in site.posts %}{% if post.role != '' %}
-    <li>
+        <div role="listitem">
             {% if post.cloudinary_id != "" %}
                 {% assign img_src = "http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
             {% else %}
@@ -32,8 +32,8 @@ body_id: projects
                 cta_url = post.url
                 cta_text = cta_text
             %}
-        </li>
+        </div>
     {% endif %}{% endfor %}
-    </ul>
+    </div>
     
 </div>

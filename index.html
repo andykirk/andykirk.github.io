@@ -15,9 +15,10 @@ layout: full
     
     <p>{{ site.posts.size }} posts</p>
 
-    <div>
+    <div role="list">
+        
         {% for post in site.posts %}
-        <fieldset role="presentation">
+        <div role="listitem">
             {% if post.cloudinary_id != "" %}
                 {% assign img_src = "http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
             {% else %}
@@ -46,8 +47,7 @@ layout: full
                 cta_text = cta_text
                 footer = footer
             %}
-        </fieldset>
-        <br data-css-only="true">
+        </div>
         {% endfor %}
     </div>
     

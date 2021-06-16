@@ -45,50 +45,6 @@
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    START-CSS TOKENS
-    ============================================================================================
-
-    Fall-Back is designed for use with the basic
-    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-
-    This determines a browser support base of:
-
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-
-
-    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows any applicable Start-CSS declarations to be overidden.
-    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
-    `.{pattern}.{pattren}`
-
-    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
-    START-CSS SETTINGS
-    ============================================================================================
-
-    Fall-Back is designed for use with the basic
-    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-
-    This determines a browser support base of:
-
-    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
-    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
-
-
-    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
-    This allows any applicable Start-CSS declarations to be overidden.
-    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
-    `.{pattern}.{pattren}`
-
-    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
-
-|-------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------------------------------|
-
     START-CSS FUNCTIONS
     ============================================================================================
 
@@ -166,9 +122,53 @@
 */
 /*
     Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
-    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    contain paragraphs can result in double bottom margins, so flipping that around inside those
     containers.
 */
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS SETTINGS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
 /* Output class for reference (tmp): */
 /*.ref {
     flbk--base-rem-space-unit: $s__base-rem-space-unit;
@@ -324,7 +324,7 @@ body {
   min-height: 100%;
   max-width: 50em;
   margin: 0 auto;
-  padding: 0 2.4rem;
+  padding: 2.4rem;
   font-family: "Lato", sans-serif;
   font-size: 1.6em;
   line-height: 2.4rem;
@@ -344,10 +344,34 @@ body {
 }
 
 /*
+    @DEPRECATED - use the clearer method below:
     CSS only message
 */
 [data-css-only="true"] {
   display: none;
+}
+
+/*
+    New method hide stuff if CSS has loaded:
+*/
+[data-if-css="hide"] {
+  display: none;
+}
+
+/*
+    This method duplicates [hidden="false"][aria-hidden="false"] in accessibilty.scss, but I'm
+    thinking of maybe deprecating that.
+*/
+[data-if-css="visually-hide"] {
+  clip: rect(0 0 0 0);
+  position: absolute;
+  display: inline;
+  /*border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;*/
 }
 
 /*------------------------------------------------------------------------------------------------*\
@@ -357,7 +381,7 @@ body {
 \*------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: a
+    START-CSS ELEMENT: a
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -369,9 +393,9 @@ body {
     3. Remove the tapping delay from clickable elements .
 */
 a[href] {
-  margin-bottom: -2px;
-  padding-bottom: 2px;
-  border-bottom: 2px solid;
+  margin-bottom: -0.2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 0.2rem solid;
   color: #333333;
   background-color: transparent;
   /* 1 */
@@ -385,16 +409,16 @@ a[href] {
 }
 
 a[href]:hover, a[href]:active {
-  border-bottom: 2px dashed;
+  border-bottom: 0.2rem dashed;
   color: #1a1a1a;
 }
 
 a[href]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
 }
 
-a[href][rel="external"]::after {
+a[href][rel~="external"]::after {
   display: inline;
   content: "";
   padding-left: 1.16666666667em;
@@ -405,13 +429,13 @@ a[href][rel="external"]::after {
   vertical-align: super;
 }
 
-a[href][rel="external"]:hover::after {
+a[href][rel~="external"]:hover::after {
   background: linear-gradient(45deg, transparent 50%, currentColor 50%);
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: abbr
+    START-CSS ELEMENT: abbr
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -434,39 +458,46 @@ abbr[title] {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: address
+    START-CSS ELEMENT: address
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 address {
   margin-bottom: 2.4rem;
+  margin-top: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: article
+    START-CSS ELEMENT: article
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 article {
   display: block;
   margin-bottom: 2.4rem;
+  margin-top: 0;
+  padding-bottom: 2.4rem;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: aside
+    START-CSS ELEMENT: aside
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 aside {
   display: block;
   margin-bottom: 2.4rem;
+  margin-top: 0;
+  padding: 2.4rem;
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: audio
+    START-CSS ELEMENT: audio
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -488,7 +519,7 @@ audio:not([controls]) {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: b
+    START-CSS ELEMENT: b
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -504,12 +535,13 @@ b {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: blockquote
+    START-CSS ELEMENT: blockquote
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 blockquote {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   margin-left: 2.4rem;
   font-style: italic;
   /*
@@ -520,7 +552,7 @@ blockquote {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: button
+    START-CSS ELEMENT: button
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -533,16 +565,16 @@ button {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #333333;
   font-weight: inherit;
@@ -577,7 +609,7 @@ button:hover, button:active {
 
 button:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
 }
 
 button svg {
@@ -612,7 +644,7 @@ _:-moz-meter-optimum, :root button::-moz-focus-inner {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: canvas
+    START-CSS ELEMENT: canvas
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -627,7 +659,7 @@ canvas {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: caption
+    START-CSS ELEMENT: caption
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -638,13 +670,13 @@ caption {
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
   color: #fff;
-  background-color: #333333;
+  background-color: rgba(51, 51, 51, 0.7);
   font-weight: bold;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: code
+    START-CSS ELEMENT: code
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -664,7 +696,7 @@ code {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: dd
+    START-CSS ELEMENT: dd
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -674,7 +706,7 @@ dd {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: details
+    START-CSS ELEMENT: details
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -682,28 +714,19 @@ details {
   display: block;
   /* N: IE 10/11 */
   margin-bottom: 2.4rem;
-  border-width: 1px;
+  margin-top: 0;
+  padding-bottom: 2.4rem;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: #333333;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 1px);
-  padding-top: calc(2.4rem - 1px);
+  padding-top: calc(2.4rem - 0.1rem);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 1px);
-  padding-left: calc(2.4rem - 1px);
+  padding-left: calc(2.4rem - 0.1rem);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 1px);
-  padding-right: calc(2.4rem - 1px);
-}
-
-details::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 1px);
-  margin-bottom: calc(-1px - 1px);
+  padding-right: calc(2.4rem - 0.1rem);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 0.1rem);
 }
 
 details > * {
@@ -712,7 +735,7 @@ details > * {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: dfn
+    START-CSS ELEMENT: dfn
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -725,7 +748,7 @@ dfn {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: dl
+    START-CSS ELEMENT: dl
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -744,23 +767,30 @@ dfn {
 */
 dl {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   display: table;
   /* 1b */
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: dt
+    START-CSS ELEMENT: dt
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 dt {
   font-weight: bold;
+  margin-top: 2.4rem;
+}
+
+dt:first-child,
+dt + dt {
+  margin-top: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: em
+    START-CSS ELEMENT: em
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -774,7 +804,7 @@ em em {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: fieldset
+    START-CSS ELEMENT: fieldset
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -785,29 +815,19 @@ em em {
 */
 fieldset {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   min-width: 0;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: #333333;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 1px);
-  padding-top: calc(2.4rem - 1px);
+  padding-top: calc(2.4rem - 0.1rem);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 1px);
-  padding-left: calc(2.4rem - 1px);
+  padding-left: calc(2.4rem - 0.1rem);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 1px);
-  padding-right: calc(2.4rem - 1px);
-}
-
-fieldset::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 1px);
-  margin-bottom: calc(-1px - 1px);
+  padding-right: calc(2.4rem - 0.1rem);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 0.1rem);
 }
 
 fieldset fieldset {
@@ -822,13 +842,15 @@ fieldset fieldset::after {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: figcaption
+    START-CSS ELEMENT: figcaption
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 figcaption {
   display: block;
   font-size: 0.875em;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 figcaption * {
@@ -841,50 +863,78 @@ figcaption * + * {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: figure
+    START-CSS ELEMENT: figure
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 figure {
   display: block;
   margin-bottom: 2.4rem;
+  margin-top: 0;
+  max-width: 100%;
+  overflow: auto;
+  background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: footer
+    START-CSS ELEMENT: footer
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 footer {
   display: block;
   margin-bottom: 2.4rem;
+  margin-top: 0;
+  padding: 2.4rem;
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: form
+    START-CSS ELEMENT: form
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 form {
   margin-bottom: 2.4rem;
+  margin-top: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: header
+    START-CSS ELEMENT: header
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 header {
   display: block;
   margin-bottom: 2.4rem;
+  margin-top: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: #333333;
+  padding-top: 2.4rem;
+  padding-top: calc(2.4rem - 0);
+  padding-left: 2.4rem;
+  padding-left: calc(2.4rem - 0);
+  padding-right: 2.4rem;
+  padding-right: calc(2.4rem - 0);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 0);
+  background-color: #fff;
+  color: #333;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: hgroup
+    START-CSS ELEMENT: hgroup
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -894,49 +944,55 @@ hgroup {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: h
+    START-CSS ELEMENT: h
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 h1 {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   font-size: 3.25em;
   line-height: 6rem;
 }
 
 h2 {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   font-size: 2.5em;
   line-height: 4.8rem;
 }
 
 h3 {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   font-size: 1.875em;
   line-height: 3.6rem;
 }
 
 h4 {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   font-size: 1.375em;
   line-height: 3.6rem;
 }
 
 h5 {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   font-size: 1.125em;
   line-height: 2.4rem;
 }
 
 h6 {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   font-size: 1em;
   line-height: 2.4rem;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: hr
+    START-CSS ELEMENT: hr
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -947,17 +1003,17 @@ hr {
   height: 0;
   overflow: visible;
   /* 1 */
-  margin-top: -1px;
+  margin-top: -0.1rem;
   margin-bottom: 2.4rem;
   border-top: none;
   border-right: none;
-  border-bottom: 1px solid #333333;
+  border-bottom: 0.1rem solid #333333;
   border-left: none;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: iframe
+    START-CSS ELEMENT: iframe
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -967,7 +1023,7 @@ iframe {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: img
+    START-CSS ELEMENT: img
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1002,14 +1058,14 @@ img {
     Special treatment for images inside links.
 */
 a img {
-  margin-bottom: -2px;
+  margin-bottom: -0.2rem;
   border-width: inherit;
   border-style: inherit;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: input
+    START-CSS ELEMENT: input
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1025,16 +1081,16 @@ input {
   /* 1 */
   padding-top: 0.3rem;
   /* 2 */
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   /* 2 */
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   color: #333;
   background-color: #fff;
   font-size: inherit;
@@ -1069,7 +1125,7 @@ input:not([type]):focus,
 [type="time"]:focus,
 [type="url"]:focus,
 [type="week"]:focus {
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
   outline: 0;
 }
 
@@ -1079,7 +1135,7 @@ input:not([type]):focus,
     */
 [type="checkbox"]:focus,
 [type="radio"]:focus {
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
   outline: 0;
 }
 
@@ -1112,16 +1168,16 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   margin: 0.3rem 0;
   padding-top: 0.3rem;
   padding-top: -moz-calc(0);
-  padding-top: calc(0.3rem - 1px);
+  padding-top: calc(0.3rem - 0.1rem);
   padding-right: 0.6rem;
   padding-bottom: 0.3rem;
   padding-bottom: -moz-calc(0);
-  padding-bottom: calc(0.3rem - 1px);
+  padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   color: #fff;
   background-color: #333333;
   font-weight: inherit;
@@ -1162,7 +1218,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:focus,
 [type="submit"]:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
 }
 
 /*
@@ -1253,7 +1309,7 @@ _:-ms-input-placeholder, :root [type="file"] {
 [type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  outline-offset: -2px;
+  outline-offset: -0.2rem;
   /* 2 */
 }
 
@@ -1276,7 +1332,7 @@ _:-ms-input-placeholder, :root [type="file"] {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: kbd
+    START-CSS ELEMENT: kbd
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1296,7 +1352,7 @@ kbd {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: label
+    START-CSS ELEMENT: label
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1318,7 +1374,7 @@ label {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: legend
+    START-CSS ELEMENT: legend
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1342,7 +1398,7 @@ legend {
   /* 1 */
   margin-top: 0;
   /* 2 */
-  margin-bottom: 1px;
+  margin-bottom: 0.1rem;
   /* 2 */
   padding: 0 0.6rem;
   border-width: 0;
@@ -1356,7 +1412,7 @@ legend {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: li
+    START-CSS ELEMENT: li
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1371,7 +1427,7 @@ li ol {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: main`
+    START-CSS ELEMENT: main
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1384,18 +1440,16 @@ main {
   width: 100%;
   min-height: 100%;
   padding: 2.4rem;
+  margin-bottom: 2.4rem;
+  margin-top: 0;
   background-color: #cfcfcf;
   color: #333;
   position: relative;
-  -webkit-flex: 1 0 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: mark
+    START-CSS ELEMENT: mark
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1409,7 +1463,7 @@ mark {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: nav
+    START-CSS ELEMENT: nav
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1419,7 +1473,7 @@ nav {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: object
+    START-CSS ELEMENT: object
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1429,7 +1483,7 @@ object {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: ol
+    START-CSS ELEMENT: ol
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1448,13 +1502,14 @@ object {
 */
 ol {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   display: table;
   /* 1b */
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: optgroup
+    START-CSS ELEMENT: optgroup
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1473,7 +1528,7 @@ optgroup {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: option
+    START-CSS ELEMENT: option
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1500,17 +1555,18 @@ option:hover {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: p
+    START-CSS ELEMENT: p
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 p {
   margin-bottom: 2.4rem;
+  margin-top: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: pre
+    START-CSS ELEMENT: pre
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1530,9 +1586,9 @@ pre {
   /* 1 */
   overflow-y: auto;
   /* 1 */
-  margin-bottom: calc-rem-from-px(31px);
+  margin-bottom: 3.1rem;
   /* 1 */
-  background-color: #bfbfbf;
+  background-color: #e6e6e6;
   /*1 */
   font-size: 1em;
   /* 2 */
@@ -1542,7 +1598,7 @@ pre {
 
 @supports (-ms-ime-align: auto) {
   pre {
-    margin-bottom: calc-rem-from-px(36px);
+    margin-bottom: 3.6rem;
     /* 1 */
   }
 }
@@ -1559,7 +1615,7 @@ pre code {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: progress
+    START-CSS ELEMENT: progress
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1576,7 +1632,7 @@ progress {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: samp
+    START-CSS ELEMENT: samp
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1596,18 +1652,20 @@ samp {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: section
+    START-CSS ELEMENT: section
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
 section {
   display: block;
   margin-bottom: 2.4rem;
+  margin-top: 0;
+  padding-bottom: 2.4rem;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: select
+    START-CSS ELEMENT: select
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1619,11 +1677,12 @@ section {
 select {
   height: 3rem;
   /* 1 */
+  min-height: auto;
   margin: 0.3rem 0;
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   color: #333;
   background-color: #fff;
   font-weight: inherit;
@@ -1709,7 +1768,7 @@ _:-moz-tree-row(hover), select:not([multiple]) {
 }
 
 select:focus {
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
   outline: 0;
 }
 
@@ -1721,8 +1780,8 @@ select[multiple] {
   height: auto;
   margin-top: 0.3rem;
   margin-right: 0;
-  margin-bottom: -moz-calc(0.9rem - 2px);
-  margin-bottom: calc(0.9rem - 2px);
+  margin-bottom: -moz-calc(0.9rem - 0.2rem);
+  margin-bottom: calc(0.9rem - 0.2rem);
   margin-left: 0;
 }
 
@@ -1738,7 +1797,7 @@ _::-webkit-full-page-media, _:future, :root select[multiple] {
     ... but reset for Mac Safari .
 */
 _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multiple] {
-  margin-bottom: calc(0.9rem - 2px);
+  margin-bottom: calc(0.9rem - 0.2rem);
   padding: 0;
 }
 
@@ -1757,7 +1816,7 @@ _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[multip
 /* Individual height fixes moved to '_start-experimental.scss' */
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: small
+    START-CSS ELEMENT: small
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1773,20 +1832,20 @@ small {
 }
 
 small a[href] {
-  margin-bottom: -1px;
-  padding-bottom: 1px;
-  border-bottom: 1px solid;
+  margin-bottom: -0.1rem;
+  padding-bottom: 0.1rem;
+  border-bottom: 0.1rem solid;
 }
 
 small a[href]:hover,
 small a[href]:focus,
 small a[href]:active {
-  border-bottom: 1px dashed;
+  border-bottom: 0.1rem dashed;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: strong
+    START-CSS ELEMENT: strong
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1803,7 +1862,7 @@ strong {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: sub
+    START-CSS ELEMENT: sub
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1820,7 +1879,7 @@ sub {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: summary
+    START-CSS ELEMENT: summary
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1836,11 +1895,13 @@ summary {
   touch-action: manipulation;
   /* 2 */
   cursor: pointer;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 summary:focus {
-  outline: 2px solid rgba(51, 51, 51, 0.6);
-  outline-offset: 2px;
+  outline: 0.2rem solid rgba(51, 51, 51, 0.6);
+  outline-offset: 0.2rem;
 }
 
 /* Hide the details marker as we're supplying our own. */
@@ -1851,7 +1912,8 @@ summary::-webkit-details-marker {
 details > summary::before {
   display: inline-block;
   content: '\25BA';
-  margin-right: 0.5em;
+  margin-left: -1.4em;
+  margin-right: 0.4em;
   font-size: 0.75em;
   font-family: serif;
   vertical-align: top;
@@ -1860,6 +1922,7 @@ details > summary::before {
 
 details[open] > summary {
   margin-bottom: 2.4rem;
+  margin-top: 0;
 }
 
 details[open] > summary::before {
@@ -1868,7 +1931,7 @@ details[open] > summary::before {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: sup
+    START-CSS ELEMENT: sup
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1885,7 +1948,7 @@ sup {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: svg
+    START-CSS ELEMENT: svg
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1912,7 +1975,7 @@ svg:not(:root) {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: table
+    START-CSS ELEMENT: table
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1926,16 +1989,16 @@ table {
   border-collapse: collapse;
   margin-bottom: 2.4rem;
   /* 1 */
-  margin-bottom: calc(2.4rem - 1px);
+  margin-bottom: calc(2.4rem - 0.1rem);
   /* 2 */
-  border: 1px solid #333333;
-  background-color: #b3b3b3;
+  border: 0.1rem solid #333333;
+  background-color: transparent;
   border-spacing: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: td
+    START-CSS ELEMENT: td
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1948,16 +2011,16 @@ td {
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   /* 1 */
-  padding-bottom: calc(1.2rem - 1px);
+  padding-bottom: calc(1.2rem - 0.1rem);
   /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #333333;
-  background-color: #fff;
+  border: 0.1rem solid #333333;
+  background-color: transparent;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: template
+    START-CSS ELEMENT: template
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1971,7 +2034,7 @@ template {
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: textarea
+    START-CSS ELEMENT: textarea
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -1993,8 +2056,8 @@ textarea {
   /* 3 */
   padding-left: 0.6rem;
   padding-right: 0.6rem;
-  border-width: 1px;
-  border-radius: 3px;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
   color: #333;
@@ -2013,13 +2076,13 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 0 0 0.3rem rgba(51, 51, 51, 0.5);
   outline: 0;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: th
+    START-CSS ELEMENT: th
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -2032,16 +2095,16 @@ th {
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   /* 1 */
-  padding-bottom: calc(1.2rem - 1px);
+  padding-bottom: calc(1.2rem - 0.1rem);
   /* 2 */
   padding-left: 1.2rem;
-  border: 1px solid #333333;
-  background-color: #b3b3b3;
+  border: 0.1rem solid #333333;
+  background-color: rgba(51, 51, 51, 0.3);
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: ul
+    START-CSS ELEMENT: ul
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -2060,13 +2123,14 @@ th {
 */
 ul {
   margin-bottom: 2.4rem;
+  margin-top: 0;
   display: table;
   /* 1b */
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    START=CSS ELEMENT: video
+    START-CSS ELEMENT: video
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
@@ -2083,6 +2147,9 @@ video {
   background-color: #333;
 }
 
+/*
+    Utilities and other miscellaneous bits:
+*/
 /*
     1. Remove the tapping delay from clickable elements.
 */
@@ -2103,6 +2170,149 @@ video {
   text-shadow: none;
 }
 
+/*
+    Highlight :target-ed headings
+    Note I can't selected the whole section without it being wrapped in something, and I don't want
+    to mess around with that.
+*/
+main :target {
+  -moz-animation: target-fade 3s 1;
+  -webkit-animation: target-fade 3s 1;
+  animation: target-fade 3s 1;
+}
+
+@-moz-keyframes target-fade {
+  0% {
+    background-color: rgba(128, 128, 128, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(128, 128, 128, 0.4);
+  }
+  100% {
+    background-color: rgba(128, 128, 128, 0);
+    box-shadow: 0 0 0 1.2rem rgba(128, 128, 128, 0);
+  }
+}
+
+@-webkit-keyframes target-fade {
+  0% {
+    background-color: rgba(128, 128, 128, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(128, 128, 128, 0.4);
+  }
+  100% {
+    background-color: rgba(128, 128, 128, 0);
+    box-shadow: 0 0 0 1.2rem rgba(128, 128, 128, 0);
+  }
+}
+
+@keyframes target-fade {
+  0% {
+    background-color: rgba(128, 128, 128, 0.4);
+    box-shadow: 0 0 0 1.2rem rgba(128, 128, 128, 0.4);
+  }
+  100% {
+    background-color: rgba(128, 128, 128, 0);
+    box-shadow: 0 0 0 1.2rem rgba(128, 128, 128, 0);
+  }
+}
+
+/*
+    Give some space to elements targeted by fragments:
+*/
+[id] {
+  scroll-margin-top: 4.8rem;
+}
+
+/*
+        Some inline elements have margin deliberately to help with size/position.
+        We don't want to zero-out those.
+    */
+:last-child:not(a):not(button):not(img):not(input):not(select) {
+  margin-bottom: 0;
+}
+
+/* Alt margins */
+/*
+Shelving this for now
+@if $s__procedural-margins == false {
+    /* this is too generic 
+    * + * {
+        margin-top: $s__base-rem-space-unit;
+    }
+    /
+    
+    /* This is the full list but it's not exactly what we want:
+    * + address,
+    * + article,
+    * + aside,
+    * + blockquote,
+    * + details,
+    * + dialog,
+    * + dd,
+    * + div,
+    * + dl,
+    * + dt,
+    * + fieldset,
+    * + figcaption,
+    * + figure,
+    * + footer,
+    * + form,
+    * + h1,
+    * + h2,
+    * + h3,
+    * + h4,
+    * + h5,
+    * + h6,
+    * + header,
+    * + hgroup,
+    * + hr,
+    * + li,
+    * + main,
+    * + nav,
+    * + ol,
+    * + p,
+    * + pre,
+    * + section,
+    * + table,
+    * + ul
+    /
+    
+    /*
+        Taking out list items, hr and div:
+    /
+    *:not(legend):not(figcaption) + address,
+    *:not(legend):not(figcaption) + article,
+    *:not(legend):not(figcaption) + aside,
+    *:not(legend):not(figcaption) + blockquote,
+    *:not(legend):not(figcaption) + details,
+    *:not(legend):not(figcaption) + dialog,
+    *:not(legend):not(figcaption) + dl,
+    *:not(legend):not(figcaption) + fieldset,
+    *:not(legend):not(figcaption) + figure,
+    *:not(legend):not(figcaption) + footer,
+    *:not(legend):not(figcaption) + form,
+    *:not(legend):not(figcaption) + h1,
+    *:not(legend):not(figcaption) + h2,
+    *:not(legend):not(figcaption) + h3,
+    *:not(legend):not(figcaption) + h4,
+    *:not(legend):not(figcaption) + h5,
+    *:not(legend):not(figcaption) + h6,
+    *:not(legend):not(figcaption) + header,
+    *:not(legend):not(figcaption) + hgroup,
+    *:not(legend):not(figcaption) + main,
+    *:not(legend):not(figcaption) + nav,
+    *:not(legend):not(figcaption) + ol,
+    *:not(legend):not(figcaption) + p,
+    *:not(legend):not(figcaption) + pre,
+    *:not(legend):not(figcaption) + section,
+    *:not(legend):not(figcaption) + table,
+    *:not(legend):not(figcaption) + ul {
+        margin-top: $s__base-rem-space-unit;
+    }
+    
+    hr {
+        margin-top: calc(2.4rem - 0.1rem;
+    }
+} 
+*/
 /*! Start-CSS Accessibility. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -2139,7 +2349,7 @@ video {
 /*
     Specify the style of visually hidden yet accessible elements. (S)
 */
-[hidden][aria-hidden="false"] {
+[hidden="false"][aria-hidden="false"] {
   clip: rect(0 0 0 0);
   position: absolute;
   display: inline;
@@ -2151,14 +2361,34 @@ video {
     width: 1px;*/
 }
 
-a[hidden][aria-hidden="false"]:focus,
-a[hidden][aria-hidden="false"]:active {
+a[hidden="false"][aria-hidden="false"]:focus,
+a[hidden="false"][aria-hidden="false"]:active {
   clip: auto;
   position: static;
   /*height: auto;
         margin: 0;
         overflow: visible;
         width: auto;*/
+}
+
+/*
+    Elements with tabindex="-1" are NOT user focussable, but CAN be focussed via JS.
+    In this case elements focussed in such a way should not receive focus styles to avoid confusion.
+    (https://inclusive-components.design/a-todo-list#focusmanagement)
+*/
+[tabindex="-1"] {
+  outline: none;
+}
+
+/*
+    A blanket attempt to respect prefers-reduced-motion.
+    (https://dev.to/alvaromontoro/consider-reducing-motions-1a13)
+*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /*! Start-CSS Experimental. See SCSS file for documentation. */
@@ -2480,23 +2710,24 @@ a[hidden][aria-hidden="false"]:active {
 |-------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------|
 
-    BANNER - NAVBAR
+    BANNER - NAVLIST
     --------------------------------------------------------------------------------------------
 
     This is the pattern needed to match primary navigation. The links are expected to be in an
-    unordered list.
+    inline list.
 
     ```
     <header>
         ...
         <nav>
-            <ul>
-                <li>
+            <p role="list">
+                <span role="listitem">
                     <a/>
-                </li>
+                </span>
                 ...
-            </ul>
+            </p>
         </nav>
+        ...
     </header>
     ```
 |-------------------------------------------------------------------------------------------------*/
@@ -2615,15 +2846,41 @@ body > * {
       height: auto;
       min-height: 100%;
       grid-template-columns: 5fr 2fr;
-      grid-template-rows: max-content auto max-content;
+      grid-template-rows: auto auto minmax(auto, 1fr) auto;
     }
-    body > header,
-    body > footer {
+    [data-elementary] body > header,
+    [data-elementary] body > footer {
       padding: 1.2rem;
       grid-column: 1 / -1;
     }
+    [data-elementary] body > header {
+      grid-row: 1;
+    }
+    [data-elementary] body > footer {
+      grid-row: -1;
+    }
     body > main {
       grid-column: 1;
+      grid-row: 2 / -1;
+    }
+    [data-elementary] body > header + main:nth-last-child(5) {
+      grid-column: 1 / -1;
+    }
+    [data-elementary] body > aside {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    /*
+            If there's no 'bottom' aside, we want the first one span 2 columns. Note this is the
+            only way I can think of doing this, but it's fragile - it will break if elements at this
+            level get added or removed.
+        */
+    [data-elementary] body > aside:nth-last-child(6) {
+      grid-row: 2 / -1;
+    }
+    [data-elementary] body > main + aside {
+      grid-column: 2;
+      grid-row: 3;
     }
     /*
             Note this is the *template* sidebar - content in a sidebar that appears on all pages.
@@ -2661,10 +2918,9 @@ body > * {
 /*
     Banner
 */
-body > header {
+[data-elementary] body > header {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   margin: 0;
   padding: 1.2rem 1.2rem 0.6rem 1.2rem;
@@ -2672,8 +2928,27 @@ body > header {
   background: #333333;
 }
 
-body > header > * {
-  flex: 0 0 auto;
+[data-elementary] body > header > * {
+  flex: 1 1 auto;
+}
+
+[data-elementary] body > header > p {
+  width: 100%;
+}
+
+[data-elementary] body > header p {
+  margin: 0;
+}
+
+[data-elementary] body > header > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+}
+
+[data-elementary] body > header > div > * {
+  flex: 1 1 auto;
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -2683,60 +2958,51 @@ body > header > * {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-body > header > a[href] {
+[data-elementary] body > header nav b > a[href] {
   display: inline-block;
   margin: 0 2.4rem 0.6rem 0;
   padding: 0;
   border: 0;
+  color: #333333;
+  background-color: transparent;
 }
 
-body > header > a[href]:hover,
-body > header > a[href]:active,
-body > header > a[href]:focus {
+[data-elementary] body > header nav b > a[href]:hover,
+[data-elementary] body > header nav b > a[href]:active,
+[data-elementary] body > header nav b > a[href]:focus {
   padding: 0;
   border: 0;
   box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.4), 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+  color: #333333;
+  background-color: transparent;
 }
 
 /*-------------------------------------------------------------------------------------------------|
 
-    NAVBAR
+    NAVLIST
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-body > header > nav {
-  flex: 1 1 auto;
-  margin: 0.6rem 0 0 0;
-}
-
-body > header > nav > ul,
-body > header > nav > details > ul {
+[data-elementary] body > header nav {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
   margin: 0;
-  list-style-type: none;
-}
-
-body > header > nav > ul li,
-body > header > nav > details > ul li {
-  flex: 0 0 auto;
-  margin: 0 0 0.6rem 0;
   padding: 0;
+  background-color: transparent;
 }
 
-body > header > nav > ul,
-body > header > nav > details > ul {
-  margin-left: -1.2rem;
+[data-elementary] body > header nav > * {
+  flex: 1 1 auto;
 }
 
-body > header > nav > ul li,
-body > header > nav > details > ul li {
-  margin-left: 1.2rem;
+[data-elementary] body > header nav p[role="list"] {
+  flex-grow: 999;
 }
 
-body > header > nav > ul a[href],
-body > header > nav > details > ul a[href] {
-  display: block;
+[data-elementary] body > header nav a[href] {
+  display: inline-block;
   margin: 0;
   padding-top: 0;
   padding-right: 0.5625em;
@@ -2749,99 +3015,186 @@ body > header > nav > details > ul a[href] {
   text-decoration: none;
 }
 
-body > header > nav > ul a[href],
-body > header > nav > details > ul a[href] {
+[data-elementary] body > header nav a[href] {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-body > header > nav > ul a[href][aria-current],
-body > header > nav > details > ul a[href][aria-current],
-body > header > nav > details > summary {
+[data-elementary] body > header nav a[href][aria-current] {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-body > header > nav > ul a[href]:hover,
-body > header > nav > ul a[href]:active,
-body > header > nav > details > ul a[href]:hover,
-body > header > nav > details > ul a[href]:active,
-body > header > nav > details > summary:hover,
-body > header > nav > details > summary:active {
+[data-elementary] body > header nav a[href]:hover,
+[data-elementary] body > header nav a[href]:active {
   border: 0;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-body > header > nav > ul a[href]:focus,
-body > header > nav > details > ul a[href]:focus,
-body > header > nav > details > summary:focus {
+[data-elementary] body > header nav p[role="list"] a[href]:focus {
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
 }
 
-body > header > nav > details {
-  margin: 0;
-  /*
-        1. `align-items: center;` is the obvious choice for vertical-center aligning the icons, but
-           for some reason iOS doesn't get it right, so I'm using padding instead for now since the
-           icon or container sizes shouldn't change.
-    */
-}
-
-body > header > nav > details > summary {
-  position: absolute;
-  right: 1.2rem;
-  top: 1.2rem;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  width: 4.8rem;
-  height: 4.8rem;
-  margin: 0;
-  padding: 1.2rem;
-  /* [1] */
-}
-
-body > header > nav > details > summary > :first-child {
-  display: inline;
-}
-
-body > header > nav > details > summary > :last-child {
-  display: none;
-}
-
-body > header > nav > details > summary::before {
-  display: none;
-}
-
-body > header > nav > details[open] > summary > :first-child {
-  display: none;
-}
-
-body > header > nav > details[open] > summary > :last-child {
-  display: inline;
-}
-
 /*
+p[role="list"] a[href][aria-current],
+[data-elementary] body > header   nav > details > summary {
+    color: $e__nav-bar__link--color--alt;
+    background-color: $e__nav-bar__link--background-color--alt2;
+}
 
-body > header > nav > ul a[href]:hover,
-body > header > nav > ul a[href]:active,
-body > header > nav > ul a[href] [aria-expanded="true"] {
+
+p[role="list"] a[href]:hover,
+p[role="list"] a[href]:active,
+[data-elementary] body > header   nav > details > summary:hover,
+[data-elementary] body > header   nav > details > summary:active {
     border: 0;
 
     color: $e__nav-bar__link--color--alt;
     background-color: $e__nav-bar__link--background-color--alt;
 }
 
-body > header > nav > ul a[href]:focus {
+
+p[role="list"] a[href]:focus,
+[data-elementary] body > header   nav > details > summary:focus {
+    box-shadow: 0 0 0 $s__sz-xs rgba(0,0,0,.3);
+}
+
+
+*/
+/*-------------------------------------------------------------------------------------------------|
+
+    COLLAPSIBLE
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/* Details can appear in different contexts so we can't specify a complete path to them: */
+/* This is for the case where the nav is split to 'home' and 'site' and 'site' appears after the search form. */
+[data-elementary] body > header details + nav {
+  flex: 0 0 auto;
+}
+
+[data-elementary] body > header details[role="search"] form {
+  z-index: 10;
+}
+
+[data-elementary] body > header details {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  margin: 0 0.6rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Only for start margin stuff */
+[data-elementary] body > header details::after {
+  display: none;
+}
+
+[data-elementary] body > header details > summary {
+  display: block;
+  position: relative;
+}
+
+/*
+
+[data-elementary] body > header   details > summary {
+    color: $e__nav-bar__link--color;
+    background-color: transparent;
+}
+
+
+[data-elementary] body > header   details > summary:hover,
+[data-elementary] body > header   details > summary:active {
     border: 0;
 
     color: $e__nav-bar__link--color--alt;
-    background-color: $e__nav-bar__link--background-color--alt2;
-
-    box-shadow: none;
+    background-color: $e__nav-bar__link--background-color--alt;
 }
+
+
+
 */
+[data-elementary] body > header details > summary:hover::before,
+[data-elementary] body > header details > summary:active::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 0;
+  left: -3px;
+  right: -3px;
+  top: -3px;
+  bottom: -3px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0;
+  transform: none;
+}
+
+[data-elementary] body > header details > summary:focus {
+  box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.3);
+  outline: 0 none;
+}
+
+[data-elementary] body > header details[open] > summary {
+  margin: 0;
+}
+
+[data-elementary] body > header details > summary::before {
+  display: none;
+}
+
+[data-elementary] body > header details > summary::-webkit-details-marker {
+  display: none;
+}
+
+[data-elementary] body > header details > summary > svg:first-child,
+[data-elementary] body > header details[open] > summary > svg:first-child + svg {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+[data-elementary] body > header details[open] > summary > svg:first-child {
+  display: none;
+}
+
+[data-elementary] body > header details > summary > svg + span {
+  clip: rect(0 0 0 0);
+  position: absolute;
+}
+
+[data-elementary] body > header details[open] > summary::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 1.5rem 1.5rem 1.5rem;
+  border-color: transparent transparent #404040 transparent;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: -3px;
+}
+
+[data-elementary] body > header details > summary + * {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 1.2rem;
+  margin-top: 1.2em;
+  background: #404040;
+  list-style: none;
+  box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.5);
+}
+
+[data-elementary] body > header details > summary + * li {
+  padding: 0.5em;
+  margin: 0;
+}
+
 /*-------------------------------------------------------------------------------------------------|
 
     MAIN
@@ -2850,16 +3203,32 @@ body > header > nav > ul a[href]:focus {
 |-------------------------------------------------------------------------------------------------*/
 /*
     Expand main to fill space - part of stick footer.
+    
+    1. There's a wierd sitution on /page-layout-article/ where there's <pre> in a <div>
+       demonstrating the use of the <div> to create a full-width container (one that breaks
+       out of the max-width column). But the <pre> has long content and isn't scrolling,
+       it's pushing everything out to fit the content and I can't figure out a simple 
+       fix (or even understand why it's doing it).
+       But, since we have a known max-width for the body and a known column balance, we can work out
+       what the max-width for the main column should be and use that in an FF-width technique.
+
 */
 body > main {
   flex: 1 0 auto;
-  width: 100%;
-  max-width: none;
+  /* 1 */
+  max-width: 71.42857%;
+  width: calc((1512px - 100%) * 9999);
+  min-width: 100%;
   min-height: 0;
   margin: 0;
   padding: 0;
   color: #333;
   background-color: #fff;
+}
+
+body > main:nth-last-child(5) {
+  grid-column: 1 / -1;
+  max-width: 100%;
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -2956,25 +3325,13 @@ body > main > * > header ~ div > figure {
   border-style: solid;
   border-color: #333333;
   padding-top: 2.4rem;
-  padding-top: -moz-calc(2.4rem - 0);
   padding-top: calc(2.4rem - 0);
   padding-left: 2.4rem;
-  padding-left: -moz-calc(2.4rem - 0);
   padding-left: calc(2.4rem - 0);
   padding-right: 2.4rem;
-  padding-right: -moz-calc(2.4rem - 0);
   padding-right: calc(2.4rem - 0);
-}
-
-body > main > * > header ~ figure::after,
-body > main > * > header ~ div > figure::after {
-  display: block;
-  content: "";
-  height: 1px;
-  margin-top: 2.4rem;
-  margin-bottom: -1px;
-  margin-bottom: -moz-calc(-1px - 0);
-  margin-bottom: calc(-1px - 0);
+  padding-bottom: 2.4rem;
+  padding-bottom: calc(2.4rem - 0);
 }
 
 /*
@@ -3031,10 +3388,15 @@ body > main > div > header ~ div > * {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 25rem;
+  min-width: none;
   margin: 1.2rem;
   padding: 0;
   border: 0;
   background-color: transparent;
+}
+
+body > main > div > header ~ div > * > * {
+  padding: 0;
 }
 
 body > main > div > header ~ div > * > * {
@@ -3052,7 +3414,7 @@ body > main > div > header ~ div > * > * {
 @supports (columns: 1) {
   body > main > div > header ~ div {
     display: block;
-    padding: 2.4rem;
+    padding: 1.2rem 2.4rem;
     columns: 25rem auto;
     column-gap: 2.4rem;
   }
@@ -3060,10 +3422,13 @@ body > main > div > header ~ div > * > * {
             1. This fixes an issue where box-shadows break across columns.
         */
   body > main > div > header ~ div > * {
-    margin: 0 0 2.4rem 0;
+    margin: 0;
     transform: translateZ(0);
     /* [1] */
     break-inside: avoid;
+  }
+  body > main > div > header ~ div > * > * {
+    padding: 1.2rem 0;
   }
 }
 
@@ -3107,7 +3472,7 @@ body > main > div > header ~ div > * > * {
     * Ads :-(
 
 |-------------------------------------------------------------------------------------------------*/
-body > aside {
+[data-elementary] body > aside {
   margin: 0;
   padding: 2.4rem;
   color: #333;
@@ -3120,7 +3485,7 @@ body > aside {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
-body > footer {
+[data-elementary] body > footer {
   margin: 0;
   padding: 1.2rem;
   font-size: 0.875em;
@@ -3129,20 +3494,20 @@ body > footer {
   background: #333333;
 }
 
-body > footer > * {
+[data-elementary] body > footer > * {
   margin-bottom: 0;
 }
 
-body > footer a[href] {
+[data-elementary] body > footer a[href] {
   color: #fff;
 }
 
-body > footer a[href]:hover, body > footer a[href]:active {
+[data-elementary] body > footer a[href]:hover, [data-elementary] body > footer a[href]:active {
   color: white;
 }
 
-body > footer a[href]:focus {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+[data-elementary] body > footer a[href]:focus {
+  box-shadow: 0 0 0 0.3rem rgba(255, 255, 255, 0.5);
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -3157,52 +3522,61 @@ body > footer a[href]:focus {
     =================
 
 |-------------------------------------------------------------------------------------------------*/
-article > span:only-child {
+[data-elementary] article > div:only-child {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
   margin: 0;
   padding: 2.4rem;
-  border: 1px solid #333333;
+  border: 0.1rem solid #333333;
   border-radius: 1.2rem;
   background: linear-gradient(to bottom, #ffffff 60%, #d9d9d9 100%);
   box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.2);
 }
 
-article > span:only-child * {
+[data-elementary] article > div:only-child * {
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
   hyphens: auto;
 }
 
-article > span:only-child > header > :last-child {
+[data-elementary] article > div:only-child *:only-child {
+  margin-bottom: 0;
+}
+
+[data-elementary] article > div:only-child > header {
+  background-color: transparent;
+  padding: 0;
+}
+
+[data-elementary] article > div:only-child > header > :last-child {
   margin-bottom: 2.4rem;
 }
 
-article > span:only-child > header > :last-child {
+[data-elementary] article > div:only-child > header > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > header > :last-child > :last-child {
+[data-elementary] article > div:only-child > header > :last-child > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > header > div:first-child {
+[data-elementary] article > div:only-child > header > div:first-child {
   position: relative;
   overflow: hidden;
   margin: -2.4rem -2.4rem 2.4rem -2.4rem;
 }
 
-article > span:only-child > header > div:first-child::before {
+[data-elementary] article > div:only-child > header > div:first-child::before {
   display: block;
   content: "";
   width: 100%;
   padding-top: 33%;
 }
 
-article > span:only-child > header > div:first-child > img {
+[data-elementary] article > div:only-child > header > div:first-child > img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -3210,29 +3584,31 @@ article > span:only-child > header > div:first-child > img {
   object-fit: cover;
 }
 
-article > span:only-child > div > :last-child {
+[data-elementary] article > div:only-child > div > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > div > :last-child > :last-child {
+[data-elementary] article > div:only-child > div > :last-child > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > div > p:last-child > b:only-child {
+[data-elementary] article > div:only-child > div > p:last-child > b:only-child {
   display: block;
   text-align: right;
 }
 
-article > span:only-child > footer {
+[data-elementary] article > div:only-child > footer {
   margin-top: auto;
   margin-bottom: 0;
+  padding: 0;
+  background-color: transparent;
 }
 
-article > span:only-child > footer > :last-child {
+[data-elementary] article > div:only-child > footer > :last-child {
   margin-bottom: 0;
 }
 
-article > span:only-child > footer > :last-child > :last-child {
+[data-elementary] article > div:only-child > footer > :last-child > :last-child {
   margin-bottom: 0;
 }
 
@@ -3242,13 +3618,13 @@ article > span:only-child > footer > :last-child > :last-child {
     ===
 
 |-------------------------------------------------------------------------------------------------*/
-article > span:only-child b > a[href]:only-child {
+[data-elementary] article > div:only-child b > a[href]:only-child {
   display: inline-block;
   overflow: hidden;
   margin: 0;
-  padding: calc(0.6rem - 1px) 1.2rem;
-  border: 1px solid #333333;
-  border-radius: 3px;
+  padding: calc(0.6rem - 0.1rem) 1.2rem;
+  border: 0.1rem solid #333333;
+  border-radius: 0.3rem;
   background: #fff;
   box-shadow: none;
   font-weight: normal;
@@ -3256,7 +3632,7 @@ article > span:only-child b > a[href]:only-child {
   vertical-align: middle;
 }
 
-article > span:only-child b > a[href]:only-child:hover, article > span:only-child b > a[href]:only-child:active, article > span:only-child b > a[href]:only-child:focus {
+[data-elementary] article > div:only-child b > a[href]:only-child:hover, [data-elementary] article > div:only-child b > a[href]:only-child:active, [data-elementary] article > div:only-child b > a[href]:only-child:focus {
   background: #bfbfbf;
 }
 
@@ -3293,13 +3669,13 @@ body > main > * > header > div:first-child > img {
     ===================
 
 |-------------------------------------------------------------------------------------------------*/
-b > img:only-child {
-  border: 1px solid #333333;
+[data-elementary] b > img:only-child {
+  border: 0.1rem solid #333333;
 }
 
-b > i:only-child > img:only-child {
+[data-elementary] b > i:only-child > img:only-child {
   padding: 2.4rem;
-  border: 1px solid #333333;
+  border: 0.1rem solid #333333;
   background: #fff;
 }
 
@@ -3309,7 +3685,7 @@ b > i:only-child > img:only-child {
     =========================
 
 |-------------------------------------------------------------------------------------------------*/
-small > details:only-child {
+[data-elementary] small > details:only-child {
   position: absolute;
   top: 0.6rem;
   right: 0.6rem;
@@ -3323,11 +3699,11 @@ small > details:only-child {
   background: rgba(0, 0, 0, 0.7);
 }
 
-small > details:only-child a[href] {
+[data-elementary] small > details:only-child a[href] {
   color: #fff;
 }
 
-small > details:only-child[open] {
+[data-elementary] small > details:only-child[open] {
   border-radius: 0;
   top: 0;
   right: 0;
@@ -3335,20 +3711,20 @@ small > details:only-child[open] {
   height: auto;
 }
 
-small > details:only-child[open] > summary {
+[data-elementary] small > details:only-child[open] > summary {
   top: 0.6rem;
   right: 0.6rem;
 }
 
-small > details:only-child[open] > summary > :first-child {
+[data-elementary] small > details:only-child[open] > summary > svg:first-of-type {
   display: none;
 }
 
-small > details:only-child[open] > summary > :last-child {
+[data-elementary] small > details:only-child[open] > summary > svg:last-of-type {
   display: inline;
 }
 
-small > details:only-child::after {
+[data-elementary] small > details:only-child::after {
   display: none;
 }
 
@@ -3357,7 +3733,7 @@ small > details:only-child::after {
            for some reason iOS doesn't get it right, so I'm using padding instead for now since the
            icon or container sizes shouldn't change.
     */
-small > details:only-child > summary {
+[data-elementary] small > details:only-child > summary {
   position: absolute;
   z-index: 1;
   display: flex;
@@ -3370,23 +3746,23 @@ small > details:only-child > summary {
   font-size: 1.23076923077em;
 }
 
-small > details:only-child > summary > :first-child {
+[data-elementary] small > details:only-child > summary > :first-child {
   display: inline;
 }
 
-small > details:only-child > summary > :last-child {
+[data-elementary] small > details:only-child > summary > :last-child {
   display: none;
 }
 
-small > details:only-child > summary::before {
+[data-elementary] small > details:only-child > summary::before {
   display: none;
 }
 
-small > details:only-child > summary:hover, small > details:only-child > summary:focus, small > details:only-child > summary:active {
+[data-elementary] small > details:only-child > summary:hover, [data-elementary] small > details:only-child > summary:focus, [data-elementary] small > details:only-child > summary:active {
   background: rgba(255, 255, 255, 0.3);
 }
 
-small > details:only-child > summary + * {
+[data-elementary] small > details:only-child > summary + * {
   position: relative;
   max-width: calc(100% - 2.4rem);
   padding: 2.4rem 2.4rem;
@@ -3397,8 +3773,8 @@ small > details:only-child > summary + * {
     Greybox
 */
 /*
-body > header,
-body > footer {
+[data-elementary] body > header,
+[data-elementary] body > footer {
     background: #ddd;
 }
 
@@ -3418,4 +3794,34 @@ main > div > ul > li > article {
 */
 body > main > div > header ~ div > *:after {
   display: none;
+}
+
+/*
+[data-elementary] body > header   nav   b > a[href] svg {
+    stroke: #fff;
+}
+*/
+p[role="list"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
+}
+
+p[role="list"] span[role="listitem"] {
+  margin: 0.6rem;
+  flex: 0 0 auto;
+  display: inline-block;
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    SHAME
+
+|-------------------------------------------------------------------------------------------------*/
+div > pre {
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+  width: auto;
 }

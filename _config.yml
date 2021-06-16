@@ -32,8 +32,13 @@ permalink: /:categories/:title/
 
 kramdown:
   auto_ids:       true
+#  syntax_highlighter_opts:
+#    disable : true
+    
+#highlighter: none
 
 # Prevent github pages creating stuff:
 theme: null
+
 
 exclude: ["node_modules", "bower_components", "Gemfile", "Gemfile.lock", "Gruntfile.js", "bower.json", "package.json", "README.md"]

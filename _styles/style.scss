@@ -22,6 +22,35 @@ $es__page_main__header--listing__list: "#{$es__page_main__header--listing} ~ div
 
 |-------------------------------------------------------------------------------------------------*/
 
+$s__pre-background-color: lighten($s__base-ui-color, 70%);
+
+//$s__use-layout: true;
+$s__use-last-child-margin-zero: true;
+//$s__procedural-margins: false;
+//$s__zero-header-hx-margin: true;
+$s__space_dl_groups: true;
+
+$s__text_zoom_scales_all: true;
+
+
+$s__border-width: 0.1rem;
+$s__border-radius: 0.3rem;
+
+$s__focus-outline-width: 0.2rem;
+$s__focus-outline-offset: 0.2rem;
+
+$s__anchor-border-bottom-width: 0.2rem;
+$s__anchor-focus-shadow-width: 0.3rem;
+
+$s__button-focus-shadow-width: 0.3rem;
+
+$s__input-focus-shadow-width: 0.3rem;
+
+$s__select-focus-shadow-width: 0.3rem;
+
+$s__textarea-focus-shadow-width: 0.3rem;
+
+$s__figure-scroll: true;
 @import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
 
 
@@ -49,3 +78,39 @@ $s__cookie-notice__link--color--alt: lighten($s__base-ui-color, 50%);
 #{$es__page_main__header--listing__list} > *:after {
     display: none;
 }
+
+
+
+// Logo colour invert trick:
+// (White logos don't show up if styles don't load, so the trick is to keep them black in the SVG
+// source and then invert them with CSS.)
+/*
+#{$es__page_banner__logo} svg {
+    stroke: #fff;
+}
+*/
+
+// Generic inline-list - not sure if this could/should be in StartCSS or somewhere better:
+p[role="list"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin-left: -$s__sz-xs;
+    margin-right: -$s__sz-xs;
+}
+
+p[role="list"]   span[role="listitem"] {
+    margin: $s__sz-xs;
+    flex: 0 0 auto;
+
+    display: inline-block;
+}
+
+/*-------------------------------------------------------------------------------------------------|
+
+    SHAME
+
+|-------------------------------------------------------------------------------------------------*/
+
+@import '_shame.scss';
