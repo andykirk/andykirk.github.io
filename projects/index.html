@@ -13,7 +13,7 @@ body_id: projects
     {% for post in site.posts %}{% if post.role != '' %}
         <div role="listitem">
             {% if post.cloudinary_id != "" %}
-                {% assign img_src = "http://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
+                {% assign img_src = "https://res.cloudinary.com/andykirk/image/upload/c_fill,g_face,h_326,w_652/" | append: post.cloudinary_id  %}
             {% else %}
                 {% assign img_src = false %}
             {% endif %}
