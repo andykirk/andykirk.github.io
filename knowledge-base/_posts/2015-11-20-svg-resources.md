@@ -3,11 +3,8 @@ title: SVG Resources
 tags: [SVG]
 ---
 * [Tips for Creating and Exporting Better SVGs for the Web](http://sarasoueidan.com/blog/svg-tips-for-designers)
-
 * [SVG Style Inheritance and the ‘Flash Of Unstyled SVG’](https://sarasoueidan.com//blog/svg-style-inheritance-and-FOUSVG)
-
 * [SVG within CSS](https://css-tricks.com/svg-within-css/)
-
 * [Magical SVG Techniques](https://www.smashingmagazine.com/2022/05/magical-svg-techniques/)
 
 Icons
