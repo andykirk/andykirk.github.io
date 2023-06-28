@@ -2863,7 +2863,7 @@ body > * {
       grid-column: 1;
       grid-row: 2 / -1;
     }
-    [data-elementary] body > header + main:nth-last-child(5) {
+    [data-elementary] body > header + main:nth-last-child(4) {
       grid-column: 1 / -1;
     }
     [data-elementary] body > aside {
@@ -2875,7 +2875,7 @@ body > * {
             only way I can think of doing this, but it's fragile - it will break if elements at this
             level get added or removed.
         */
-    [data-elementary] body > aside:nth-last-child(6) {
+    [data-elementary] body > aside:nth-last-child(5) {
       grid-row: 2 / -1;
     }
     [data-elementary] body > main + aside {
@@ -2902,7 +2902,7 @@ body > * {
             removing elements via JS.
 
         */
-    body > main:nth-last-child(5) {
+    body > main:nth-last-child(4) {
       grid-column: 1 / -1;
     }
   }
@@ -3226,7 +3226,7 @@ body > main {
   background-color: #fff;
 }
 
-body > main:nth-last-child(5) {
+body > main:nth-last-child(4) {
   grid-column: 1 / -1;
   max-width: 100%;
 }
